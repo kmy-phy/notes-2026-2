@@ -5,7 +5,6 @@
 | 과목 | 노트 |
 |---|---|
 | Differential Geometry | [소개 · 목차](differential-geometry/index.md) · [Lec 2](differential-geometry/lec02.md) |
-| 역학 | [라그랑주 역학](mechanics/lagrangian.md) |
 
 !!! tip "처음이라면"
     [노트 쓰는 법](guide.md)에 수식, 상자, 그림 넣는 방법을 정리해 두었어요.
