@@ -6,26 +6,21 @@ title: Differential Geometry
 
 # Lecture Notes in Differential Geometry { .book-title }
 
-<p class="subject-line">Arc length · Curvature and torsion · The Frenet frame</p>
+<p class="subject-line">Curves · Surfaces · Curvature</p>
 
-## Conventions
+<p class="pdf-links"><a href="all-lectures.pdf" download="Differential-Geometry-Notes.pdf">Download all lectures as one PDF</a></p>
 
-!!! quote "Conventions used throughout these notes."
-    - *Curves.* A curve is a smooth map $\alpha : I \to \mathbb{R}^3$ on an open interval $I$. A prime means a derivative with respect to the curve's parameter: $\alpha'(t) = d\alpha/dt$, or $d\alpha/ds$ once the curve is parametrized by arc length.
-    - *Inner product, norm, cross product.* $\langle u, v\rangle$ is the Euclidean inner product, $|u| = \langle u, u\rangle^{1/2}$, and $u \wedge v$ is the cross product in $\mathbb{R}^3$.
-    - *Vectors.* Fixed (constant) vectors are written in bold: $\mathbf{v}, \mathbf{v}_0, \mathbf{c}$.
-    - *Arc length.* "p.a.l." means *parametrized by arc length*, i.e. $|\alpha'| \equiv 1$. The arc-length parameter is $s$.
-    - *Frenet frame.* $T = \alpha'$, $\;N = T'/k$, $\;B = T \wedge N$, with curvature $k = |T'|$ and torsion $\tau$ defined by $B' = \tau N$. With these signs,
+## The subject
 
-        $$
-        T' = kN, \qquad N' = -kT - \tau B, \qquad B' = \tau N .
-        $$
+Differential geometry uses calculus to study shape. Its basic move is local: near each point a smooth curve or surface is approximated by its derivatives, and the geometry is read off from quantities that do not depend on how the object is parametrized or on where it sits in space. Such quantities are the invariants of the subject.
 
-    Notation and sign conventions follow do Carmo, *Differential Geometry of Curves and Surfaces*.
+For a curve in $\mathbb{R}^3$ the invariants are the curvature and the torsion, which measure how fast the curve bends and how fast it twists out of a plane. Together they determine the curve up to a rigid motion. For a surface the analogous information is carried by two quadratic forms on its tangent planes, the first and second fundamental forms, and their combinations give the Gaussian and mean curvatures.
+
+Two questions run through the theory. The first is which properties are *intrinsic*, visible to someone who can only measure lengths and angles on the surface itself, and which depend on how the surface is placed in space. Gauss's *Theorema Egregium* says that Gaussian curvature, although defined through the embedding, is intrinsic. The second is how local information constrains global shape, as in the Gauss–Bonnet theorem, which ties the total curvature of a closed surface to its topology.
 
 ## About these notes
 
-These are typeset versions of my handwritten notes for the course, one page per lecture. They follow the order of the lectures, so each page can be read side by side with the original. The handwritten PDF is linked at the top of every lecture page, and every figure has been redrawn.
+These are typeset versions of my handwritten notes for the course, one page per lecture. They follow the order of the lectures, so each page can be read side by side with the original. The handwritten PDF is linked at the top of every lecture page, every figure has been redrawn, and each lecture opens with the notation and sign conventions it uses. Every lecture can also be downloaded as a PDF.
 
 Wherever the typeset version says more than the handwriting, for example a step the lecture skipped, a direction of a proof that was left out, or a comment on why a step works, the remark is marked *(added)*. Everything not marked that way is what was written in class.
 
@@ -42,7 +37,7 @@ Five kinds of set-off text carry the weight.
     A boxed key result, worth remembering — the ones that get used again in later lectures.
 
 !!! example "Example"
-    A worked computation that applies the definitions to a concrete curve.
+    A worked computation that applies the definitions to a concrete curve or surface.
 
 !!! info "Remark"
     Explains why a step is taken, or what a result means. Remarks marked *(added)* are not in the handwritten notes.

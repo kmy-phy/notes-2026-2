@@ -24,6 +24,11 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - run: mkdocs build --strict
+      # 노트 페이지를 PDF로 저장 (다운로드 링크용)
+      - run: |
+          pip install playwright==1.56.0 pypdf==5.9.0
+          python -m playwright install --with-deps chromium
+      - run: python scripts/make_pdfs.py site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

@@ -6,9 +6,22 @@ title: "Lecture 2 — Arc Length and the Frenet Frame"
 
 # Lecture 2 — Arc Length and the Frenet Frame { .part-title }
 
-<p class="source-note">Original handwritten notes: <a href="../originals/lec02.pdf">lec02.pdf</a></p>
+<p class="source-note">Original handwritten notes: <a href="../originals/lec02.pdf">lec02.pdf</a> · <a class="pdf-link" href="notes.pdf" download="Differential-Geometry-Lecture-02.pdf">Download this lecture as PDF</a></p>
 
 **In this lecture.** A regular curve can be reparametrized so that it moves at unit speed. Along such a curve we attach a moving orthonormal frame $\{T, N, B\}$ and read off two functions, the curvature $k$ and the torsion $\tau$. Differentiating the frame closes up into the Frenet formulas, and the two functions turn out to detect lines ($k \equiv 0$) and plane curves ($\tau \equiv 0$).
+
+!!! quote "Conventions used in this lecture."
+    - *Curves.* A curve is a smooth map $\alpha : I \to \mathbb{R}^3$ on an open interval $I$. A prime means a derivative with respect to the curve's parameter: $\alpha'(t) = d\alpha/dt$, or $d\alpha/ds$ once the curve is parametrized by arc length.
+    - *Inner product, norm, cross product.* $\langle u, v\rangle$ is the Euclidean inner product, $|u| = \langle u, u\rangle^{1/2}$, and $u \wedge v$ is the cross product in $\mathbb{R}^3$.
+    - *Vectors.* Fixed (constant) vectors are written in bold: $\mathbf{v}, \mathbf{v}_0, \mathbf{c}$.
+    - *Arc length.* "p.a.l." means *parametrized by arc length*, i.e. $|\alpha'| \equiv 1$. The arc-length parameter is $s$.
+    - *Frenet frame.* $T = \alpha'$, $\;N = T'/k$, $\;B = T \wedge N$, with curvature $k = |T'|$ and torsion $\tau$ defined by $B' = \tau N$. With these signs,
+
+        $$
+        T' = kN, \qquad N' = -kT - \tau B, \qquad B' = \tau N .
+        $$
+
+    Notation and sign conventions follow do Carmo, *Differential Geometry of Curves and Surfaces*.
 
 ---
 
@@ -210,6 +223,7 @@ Together with $\langle N', N\rangle = 0$ (since $|N| = 1$), expanding $N'$ in th
     = \begin{pmatrix} 0 & k & 0 \\ -k & 0 & -\tau \\ 0 & \tau & 0 \end{pmatrix}
     \begin{pmatrix} T \\ N \\ B \end{pmatrix}.
     $$
+
     The matrix is antisymmetric. That is no accident: it is the derivative of an orthonormal frame.
 
 ---
