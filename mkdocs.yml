@@ -1,0 +1,52 @@
+site_name: 내 노트 2026-2
+site_description: 2026년 2학기 필기 정리
+
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.instant      # 페이지 이동이 빠르게
+    - navigation.sections     # 왼쪽 메뉴를 과목별로 묶기
+    - navigation.top          # 맨 위로 버튼
+    - navigation.footer       # 이전/다음 노트 버튼
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.arithmatex:      # $...$, $$...$$ 수식
+      generic: true
+  - admonition                # !!! note 같은 상자
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - attr_list
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+# 왼쪽 메뉴 순서. 새 노트를 만들면 여기에 한 줄 추가하면 됨
+# (이 nav 블록을 통째로 지우면 폴더 구조대로 자동 생성됨)
+nav:
+  - 홈: index.md
+  - 역학:
+      - 라그랑주 역학: mechanics/lagrangian.md
+  - 노트 쓰는 법: guide.md
