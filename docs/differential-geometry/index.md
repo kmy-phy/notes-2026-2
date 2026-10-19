@@ -51,6 +51,16 @@ A proof begins with *Proof.* and ends with $\square$.
 
 <div class="contents" markdown>
 
+<p class="contents-part"><a href="lec01/">Lecture 1 — Curves and Their Length</a></p>
+
+- [<span>Parametrized curves</span><span class="n">1.1</span>](lec01.md#11-parametrized-curves)
+- [<span>What a smooth curve can look like</span><span class="n">1.2</span>](lec01.md#12-what-a-smooth-curve-can-look-like)
+- [<span>Examples</span><span class="n">1.3</span>](lec01.md#13-examples)
+- [<span>Length</span><span class="n">1.4</span>](lec01.md#14-length)
+- [<span>Invariance under isometries</span><span class="n">1.5</span>](lec01.md#15-invariance-under-isometries)
+- [<span>Lines as minima</span><span class="n">1.6</span>](lec01.md#16-lines-as-minima)
+- [<span>Reparametrization</span><span class="n">1.7</span>](lec01.md#17-reparametrization)
+
 <p class="contents-part"><a href="lec02/">Lecture 2 — Arc Length and the Frenet Frame</a></p>
 
 - [<span>The arc-length function</span><span class="n">2.1</span>](lec02.md#21-the-arc-length-function)
