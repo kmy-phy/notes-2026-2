@@ -1,0 +1,4 @@
+/* 손글씨 스케치를 다크 모드에서도 잘 보이게 */
+[data-md-color-scheme="slate"] img.sketch {
+  filter: invert(0.9) hue-rotate(180deg);
+}

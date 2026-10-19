@@ -36,8 +36,12 @@ markdown_extensions:
   - pymdownx.superfences
   - footnotes
   - attr_list
+  - md_in_html                # 그림에 캡션 달기
   - toc:
       permalink: true
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -47,6 +51,9 @@ extra_javascript:
 # (이 nav 블록을 통째로 지우면 폴더 구조대로 자동 생성됨)
 nav:
   - 홈: index.md
+  - Differential Geometry:
+      - 소개 · 목차: differential-geometry/index.md
+      - "Lec 2: Arc Length & Frenet Frame": differential-geometry/lec02.md
   - 역학:
       - 라그랑주 역학: mechanics/lagrangian.md
   - 노트 쓰는 법: guide.md
