@@ -22,7 +22,7 @@ Two questions run through the theory. The first is which properties are *intrins
 
 These are typeset versions of my handwritten notes for the course, one page per lecture. They follow the order of the lectures, so each page can be read side by side with the original. The handwritten PDF is linked at the top of every lecture page, every figure has been redrawn, and each lecture opens with the notation and sign conventions it uses. Every lecture can also be downloaded as a PDF.
 
-Wherever the typeset version says more than the handwriting, for example a step the lecture skipped, a direction of a proof that was left out, or a comment on why a step works, the remark is marked *(added)*. Everything not marked that way is what was written in class.
+The typeset version sometimes says more than the handwriting: a step the lecture skipped, a direction of a proof that was left out, or a comment on why a step works.
 
 ## How these notes are organised
 
@@ -40,7 +40,7 @@ Five kinds of set-off text carry the weight.
     A worked computation that applies the definitions to a concrete curve or surface.
 
 !!! info "Remark"
-    Explains why a step is taken, or what a result means. Remarks marked *(added)* are not in the handwritten notes.
+    Explains why a step is taken, or what a result means.
 
 !!! warning "Caution"
     Marked by a heavy rule down the left margin, it flags a convention trap: a place where another standard book makes the opposite choice, so a formula copied across would come out with the wrong sign.

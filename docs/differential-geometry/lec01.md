@@ -44,7 +44,7 @@ The map $\alpha$ is smooth, but its image $\alpha(I)$ need not be.
       <figcaption markdown="span">Figure 1.1. The image of $\alpha(t) = (t^2, t^3)$.</figcaption>
     </figure>
 
-!!! info "Remark (added) — where the corner comes from"
+!!! info "Remark — where the corner comes from"
     At the cusp the tangent vector vanishes: $\alpha'(t) = (2t, 3t^2)$, so $\alpha'(0) = 0$. A curve can only turn a sharp corner by stopping there. Curves with $\alpha' \neq 0$ everywhere, the *regular* curves of Lecture 2, cannot do this.
 
 !!! info "Remark 1.3 — injective is not enough"
@@ -62,7 +62,7 @@ The map $\alpha$ is smooth, but its image $\alpha(I)$ need not be.
       <figcaption markdown="span">Figure 1.2. The folium of Descartes, $t \in (-1, \infty)$.</figcaption>
     </figure>
 
-!!! info "Remark (added) — why the folium fails"
+!!! info "Remark — why the folium fails"
     $\alpha$ is injective, but $\alpha(t) \to (0, 0) = \alpha(0)$ as $t \to \infty$. So points $\alpha(t)$ with $t$ very large are close to $\alpha(0)$ in the image while $t$ is far from $0$: the inverse map $\alpha(I) \to (-1, \infty)$ is not continuous at the origin.
 
 ---
@@ -86,7 +86,7 @@ The map $\alpha$ is smooth, but its image $\alpha(I)$ need not be.
       <figcaption markdown="span">Figure 1.3. A helix winding around the $z$-axis.</figcaption>
     </figure>
 
-!!! info "Remark (added) — the odd-looking parameters"
+!!! info "Remark — the odd-looking parameters"
     The factors $1/r$ and $1/\sqrt{a^2+b^2}$ are chosen so that $|\alpha'(t)| = 1$: for the helix, $|\alpha'|^2 = \frac{a^2 + b^2}{a^2+b^2} = 1$. All three examples are parametrized by arc length, in the sense of Lecture 2.
 
 ---
@@ -171,7 +171,7 @@ $L_a^b(\alpha, P)$ is the length of the polygon inscribed in the curve, and $|P|
     |\beta_i - \xi_i| < \delta, \qquad |\gamma_i - \xi_i| < \delta, \qquad |\eta_i - \xi_i| < \delta .
     $$
 
-    Hence *(final estimate added)*
+    Hence
 
     $$
     \left| L_a^b(\alpha, P) - \int_a^b |\alpha'| \right|
@@ -179,7 +179,7 @@ $L_a^b(\alpha, P)$ is the length of the polygon inscribed in the curve, and $|P|
     < \frac{\varepsilon}{b - a} \sum_{i=1}^{n} (t_i - t_{i-1}) = \varepsilon . \qquad \square
     $$
 
-!!! info "Remark (added) — why three different points"
+!!! info "Remark — why three different points"
     The Mean Value Theorem has to be applied to each coordinate on its own, and each gives its own intermediate point. That is why $f$ takes three arguments instead of one, and why uniform continuity of $f$ is needed to bring the three points together.
 
 ---
@@ -195,7 +195,7 @@ $L_a^b(\alpha, P)$ is the length of the polygon inscribed in the curve, and $|P|
     If $\varphi$ is an isometry of $\mathbb{R}^3$ and $\alpha : I \to \mathbb{R}^3$ a curve, then $L_a^b(\varphi \circ \alpha) = L_a^b(\alpha)$.
 
 !!! success "Proof"
-    *(added)* Write $\varphi(p) = A p + \mathbf{q}$ with $A A^t = \mathrm{Id}$. Then $(\varphi \circ \alpha)'(t) = A\, \alpha'(t)$, and an orthogonal matrix preserves norms, $|A u|^2 = \langle A u, A u\rangle = \langle u, A^t A u\rangle = |u|^2$. So the integrands agree:
+    Write $\varphi(p) = A p + \mathbf{q}$ with $A A^t = \mathrm{Id}$. Then $(\varphi \circ \alpha)'(t) = A\, \alpha'(t)$, and an orthogonal matrix preserves norms, $|A u|^2 = \langle A u, A u\rangle = \langle u, A^t A u\rangle = |u|^2$. So the integrands agree:
 
     $$
     L_a^b(\varphi \circ \alpha) = \int_a^b |A\, \alpha'(t)|\, dt = \int_a^b |\alpha'(t)|\, dt = L_a^b(\alpha). \qquad \square
@@ -218,7 +218,7 @@ $L_a^b(\alpha, P)$ is the length of the polygon inscribed in the curve, and $|P|
     </figure>
 
 !!! success "Proof"
-    *(added)* By the fundamental theorem of calculus and the triangle inequality for integrals,
+    By the fundamental theorem of calculus and the triangle inequality for integrals,
 
     $$
     |\alpha(b) - \alpha(a)| = \left| \int_a^b \alpha'(t)\, dt \right| \le \int_a^b |\alpha'(t)|\, dt = L_a^b(\alpha). \qquad \square
@@ -255,7 +255,7 @@ $L_a^b(\alpha, P)$ is the length of the polygon inscribed in the curve, and $|P|
     = \int_c^d \left| \frac{d}{ds}\alpha(s) \right| ds = L_c^d(\alpha).
     $$
 
-    *(added)* If $\varphi' < 0$, then $|\varphi'| = -\varphi'$ and $\varphi$ sends $a \mapsto d$, $b \mapsto c$, so the substitution gives $-\int_d^c = \int_c^d$, the same result. $\square$
+    If $\varphi' < 0$, then $|\varphi'| = -\varphi'$ and $\varphi$ sends $a \mapsto d$, $b \mapsto c$, so the substitution gives $-\int_d^c = \int_c^d$, the same result. $\square$
 
-!!! info "Remark (added) — why $\varphi'$ never vanishes"
+!!! info "Remark — why $\varphi'$ never vanishes"
     Differentiating $\varphi^{-1}(\varphi(t)) = t$ gives $(\varphi^{-1})'(\varphi(t))\, \varphi'(t) = 1$, so $\varphi'(t) \neq 0$. A continuous function that never vanishes on an interval has constant sign, by the intermediate value theorem.

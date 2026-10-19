@@ -43,7 +43,7 @@ $$
 
 In particular, $s$ is **not** in general a diffeomorphism.
 
-!!! info "Remark (added) — where smoothness is lost"
+!!! info "Remark — where smoothness is lost"
     $\alpha'$ itself is smooth; what fails is the norm $x \mapsto |x|$, which is not differentiable at $x = 0$. So $|\alpha'|$ can only lose smoothness at points where $\alpha'$ vanishes.
 
 If $|\alpha'(t)| \neq 0$ for all $t$, then $s$ is indeed a diffeomorphism between $I$ and $s(I)$: $|\alpha'|$ is now smooth, so $s$ is $C^\infty$, and $s' > 0$.
@@ -114,7 +114,7 @@ $$
       <figcaption markdown="span">Figure 2.2. The logarithmic spiral for $a = 1$, $b = -0.12$.</figcaption>
     </figure>
 
-!!! info "Remark (added) — a finite spiral"
+!!! info "Remark — a finite spiral"
     Because $b < 0$, $e^{bt} \to 0$ as $t \to \infty$, so $s(t) \to a\sqrt{1+b^2}\,/\,|b|$. The spiral winds around the origin infinitely many times but has finite total length.
 
 ---
@@ -217,7 +217,7 @@ Together with $\langle N', N\rangle = 0$ (since $|N| = 1$), expanding $N'$ in th
     \end{cases}
     $$
 
-!!! info "Remark (added) — matrix form"
+!!! info "Remark — matrix form"
     $$
     \frac{d}{ds}\begin{pmatrix} T \\ N \\ B \end{pmatrix}
     = \begin{pmatrix} 0 & k & 0 \\ -k & 0 & -\tau \\ 0 & \tau & 0 \end{pmatrix}
@@ -286,5 +286,5 @@ Together with $\langle N', N\rangle = 0$ (since $|N| = 1$), expanding $N'$ in th
 
     which is the equation of a plane in $\mathbb{R}^3$. $\square$
 
-!!! info "Remark (added) — the other direction"
+!!! info "Remark — the other direction"
     The handwritten notes prove only ($\Leftarrow$). For ($\Rightarrow$): if $\alpha$ lies in a plane $\langle x, \mathbf{v}\rangle = a$ with $|\mathbf{v}| = 1$, differentiating twice gives $\langle T, \mathbf{v}\rangle = 0$ and $\langle T', \mathbf{v}\rangle = 0$, so $\langle N, \mathbf{v}\rangle = 0$. Then $B$ is a unit vector orthogonal to both $T$ and $N$, as is $\mathbf{v}$, so $B = \pm\mathbf{v}$. By continuity the sign is constant, so $B$ is constant, $B' = 0$, and $\tau = 0$. $\square$
