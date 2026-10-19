@@ -4,6 +4,7 @@
 
 | 과목 | 노트 |
 |---|---|
+| Differential Geometry | [소개 · 목차](differential-geometry/index.md) · [Lec 2](differential-geometry/lec02.md) |
 | 역학 | [라그랑주 역학](mechanics/lagrangian.md) |
 
 !!! tip "처음이라면"
