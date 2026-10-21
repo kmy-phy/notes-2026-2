@@ -366,32 +366,9 @@ $$
 
 ## 1.4 The Vector Product in $\mathbb{R}^3$ { data-toc-label="1.4 The Vector Product in R³" #14-the-vector-product }
 
-<p class="lecture-tag">Used in Lectures 2–3</p>
-
-The Frenet frame of §1.5 is built with the vector product, and the proof of the fundamental theorem needs oriented bases. This section collects the facts that are used.
-
-!!! note "Definition 1.4.1 (Orientation)"
-    Two ordered bases of $\mathbb{R}^3$ have the **same orientation** if the matrix of change of basis has positive determinant. A basis with the orientation of the natural basis $\{e_1, e_2, e_3\}$ is called **positive**.
-
-!!! note "Definition 1.4.2 (Vector product)"
-    For $u, v \in \mathbb{R}^3$, the **vector product** $u \wedge v$ is the unique vector such that
-
-    $$
-    \langle u \wedge v, w\rangle = \det(u, v, w) \qquad \text{for all } w \in \mathbb{R}^3 .
-    $$
-
-    In coordinates, $u \wedge v = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1)$.
-
-!!! abstract "Proposition 1.4.3"
-    1. $u \wedge v = -\,v \wedge u$, and $u \wedge v$ is bilinear in $u$ and $v$.
-    2. $u \wedge v = 0$ if and only if $u$ and $v$ are linearly dependent.
-    3. $\langle u \wedge v, u\rangle = \langle u \wedge v, v\rangle = 0$.
-    4. If $u, v$ are linearly independent, $\{u, v, u \wedge v\}$ is a positive basis.
-    5. If $\{u, v\}$ is orthonormal, then $\{u, v, u \wedge v\}$ is a positive orthonormal basis.
-    6. If $u(t), v(t)$ are differentiable, then $\dfrac{d}{dt}(u \wedge v) = u' \wedge v + u \wedge v'$.
-
-!!! info "Remark — where these are used"
-    Property 5 makes $B = T \wedge N$ a unit vector completing $\{T, N\}$ to a positive orthonormal frame. Property 6 is the product rule used to differentiate $B$ in §1.5, and property 2 gives $N \wedge N = 0$ there.
+<div class="admonition skipped" markdown>
+This section was not covered in the lectures and is skipped in these notes. The vector product $u \wedge v$ is used in §1.5 to define the binormal $B = T \wedge N$; the facts needed there are that $\{u, v, u \wedge v\}$ is a positive orthonormal basis when $\{u, v\}$ is orthonormal, that $u \wedge u = 0$, and the product rule $(u \wedge v)' = u' \wedge v + u \wedge v'$.
+</div>
 
 ---
 

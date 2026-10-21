@@ -22,7 +22,7 @@ Two questions run through the theory. The first is which properties are *intrins
 
 ## About these notes
 
-These are typeset versions of my notes for the lecture course *Differential Geometry* by Claudio Arezzo. The course follows do Carmo's *Differential Geometry of Curves and Surfaces*, so the notes are arranged by do Carmo's chapters and sections rather than by lecture: each chapter is one page, and its sections carry do Carmo's numbers and titles. A small tag under each section says which lecture it comes from. A section that the lectures skipped keeps its heading, with a note that it was not covered.
+These are typeset versions of my notes for the lecture course *Differential Geometry* by Claudio Arezzo. The course follows do Carmo's *Differential Geometry of Curves and Surfaces*, so the notes are arranged by do Carmo's chapters and sections rather than by lecture: each chapter is one page, and its sections carry do Carmo's numbers and titles. A small tag under each section says which lecture it comes from. A section that the lectures skipped keeps its heading in the contents and in the text, with a note that it was not covered.
 
 The handwritten notes are linked at the top of each chapter, every figure has been redrawn, and each chapter opens with the notation and sign conventions it uses. The typeset version sometimes says more than the lecture: a step that was skipped, a direction of a proof that was left out, or a comment on why a step works. Every chapter can be downloaded as a PDF.
 
@@ -58,7 +58,7 @@ A proof begins with *Proof.* and ends with $\square$.
 - [<span>Introduction</span><span class="n">1.1</span>](chapter1.md#11-introduction)
 - [<span>Parametrized Curves</span><span class="n">1.2</span>](chapter1.md#12-parametrized-curves)
 - [<span>Regular Curves; Arc Length</span><span class="n">1.3</span>](chapter1.md#13-regular-curves-arc-length)
-- [<span>The Vector Product in $\mathbb{R}^3$</span><span class="n">1.4</span>](chapter1.md#14-the-vector-product)
+- [<span>The Vector Product in $\mathbb{R}^3$ <em class="not-covered">(not covered)</em></span><span class="n">1.4</span>](chapter1.md#14-the-vector-product)
 - [<span>The Local Theory of Curves Parametrized by Arc Length</span><span class="n">1.5</span>](chapter1.md#15-the-local-theory-of-curves-parametrized-by-arc-length)
 - [<span>The Local Canonical Form <em class="not-covered">(not covered)</em></span><span class="n">1.6</span>](chapter1.md#16-the-local-canonical-form)
 - [<span>Global Properties of Plane Curves</span><span class="n">1.7</span>](chapter1.md#17-global-properties-of-plane-curves)
