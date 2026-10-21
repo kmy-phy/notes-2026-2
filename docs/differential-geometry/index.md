@@ -8,7 +8,9 @@ title: Differential Geometry
 
 <p class="subject-line">Curves · Surfaces · Curvature</p>
 
-<p class="pdf-links"><a href="all-lectures.pdf" download="Differential-Geometry-Notes.pdf">Download all lectures as one PDF</a></p>
+<p class="course-info">Lectures: <em>Differential Geometry</em> — Claudio Arezzo<br>Main text: M. P. do Carmo, <em>Differential Geometry of Curves and Surfaces</em></p>
+
+<p class="pdf-links"><a href="all-lectures.pdf" download="Differential-Geometry-Notes.pdf">Download all chapters as one PDF</a></p>
 
 ## The subject
 
@@ -20,13 +22,13 @@ Two questions run through the theory. The first is which properties are *intrins
 
 ## About these notes
 
-These are typeset versions of my handwritten notes for the course, one page per lecture. They follow the order of the lectures, so each page can be read side by side with the original. The handwritten PDF is linked at the top of every lecture page, every figure has been redrawn, and each lecture opens with the notation and sign conventions it uses. Every lecture can also be downloaded as a PDF.
+These are typeset versions of my notes for the lecture course *Differential Geometry* by Claudio Arezzo. The course follows do Carmo's *Differential Geometry of Curves and Surfaces*, so the notes are arranged by do Carmo's chapters and sections rather than by lecture: each chapter is one page, and its sections carry do Carmo's numbers and titles. A small tag under each section says which lecture it comes from. A section that the lectures skipped keeps its heading, with a note that it was not covered.
 
-The typeset version sometimes says more than the handwriting: a step the lecture skipped, a direction of a proof that was left out, or a comment on why a step works.
+The handwritten notes are linked at the top of each chapter, every figure has been redrawn, and each chapter opens with the notation and sign conventions it uses. The typeset version sometimes says more than the lecture: a step that was skipped, a direction of a proof that was left out, or a comment on why a step works. Every chapter can be downloaded as a PDF.
 
 ## How these notes are organised
 
-Numbering restarts with each lecture and runs through definitions, theorems, examples and figures together within their kinds, so **Theorem 2.8** is the eighth numbered item of Lecture 2 and §2.5 is its fifth section.
+Numbered items are counted within each section of do Carmo, so **Theorem 1.5.3** is the third numbered item of §1.5. Figures are numbered through each chapter.
 
 Five kinds of set-off text carry the weight.
 
@@ -34,7 +36,7 @@ Five kinds of set-off text carry the weight.
     A new term, with the term itself in **bold**.
 
 !!! abstract "Theorem"
-    A boxed key result, worth remembering — the ones that get used again in later lectures.
+    A boxed key result, worth remembering — the ones that get used again in later chapters.
 
 !!! example "Example"
     A worked computation that applies the definitions to a concrete curve or surface.
@@ -51,24 +53,14 @@ A proof begins with *Proof.* and ends with $\square$.
 
 <div class="contents" markdown>
 
-<p class="contents-part"><a href="lec01/">Lecture 1 — Curves and Their Length</a></p>
+<p class="contents-part"><a href="chapter1/">Chapter 1 — Curves</a></p>
 
-- [<span>Parametrized curves</span><span class="n">1.1</span>](lec01.md#11-parametrized-curves)
-- [<span>What a smooth curve can look like</span><span class="n">1.2</span>](lec01.md#12-what-a-smooth-curve-can-look-like)
-- [<span>Examples</span><span class="n">1.3</span>](lec01.md#13-examples)
-- [<span>Length</span><span class="n">1.4</span>](lec01.md#14-length)
-- [<span>Invariance under isometries</span><span class="n">1.5</span>](lec01.md#15-invariance-under-isometries)
-- [<span>Lines as minima</span><span class="n">1.6</span>](lec01.md#16-lines-as-minima)
-- [<span>Reparametrization</span><span class="n">1.7</span>](lec01.md#17-reparametrization)
-
-<p class="contents-part"><a href="lec02/">Lecture 2 — Arc Length and the Frenet Frame</a></p>
-
-- [<span>The arc-length function</span><span class="n">2.1</span>](lec02.md#21-the-arc-length-function)
-- [<span>Examples of arc length</span><span class="n">2.2</span>](lec02.md#22-examples-of-arc-length)
-- [<span>Curvature and the Frenet trihedron</span><span class="n">2.3</span>](lec02.md#23-curvature-and-the-frenet-trihedron)
-- [<span>Torsion</span><span class="n">2.4</span>](lec02.md#24-torsion)
-- [<span>The Frenet formulas</span><span class="n">2.5</span>](lec02.md#25-the-frenet-formulas)
-- [<span>Examples of the Frenet frame</span><span class="n">2.6</span>](lec02.md#26-examples-of-the-frenet-frame)
-- [<span>Lines and plane curves</span><span class="n">2.7</span>](lec02.md#27-lines-and-plane-curves)
+- [<span>Introduction</span><span class="n">1.1</span>](chapter1.md#11-introduction)
+- [<span>Parametrized Curves</span><span class="n">1.2</span>](chapter1.md#12-parametrized-curves)
+- [<span>Regular Curves; Arc Length</span><span class="n">1.3</span>](chapter1.md#13-regular-curves-arc-length)
+- [<span>The Vector Product in $\mathbb{R}^3$</span><span class="n">1.4</span>](chapter1.md#14-the-vector-product)
+- [<span>The Local Theory of Curves Parametrized by Arc Length</span><span class="n">1.5</span>](chapter1.md#15-the-local-theory-of-curves-parametrized-by-arc-length)
+- [<span>The Local Canonical Form <em class="not-covered">(not covered)</em></span><span class="n">1.6</span>](chapter1.md#16-the-local-canonical-form)
+- [<span>Global Properties of Plane Curves</span><span class="n">1.7</span>](chapter1.md#17-global-properties-of-plane-curves)
 
 </div>
