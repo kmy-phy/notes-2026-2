@@ -47,7 +47,7 @@ $$
 since the outward normal of $S_2$ induces the opposite orientation on the common boundary. Adding, and using the divergence theorem on the enclosed volume $V$,
 
 $$
-\unicode{x222F}_{\partial V} (\nabla\times\vec A)\cdot\hat n\, dA = 0 = \iiint_V \nabla\cdot(\nabla\times\vec A)\, d\tau .
+\oiint_{\partial V} (\nabla\times\vec A)\cdot\hat n\, dA = 0 = \iiint_V \nabla\cdot(\nabla\times\vec A)\, d\tau .
 $$
 
 This holds for every volume, so $\nabla\cdot(\nabla\times\vec A) = 0$ for every vector field $\vec A$.
@@ -57,7 +57,7 @@ This holds for every volume, so $\nabla\cdot(\nabla\times\vec A) = 0$ for every 
 Ampère's law $\nabla\times\vec B = \mu_0\vec J$ would then force $0 = \nabla\cdot(\mu_0\vec J)$. But charge conservation says otherwise: the current out of a closed surface equals the rate at which the charge inside decreases,
 
 $$
-\iiint (\nabla\cdot\vec J)\, d\tau = \unicode{x222F}_{\partial V}\vec J\cdot\hat n\, dA = I = -\frac{dq}{dt}
+\iiint (\nabla\cdot\vec J)\, d\tau = \oiint_{\partial V}\vec J\cdot\hat n\, dA = I = -\frac{dq}{dt}
 \quad\Longrightarrow\quad
 \nabla\cdot\vec J = -\frac{\partial\rho}{\partial t} .
 $$

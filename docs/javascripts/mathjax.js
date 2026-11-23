@@ -1,5 +1,9 @@
 window.MathJax = {
+  loader: { load: ["[tex]/unicode"] },
   tex: {
+    packages: { "[+]": ["unicode"] },
+    // 닫힌곡면 적분 기호 ∯
+    macros: { oiint: "\\mathop{\\unicode{x222F}}\\nolimits" },
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
     processEscapes: true,
