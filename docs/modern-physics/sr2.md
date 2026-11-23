@@ -232,6 +232,15 @@ $$
 
 A rod (or two spaceships joined by a thread) has proper length $L_0$ in $S'$; in $S$, where $S'$ moves at $v$, its length is $L_0/\gamma(v)$.
 
+!!! note "The three frames"
+    | frame | what it is | moves relative to $S$ at |
+    |---|---|---|
+    | $S$ | the lab frame, from which everything is watched | $0$ |
+    | $S'$ | the rest frame of the ships **before** they accelerate; the rod or thread has its proper length $L_0$ here | $v$ |
+    | $S''$ | the rest frame of the ships **after** they accelerate; it moves at $u$ relative to $S'$ | $w = \dfrac{v+u}{1 + vu/c^2}$ |
+
+    All three move along the same $x$-axis. $S$ and $S'$ are fixed throughout; $S''$ is the frame the ships end up in. The question is what the separation of the ships is in each of them.
+
 Now let both ends **accelerate simultaneously in $S'$** with identical programmes, until each moves with speed $u$ relative to $S'$. Because the two ends do exactly the same thing at the same $S'$-times, their separation measured in $S'$ stays $L_0$ throughout.
 
 <figure markdown>
