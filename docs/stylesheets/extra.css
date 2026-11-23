@@ -190,6 +190,23 @@
   .md-typeset a { color: inherit; text-decoration: none; }
   .md-typeset .contents li a::before { border-bottom-color: #888; }
   img.tex-fig { filter: none !important; }
+
+  /* 표: 페이지 사이에서 끊기지 않게 (한 페이지보다 길면 행 단위로만 끊고, 머리행 반복) */
+  .md-typeset .md-typeset__scrollwrap, .md-typeset .md-typeset__table, .md-typeset table {
+    overflow: visible !important; break-inside: avoid; page-break-inside: avoid;
+  }
+  .md-typeset table:not([class]) { display: table; width: 100%; font-size: .78rem; }
+  .md-typeset table tr { break-inside: avoid; page-break-inside: avoid; }
+  .md-typeset table thead { display: table-header-group; }
+
+  /* 수식: 잘리지 않게 (가로 스크롤 대신 전부 보이게) */
+  .md-typeset .arithmatex, .md-typeset mjx-container[display="true"] { overflow: visible !important; }
+
+  /* 수식·표·그림 앞의 도입 문장을 그 대상과 같은 페이지에 */
+  .md-typeset p:has(+ .arithmatex), .md-typeset p:has(+ .md-typeset__scrollwrap),
+  .md-typeset p:has(+ figure), .md-typeset p:has(+ table) { break-after: avoid; page-break-after: avoid; }
+  .md-typeset h2 + .lecture-tag, .md-typeset .lecture-tag { break-after: avoid; page-break-after: avoid; }
+  .md-typeset h1, .md-typeset h4 { break-after: avoid; page-break-after: avoid; }
 }
 
 /* ---------- 과목 정보, 강의 출처 표시, 다루지 않은 절 ---------- */

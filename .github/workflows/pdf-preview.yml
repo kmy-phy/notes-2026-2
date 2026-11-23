@@ -1,0 +1,26 @@
+name: PDF 미리보기 (임시)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt && mkdocs build --strict
+      - run: |
+          pip install playwright==1.56.0 pypdf==5.9.0
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y fonts-noto-cjk poppler-utils
+      - run: python scripts/make_pdfs.py site
+      - run: |
+          mkdir -p prev
+          for f in modern-physics/quantum-ko modern-physics/relativity-ko differential-geometry/chapter1; do
+            n=$(echo $f | tr / _)
+            pdftoppm -r 45 -png site/$f/notes.pdf prev/$n
+          done
+          cd prev && git init -q && git checkout -q -b pdf-preview && git add . \
+            && git -c user.name=ci -c user.email=ci@x commit -qm preview \
+            && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" pdf-preview

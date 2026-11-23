@@ -27,6 +27,22 @@ FOOTER = (
 )
 
 
+# A4(210mm)에서 좌우 여백 18mm씩을 뺀 본문 폭 ≈ 174mm ≈ 658px
+CONTENT_WIDTH_PX = 658
+
+# 본문 폭보다 넓은 수식/표를 잘라내지 않고 비율대로 줄인다.
+FIT_WIDE = """() => {
+  const fit = (el) => {
+    const box = el.parentElement.getBoundingClientRect().width || el.getBoundingClientRect().width;
+    const w = el.scrollWidth;
+    if (w > box + 1) { el.style.zoom = (box / w).toFixed(3); }
+  };
+  document.querySelectorAll('.arithmatex mjx-container[display="true"]').forEach(fit);
+  document.querySelectorAll('.md-typeset table').forEach(fit);
+  return document.querySelectorAll('[style*="zoom"]').length;
+}"""
+
+
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *args):
         pass
@@ -52,12 +68,20 @@ def note_pages():
 
 def render(page, folder: Path):
     url = f"http://127.0.0.1:{PORT}/{folder.relative_to(SITE).as_posix()}/"
+    page.emulate_media(media="screen")
     page.goto(url, wait_until="networkidle", timeout=60_000)
     # 수식(MathJax)과 글꼴이 다 그려질 때까지 기다림
     page.wait_for_function("window.MathJax && MathJax.startup && MathJax.startup.promise", timeout=60_000)
     page.evaluate("MathJax.startup.promise")
     page.evaluate("document.fonts.ready")
     page.wait_for_timeout(300)
+    # 인쇄 레이아웃(A4 본문 폭)으로 다시 배치한 뒤, 폭을 넘는 수식·표는 폭에 맞게 축소
+    page.emulate_media(media="print")
+    page.wait_for_timeout(200)
+    n = page.evaluate(FIT_WIDE)
+    if n:
+        print(f"  fitted {n} wide equation(s)/table(s) to the page width")
+    page.wait_for_timeout(100)
     out = folder / "notes.pdf"
     page.pdf(
         path=str(out),
@@ -76,7 +100,7 @@ def main():
     made = {}
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page()
+        page = browser.new_page(viewport={"width": CONTENT_WIDTH_PX, "height": 1000})
         for folder in note_pages():
             made[folder] = render(page, folder)
             print("PDF:", made[folder].relative_to(SITE))
