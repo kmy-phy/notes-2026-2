@@ -12,20 +12,18 @@ title: Modern Physics
 
 <p class="course-info">Lecturers: 김제훈 · 조우주</p>
 
-<p class="pdf-links"><a href="all-lectures.pdf" download="Modern-Physics-Notes.pdf">Download both parts as one PDF## About these notes
+<p class="pdf-links"><a href="all-lectures.pdf" download="Modern-Physics-Notes.pdf">Download both parts as one PDF</a></p>
+
+## About these notes
 
 These notes cover the whole course: everything examined in the midterm and in the final. They come in two parts.
 
-- **Part I — Quantum mechanics**, in two chapters.
+- **Part I — Quantum mechanics**, in two chapters, both based on the course worksheets.
     - *Chapter 5 (midterm):* the wavefunction and its statistical meaning, the Schrödinger equation and its time-independent form, the infinite and finite wells, tunnelling, and the harmonic oscillator solved with ladder operators.
     - *Chapter 6 (final):* quantum mechanics in three dimensions, limited to the hydrogen atom: separation of variables in spherical coordinates, the Legendre and associated Legendre equations, spherical harmonics, and angular momentum treated algebraically. The radial equation is not covered.
-
-    Both chapters are based on the course worksheets.
 - **Part II — Special relativity:** the Lorentz transformation, causality, the twin paradox, four-vectors and collisions, Maxwell's equations and the speed of light, the composition of velocities, Bell's spaceship paradox, the relativity of electric and magnetic forces, and relativistic force. It is based on my lecture notes.
 
 Figures have been redrawn, and each chapter opens with the notation it uses. Chapters 5 and 6 each end with a short list of what past midterms and finals asked.
-
-s asked.
 
 ## How these notes are organised
 
