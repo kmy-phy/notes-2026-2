@@ -130,7 +130,55 @@ $$
 = \nabla(\nabla\cdot\vec B) - \nabla^2\vec B ,
 $$
 
-where $(\nabla^2\vec B)_x = \dfrac{\partial^2 B_x}{\partial x^2} + \dfrac{\partial^2 B_x}{\partial y^2} + \dfrac{\partial^2 B_x}{\partial z^2}$, and similarly for the other components. In vacuum, $\rho = 0$ and $\vec J = 0$; with $\nabla\cdot\vec B = 0$ and Faraday's law $\nabla\times\vec E = -\partial\vec B/\partial t$,
+where $(\nabla^2\vec B)_x = \dfrac{\partial^2 B_x}{\partial x^2} + \dfrac{\partial^2 B_x}{\partial y^2} + \dfrac{\partial^2 B_x}{\partial z^2}$, and similarly for the other components. This rests on a vector identity, proved below in Cartesian coordinates.
+
+!!! abstract "Lemma 7.1 (Curl of a curl)"
+    For any vector field $\vec A$ whose components have continuous second partial derivatives,
+
+    $$
+    \nabla\times(\nabla\times\vec A) = \nabla(\nabla\cdot\vec A) - \nabla^2\vec A,
+    \qquad (\nabla^2\vec A)_i = \frac{\partial^2 A_i}{\partial x^2} + \frac{\partial^2 A_i}{\partial y^2} + \frac{\partial^2 A_i}{\partial z^2} .
+    $$
+
+!!! success "Proof"
+    Write $\partial_x = \partial/\partial x$ and so on. The components of the curl are
+
+    $$
+    (\nabla\times\vec A)_x = \partial_y A_z - \partial_z A_y, \qquad
+    (\nabla\times\vec A)_y = \partial_z A_x - \partial_x A_z, \qquad
+    (\nabla\times\vec A)_z = \partial_x A_y - \partial_y A_x .
+    $$
+
+    Applying the curl again, the $x$-component is
+
+    $$
+    \begin{aligned}
+    \big[\nabla\times(\nabla\times\vec A)\big]_x
+    &= \partial_y(\nabla\times\vec A)_z - \partial_z(\nabla\times\vec A)_y \\
+    &= \partial_y(\partial_x A_y - \partial_y A_x) - \partial_z(\partial_z A_x - \partial_x A_z) \\
+    &= \partial_x\partial_y A_y + \partial_x\partial_z A_z - \partial_y^2 A_x - \partial_z^2 A_x ,
+    \end{aligned}
+    $$
+
+    where the mixed derivatives were reordered, $\partial_y\partial_x = \partial_x\partial_y$ and $\partial_z\partial_x = \partial_x\partial_z$ (equality of mixed partials, valid because the second derivatives are continuous). Now add and subtract $\partial_x^2 A_x$:
+
+    $$
+    \begin{aligned}
+    \big[\nabla\times(\nabla\times\vec A)\big]_x
+    &= \big(\partial_x^2 A_x + \partial_x\partial_y A_y + \partial_x\partial_z A_z\big) - \big(\partial_x^2 A_x + \partial_y^2 A_x + \partial_z^2 A_x\big) \\
+    &= \partial_x\big(\partial_x A_x + \partial_y A_y + \partial_z A_z\big) - \nabla^2 A_x \\
+    &= \big[\nabla(\nabla\cdot\vec A)\big]_x - (\nabla^2\vec A)_x .
+    \end{aligned}
+    $$
+
+    The $y$- and $z$-components follow in the same way, or by relabelling $x \to y \to z \to x$, which leaves the definitions of curl, divergence and $\nabla^2$ unchanged. So the identity holds component by component. $\square$
+
+!!! info "Remark — where the trick lies"
+    The curl of a curl only produces the cross terms $\partial_x\partial_y A_y$, $\partial_x\partial_z A_z$ and the "missing" second derivatives $-\partial_y^2 A_x$, $-\partial_z^2 A_x$. Adding and subtracting the single term $\partial_x^2 A_x$ completes both a divergence and a Laplacian at once.
+
+That is Lemma 7.1 with $\vec A = \vec B$.
+
+In vacuum, $\rho = 0$ and $\vec J = 0$; with $\nabla\cdot\vec B = 0$ and Faraday's law $\nabla\times\vec E = -\partial\vec B/\partial t$,
 
 $$
 -\nabla^2\vec B = \mu_0\varepsilon_0\frac{\partial}{\partial t}\left( -\frac{\partial\vec B}{\partial t} \right)

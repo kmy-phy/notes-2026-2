@@ -130,7 +130,55 @@ $$
 = \nabla(\nabla\cdot\vec B) - \nabla^2\vec B
 $$
 
-이고, 여기서 $(\nabla^2\vec B)_x = \dfrac{\partial^2 B_x}{\partial x^2} + \dfrac{\partial^2 B_x}{\partial y^2} + \dfrac{\partial^2 B_x}{\partial z^2}$이며 다른 성분도 마찬가지이다. 진공에서는 $\rho = 0$, $\vec J = 0$이다. $\nabla\cdot\vec B = 0$과 패러데이 법칙 $\nabla\times\vec E = -\partial\vec B/\partial t$를 쓰면
+이고, 여기서 $(\nabla^2\vec B)_x = \dfrac{\partial^2 B_x}{\partial x^2} + \dfrac{\partial^2 B_x}{\partial y^2} + \dfrac{\partial^2 B_x}{\partial z^2}$이며 다른 성분도 마찬가지이다. 이것은 벡터 항등식에 기댄 것으로, 아래에서 직교좌표로 증명한다.
+
+!!! abstract "보조정리 7.1 (회전의 회전)"
+    성분의 이계 편도함수가 연속인 벡터장 $\vec A$에 대해
+
+    $$
+    \nabla\times(\nabla\times\vec A) = \nabla(\nabla\cdot\vec A) - \nabla^2\vec A,
+    \qquad (\nabla^2\vec A)_i = \frac{\partial^2 A_i}{\partial x^2} + \frac{\partial^2 A_i}{\partial y^2} + \frac{\partial^2 A_i}{\partial z^2} .
+    $$
+
+!!! success "증명"
+    $\partial_x = \partial/\partial x$ 등으로 쓰자. 회전의 성분은
+
+    $$
+    (\nabla\times\vec A)_x = \partial_y A_z - \partial_z A_y, \qquad
+    (\nabla\times\vec A)_y = \partial_z A_x - \partial_x A_z, \qquad
+    (\nabla\times\vec A)_z = \partial_x A_y - \partial_y A_x
+    $$
+
+    이다. 회전을 한 번 더 취하면 $x$성분은
+
+    $$
+    \begin{aligned}
+    \big[\nabla\times(\nabla\times\vec A)\big]_x
+    &= \partial_y(\nabla\times\vec A)_z - \partial_z(\nabla\times\vec A)_y \\
+    &= \partial_y(\partial_x A_y - \partial_y A_x) - \partial_z(\partial_z A_x - \partial_x A_z) \\
+    &= \partial_x\partial_y A_y + \partial_x\partial_z A_z - \partial_y^2 A_x - \partial_z^2 A_x
+    \end{aligned}
+    $$
+
+    이고, 여기서 혼합 편도함수의 순서를 바꿨다: $\partial_y\partial_x = \partial_x\partial_y$, $\partial_z\partial_x = \partial_x\partial_z$ (이계 편도함수가 연속이므로 성립한다). 이제 $\partial_x^2 A_x$를 더하고 빼면
+
+    $$
+    \begin{aligned}
+    \big[\nabla\times(\nabla\times\vec A)\big]_x
+    &= \big(\partial_x^2 A_x + \partial_x\partial_y A_y + \partial_x\partial_z A_z\big) - \big(\partial_x^2 A_x + \partial_y^2 A_x + \partial_z^2 A_x\big) \\
+    &= \partial_x\big(\partial_x A_x + \partial_y A_y + \partial_z A_z\big) - \nabla^2 A_x \\
+    &= \big[\nabla(\nabla\cdot\vec A)\big]_x - (\nabla^2\vec A)_x .
+    \end{aligned}
+    $$
+
+    $y$성분과 $z$성분도 같은 방법으로 얻는다. 또는 $x \to y \to z \to x$로 이름을 바꾸면 회전, 발산, $\nabla^2$의 정의가 그대로이므로 바로 따라 나온다. 따라서 항등식은 성분마다 성립한다. $\square$
+
+!!! info "참고 — 요령은 어디에 있나"
+    회전의 회전은 교차항 $\partial_x\partial_y A_y$, $\partial_x\partial_z A_z$와 "빠진" 이계 도함수 $-\partial_y^2 A_x$, $-\partial_z^2 A_x$만 만든다. $\partial_x^2 A_x$ 한 항을 더하고 빼면 발산과 라플라시안이 한꺼번에 완성된다.
+
+보조정리 7.1에서 $\vec A = \vec B$로 둔다.
+
+진공에서는 $\rho = 0$, $\vec J = 0$이다. $\nabla\cdot\vec B = 0$과 패러데이 법칙 $\nabla\times\vec E = -\partial\vec B/\partial t$를 쓰면
 
 $$
 -\nabla^2\vec B = \mu_0\varepsilon_0\frac{\partial}{\partial t}\left( -\frac{\partial\vec B}{\partial t} \right)
