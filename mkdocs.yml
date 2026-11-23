@@ -59,6 +59,7 @@ nav:
       - "Chapter 1: Curves": differential-geometry/chapter1.md
   - Modern Physics:
       - 소개 · 목차: modern-physics/index.md
-      - "Part I: Quantum": modern-physics/quantum.md
+      - "Part I: Quantum (Ch. 5, midterm)": modern-physics/qm1d.md
+      - "Part I: Quantum (Ch. 6, final)": modern-physics/quantum.md
       - "Part II: Relativity": modern-physics/relativity.md
   - 노트 쓰는 법: guide.md

@@ -16,16 +16,16 @@ title: Modern Physics
 
 ## About these notes
 
-These notes cover only the part of the course examined in the final. That part has two halves:
+These notes cover the quantum mechanics of both the midterm and the final, and all of the relativity.
 
-- **Part I — Quantum mechanics** in three dimensions, limited to the hydrogen atom: separating the Schrödinger equation in spherical coordinates, the Legendre and associated Legendre equations, the spherical harmonics, and angular momentum treated algebraically with commutators and ladder operators. It is based on the course worksheets for Chapter 6 and the background they rely on from the preceding chapter. The radial equation is not covered.
-- **Part II — Relativity**, special relativity only: Maxwell's equations and the speed of light, the composition of velocities, Bell's spaceship paradox, and the relativity of electric and magnetic forces. It is based on my lecture notes so far and will grow as the lectures continue.
+- **Part I — Quantum mechanics.** Chapter 5 (midterm range): the wavefunction, the Schrödinger equation, infinite and finite wells, tunnelling and the harmonic oscillator. Chapter 6 (final range): three dimensions, limited to the hydrogen atom: separating the Schrödinger equation in spherical coordinates, the Legendre and associated Legendre equations, the spherical harmonics, and angular momentum treated algebraically with commutators and ladder operators. It is based on the course worksheets for Chapter 6 and the background they rely on from the preceding chapter. The radial equation is not covered.
+- **Part II — Relativity**, special relativity only: the Lorentz transformation, causality, the twin paradox, four-vectors and collisions, Maxwell's equations and the speed of light, the composition of velocities, Bell's spaceship paradox, the relativity of electric and magnetic forces, and relativistic force. It is based on my complete lecture notes.
 
-Figures have been redrawn, and each part opens with the notation it uses. Part I ends with a short list of what the past finals asked.
+Figures have been redrawn, and each part opens with the notation it uses. Chapters 5 and 6 each end with a short list of what past exams asked.
 
 ## How these notes are organised
 
-Part I keeps the worksheets' section numbers (§6.0–§6.4), and numbered items are counted within each section, so **Theorem 6.3.4** is the fourth numbered item of §6.3. Part II is numbered by its own sections.
+Part I keeps the worksheets' section numbers (§5.0–§5.11, §6.0–§6.4), and numbered items are counted within each section, so **Theorem 6.3.4** is the fourth numbered item of §6.3. Part II is numbered by its own sections.
 
 !!! note "Definition"
     A new term, with the term itself in **bold**.
@@ -45,7 +45,18 @@ A proof begins with *Proof.* and ends with $\square$.
 
 <div class="contents" markdown>
 
-<p class="contents-part"><a href="quantum/">Part I — Quantum Mechanics in Three Dimensions</a></p>
+<p class="contents-part"><a href="qm1d/">Part I — Chapter 5: Quantum Mechanics in One Dimension (midterm range)</a></p>
+
+- [<span>Mathematical Tools</span><span class="n">5.0</span>](qm1d.md#50-mathematical-tools)
+- [<span>The Wavefunction and the Schrödinger Equation</span><span class="n">5.1</span>](qm1d.md#51-the-wavefunction-and-the-schrodinger-equation)
+- [<span>The Time-Independent Schrödinger Equation</span><span class="n">5.7</span>](qm1d.md#57-the-time-independent-schrodinger-equation)
+- [<span>Particle in a Box</span><span class="n">5.8</span>](qm1d.md#58-particle-in-a-box)
+- [<span>The Finite Potential Well</span><span class="n">5.9</span>](qm1d.md#59-the-finite-potential-well)
+- [<span>Tunnelling</span><span class="n">5.10</span>](qm1d.md#510-tunnelling)
+- [<span>The Harmonic Oscillator: Algebraic Method</span><span class="n">5.11</span>](qm1d.md#511-the-harmonic-oscillator-algebraic-method)
+- [<span>What the Midterm Tends to Ask</span><span class="n"></span>](qm1d.md#what-the-midterm-tends-to-ask)
+
+<p class="contents-part"><a href="quantum/">Part I — Chapter 6: Quantum Mechanics in Three Dimensions (final range)</a></p>
 
 - [<span>Background: Bra-ket Notation and Basic Principles</span><span class="n">0</span>](quantum.md#background-bra-ket-notation-and-basic-principles)
 - [<span>Mathematical Tools: the Analytic Method</span><span class="n">6.0</span>](quantum.md#60-mathematical-tools-the-analytic-method)
@@ -57,9 +68,16 @@ A proof begins with *Proof.* and ends with $\square$.
 
 <p class="contents-part"><a href="relativity/">Part II — Special Relativity</a></p>
 
-- [<span>Maxwell's Equations and the Speed of Light</span><span class="n">1</span>](relativity.md#1-maxwells-equations-and-the-speed-of-light)
-- [<span>Composition of Velocities and the Lorentz Factor</span><span class="n">2</span>](relativity.md#2-composition-of-velocities-and-the-lorentz-factor)
-- [<span>Length Contraction and Bell's Spaceship Paradox</span><span class="n">3</span>](relativity.md#3-length-contraction-and-bells-spaceship-paradox)
-- [<span>Electric and Magnetic Forces in Different Frames</span><span class="n">4</span>](relativity.md#4-electric-and-magnetic-forces-in-different-frames)
+- [<span>The Lorentz Transformation as a Rotation</span><span class="n">1</span>](relativity.md#1-the-lorentz-transformation-as-a-rotation)
+- [<span>Causality and Spacetime Diagrams</span><span class="n">2</span>](relativity.md#2-causality-and-spacetime-diagrams)
+- [<span>The Twin Paradox</span><span class="n">3</span>](relativity.md#3-the-twin-paradox)
+- [<span>Four-Vectors</span><span class="n">4</span>](relativity.md#4-four-vectors)
+- [<span>Collisions with Four-Momentum</span><span class="n">5</span>](relativity.md#5-collisions-with-four-momentum)
+- [<span>Divergence, Curl and the Invariance of Charge</span><span class="n">6</span>](relativity.md#6-divergence-curl-and-the-invariance-of-charge)
+- [<span>Maxwell's Equations and the Speed of Light</span><span class="n">7</span>](relativity.md#7-maxwells-equations-and-the-speed-of-light)
+- [<span>Composition of Velocities and the Lorentz Factor</span><span class="n">8</span>](relativity.md#8-composition-of-velocities-and-the-lorentz-factor)
+- [<span>Length Contraction and Bell's Spaceship Paradox</span><span class="n">9</span>](relativity.md#9-length-contraction-and-bells-spaceship-paradox)
+- [<span>Electric and Magnetic Forces in Different Frames</span><span class="n">10</span>](relativity.md#10-electric-and-magnetic-forces-in-different-frames)
+- [<span>Relativistic Force and Hyperbolic Motion</span><span class="n">11</span>](relativity.md#11-relativistic-force-and-hyperbolic-motion)
 
 </div>
