@@ -56,4 +56,6 @@ nav:
   - Differential Geometry:
       - 소개 · 목차: differential-geometry/index.md
       - "Chapter 1: Curves": differential-geometry/chapter1.md
+  - Modern Physics:
+      - 소개 · 목차: modern-physics/index.md
   - 노트 쓰는 법: guide.md
