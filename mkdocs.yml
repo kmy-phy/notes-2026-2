@@ -47,6 +47,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/lang.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 # 왼쪽 메뉴 순서. 새 노트를 만들면 여기에 한 줄 추가하면 됨

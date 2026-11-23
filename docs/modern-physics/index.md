@@ -2,6 +2,8 @@
 title: Modern Physics
 ---
 
+<div class="lang-switch"><a class="on">English</a><a href="index-ko/">한국어</a></div>
+
 <div class="running-head"><span>Modern Physics</span><span>Fall 2026 · Final</span></div>
 
 # Lecture Notes in Modern Physics { .book-title }

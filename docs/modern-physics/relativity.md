@@ -2,6 +2,8 @@
 title: "Part II — Special Relativity"
 ---
 
+<div class="lang-switch"><a class="on">English</a><a href="../relativity-ko/">한국어</a></div>
+
 <div class="running-head"><span>Modern Physics</span><span>Part II · Relativity</span></div>
 
 # Part II — Special Relativity { .part-title }

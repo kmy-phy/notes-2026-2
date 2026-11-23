@@ -2,6 +2,8 @@
 title: Differential Geometry
 ---
 
+<div class="lang-switch"><a class="on">English</a><a href="index-ko/">한국어</a></div>
+
 <div class="running-head"><span>Differential Geometry</span><span>Fall 2026</span></div>
 
 # Lecture Notes in Differential Geometry { .book-title }

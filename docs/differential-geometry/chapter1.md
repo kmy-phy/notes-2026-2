@@ -2,6 +2,8 @@
 title: "Chapter 1 — Curves"
 ---
 
+<div class="lang-switch"><a class="on">English</a><a href="../chapter1-ko/">한국어</a></div>
+
 <div class="running-head"><span>Differential Geometry</span><span>Chapter 1</span></div>
 
 # Chapter 1 — Curves { .part-title }

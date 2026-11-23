@@ -12,8 +12,8 @@
 @font-face { font-family: "Latin Modern Roman Caps"; src: url("../fonts/lmromancaps10-regular.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
 
 :root {
-  --md-text-font: "Latin Modern Roman", "Noto Serif KR";
-  --caps: "Latin Modern Roman Caps", "Latin Modern Roman", "Noto Serif KR", serif;
+  --md-text-font: "Latin Modern Roman", "Noto Serif KR", "Noto Serif CJK KR";
+  --caps: "Latin Modern Roman Caps", "Latin Modern Roman", "Noto Serif KR", "Noto Serif CJK KR", serif;
 }
 [data-md-color-scheme="default"] { --md-typeset-a-color: #2b47a8; }
 [data-md-color-scheme="slate"]   { --md-typeset-a-color: #9db0ff; }
@@ -24,7 +24,7 @@
   line-height: 1.62;
 }
 .md-typeset p,
-.md-typeset li { text-align: justify; hyphens: auto; }
+.md-typeset li { text-align: justify; hyphens: auto; word-break: keep-all; }
 .md-typeset hr { display: none; }
 .md-typeset strong { font-weight: 700; }
 
@@ -204,3 +204,20 @@
   padding: .6em 0; font-style: italic; color: var(--md-default-fg-color--light);
 }
 .md-typeset .not-covered { color: var(--md-default-fg-color--light); font-size: .9em; }
+
+/* ---------- 언어 전환 탭 (English / 한국어) ---------- */
+.md-typeset .lang-switch {
+  display: flex; justify-content: flex-end; gap: 0; margin: -.4em 0 1.2em;
+  font-family: var(--caps); font-size: .82em; letter-spacing: .03em;
+}
+.md-typeset .lang-switch a {
+  padding: .15em .9em; border: .6px solid var(--md-default-fg-color--lighter);
+  color: var(--md-default-fg-color--light); text-decoration: none;
+}
+.md-typeset .lang-switch a + a { border-left: none; }
+.md-typeset .lang-switch a.on {
+  color: var(--md-typeset-color); border-color: var(--md-typeset-color);
+  background: var(--md-default-fg-color--lightest); cursor: default;
+}
+.md-typeset .lang-switch a:not(.on):hover { color: var(--md-typeset-color); }
+@media print { .md-typeset .lang-switch { display: none !important; } }

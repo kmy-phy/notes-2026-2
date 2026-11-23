@@ -84,15 +84,23 @@ def main():
     httpd.shutdown()
 
     # 과목별 전체 묶음: 과목 첫 페이지 + 강의 페이지들(폴더 이름 순)
+    # 영어판(all-lectures.pdf)과 한국어판(all-lectures-ko.pdf, 이름이 -ko로 끝나는 페이지)을 따로 만든다.
     for course in sorted({f for f in made if f.parent == SITE}):
-        parts = [made[course]] + [made[f] for f in sorted(made) if f.parent == course]
-        writer = PdfWriter()
-        for part in parts:
-            writer.append(str(part))
-        out = course / "all-lectures.pdf"
-        writer.write(str(out))
-        print("PDF:", out.relative_to(SITE), f"({len(parts)} parts)")
-
+        children = [f for f in sorted(made) if f.parent == course]
+        en = [made[course]] + [made[f] for f in children if not f.name.endswith("-ko")]
+        ko_index = course / "index-ko"
+        ko = ([made[ko_index]] if ko_index in made else []) + [
+            made[f] for f in children if f.name.endswith("-ko") and f != ko_index
+        ]
+        for parts, name in ((en, "all-lectures.pdf"), (ko, "all-lectures-ko.pdf")):
+            if not parts:
+                continue
+            writer = PdfWriter()
+            for part in parts:
+                writer.append(str(part))
+            out = course / name
+            writer.write(str(out))
+            print("PDF:", out.relative_to(SITE), f"({len(parts)} parts)")
 
 if __name__ == "__main__":
     main()

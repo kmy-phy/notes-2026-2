@@ -2,6 +2,8 @@
 title: "Part I — Quantum Mechanics in Three Dimensions"
 ---
 
+<div class="lang-switch"><a class="on">English</a><a href="../quantum-ko/">한국어</a></div>
+
 <div class="running-head"><span>Modern Physics</span><span>Part I · Quantum</span></div>
 
 # Part I — Quantum Mechanics in Three Dimensions { .part-title }
