@@ -1,0 +1,23 @@
+\documentclass[border=4pt]{standalone}
+\usepackage{amsmath,amssymb,tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings}
+\begin{document}
+\begin{tikzpicture}[x={(-0.55cm,-0.45cm)},y={(1.2cm,0cm)},z={(0cm,1.2cm)},>=latex,line cap=round,scale=1.5]
+  \draw[->,black!55] (0,0,0) -- (1.9,0,0) node[below left,black]{$x$};
+  \draw[->,black!55] (0,0,0) -- (0,1.9,0) node[right,black]{$y$};
+  \draw[->,black!55] (0,0,0) -- (0,0,1.8) node[above,black]{$z$};
+  \pgfmathsetmacro{\th}{50} \pgfmathsetmacro{\ph}{40} \pgfmathsetmacro{\R}{1.4}
+  \coordinate (P) at ({\R*sin(\th)*cos(\ph)},{\R*sin(\th)*sin(\ph)},{\R*cos(\th)});
+  \coordinate (Q) at ({\R*sin(\th)*cos(\ph)},{\R*sin(\th)*sin(\ph)},0);
+  \draw[thick] (0,0,0) -- (P) node[pos=0.55,above left=-1pt]{$r$};
+  \draw[dashed,black!60] (P) -- (Q) (0,0,0) -- (Q);
+  \draw[black!70,domain=0:\th,samples=20,variable=\t] plot ({0.45*sin(\t)*cos(\ph)},{0.45*sin(\t)*sin(\ph)},{0.45*cos(\t)});
+  \node at ({0.62*sin(\th/2)*cos(\ph)},{0.62*sin(\th/2)*sin(\ph)},{0.62*cos(\th/2)}) {$\theta$};
+  \draw[black!70,domain=0:\ph,samples=20,variable=\t] plot ({0.5*cos(\t)},{0.5*sin(\t)},0);
+  \node at ({0.7*cos(\ph/2)},{0.7*sin(\ph/2)},0) {$\phi$};
+  \fill (P) circle (1.1pt);
+  \draw[->,very thick] (P) -- ++({0.6*sin(\th)*cos(\ph)},{0.6*sin(\th)*sin(\ph)},{0.6*cos(\th)}) node[above right=-2pt]{$\hat r$};
+  \draw[->,very thick] (P) -- ++({0.6*cos(\th)*cos(\ph)},{0.6*cos(\th)*sin(\ph)},{-0.6*sin(\th)}) node[below right=-2pt]{$\hat\theta$};
+  \draw[->,very thick] (P) -- ++({-0.6*sin(\ph)},{0.6*cos(\ph)},0) node[right]{$\hat\phi$};
+\end{tikzpicture}
+\end{document}
