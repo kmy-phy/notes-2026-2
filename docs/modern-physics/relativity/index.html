@@ -1,0 +1,10 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Moved</title>
+<meta http-equiv="refresh" content="1; url=../sr1/">
+<script>
+  // 6–11절을 가리키던 링크는 기말 페이지로, 나머지는 중간 페이지로
+  var h = location.hash, m = /^#(\d+)-/.exec(h);
+  location.replace((m && +m[1] >= 6 ? "../sr2/" : "../sr1/") + h);
+</script>
+<p>This page has moved to <a href="../sr1/">Special Relativity I</a> and <a href="../sr2/">Special Relativity II</a>.</p>

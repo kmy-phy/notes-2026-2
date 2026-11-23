@@ -21,13 +21,15 @@ These notes cover the whole course: everything examined in the midterm and in th
 - **Part I — Quantum mechanics**, in two chapters, both based on the course worksheets.
     - *Chapter 5 (midterm):* the wavefunction and its statistical meaning, the Schrödinger equation and its time-independent form, the infinite and finite wells, tunnelling, and the harmonic oscillator solved with ladder operators.
     - *Chapter 6 (final):* quantum mechanics in three dimensions, limited to the hydrogen atom: separation of variables in spherical coordinates, the Legendre and associated Legendre equations, spherical harmonics, and angular momentum treated algebraically. The radial equation is not covered.
-- **Part II — Special relativity:** the Lorentz transformation, causality, the twin paradox, four-vectors and collisions, Maxwell's equations and the speed of light, the composition of velocities, Bell's spaceship paradox, the relativity of electric and magnetic forces, and relativistic force. It is based on my lecture notes.
+- **Part II — Special relativity**, in two halves, both based on my lecture notes.
+    - *Relativity I (midterm, §1–5):* the Lorentz transformation as a rotation, causality and spacetime diagrams, the twin paradox, four-vectors, and collisions.
+    - *Relativity II (final, §6–11):* divergence, curl and the invariance of charge, Maxwell's equations and the speed of light, the composition of velocities, Bell's spaceship paradox, the relativity of electric and magnetic forces, and relativistic force.
 
 Figures have been redrawn, and each chapter opens with the notation it uses. Chapters 5 and 6 each end with a short list of what past midterms and finals asked.
 
 ## How these notes are organised
 
-Part I keeps the worksheets' section numbers (§5.0–§5.11, §6.0–§6.4), and numbered items are counted within each section, so **Theorem 6.3.4** is the fourth numbered item of §6.3. Part II is numbered by its own sections.
+Part I keeps the worksheets' section numbers (§5.0–§5.11, §6.0–§6.4), and numbered items are counted within each section, so **Theorem 6.3.4** is the fourth numbered item of §6.3. Part II is numbered by its own sections, §1–11, running on from Relativity I into Relativity II.
 
 !!! note "Definition"
     A new term, with the term itself in **bold**.
@@ -68,18 +70,21 @@ A proof begins with *Proof.* and ends with $\square$.
 - [<span>Combining the Analytic and Algebraic Methods</span><span class="n">6.4</span>](quantum.md#64-combining-the-analytic-and-algebraic-methods)
 - [<span>What the Final Tends to Ask</span><span class="n"></span>](quantum.md#what-the-final-tends-to-ask)
 
-<p class="contents-part"><a href="relativity/">Part II — Special Relativity</a></p>
+<p class="contents-part"><a href="sr1/">Part II — Special Relativity I (midterm range)</a></p>
 
-- [<span>The Lorentz Transformation as a Rotation</span><span class="n">1</span>](relativity.md#1-the-lorentz-transformation-as-a-rotation)
-- [<span>Causality and Spacetime Diagrams</span><span class="n">2</span>](relativity.md#2-causality-and-spacetime-diagrams)
-- [<span>The Twin Paradox</span><span class="n">3</span>](relativity.md#3-the-twin-paradox)
-- [<span>Four-Vectors</span><span class="n">4</span>](relativity.md#4-four-vectors)
-- [<span>Collisions with Four-Momentum</span><span class="n">5</span>](relativity.md#5-collisions-with-four-momentum)
-- [<span>Divergence, Curl and the Invariance of Charge</span><span class="n">6</span>](relativity.md#6-divergence-curl-and-the-invariance-of-charge)
-- [<span>Maxwell's Equations and the Speed of Light</span><span class="n">7</span>](relativity.md#7-maxwells-equations-and-the-speed-of-light)
-- [<span>Composition of Velocities and the Lorentz Factor</span><span class="n">8</span>](relativity.md#8-composition-of-velocities-and-the-lorentz-factor)
-- [<span>Length Contraction and Bell's Spaceship Paradox</span><span class="n">9</span>](relativity.md#9-length-contraction-and-bells-spaceship-paradox)
-- [<span>Electric and Magnetic Forces in Different Frames</span><span class="n">10</span>](relativity.md#10-electric-and-magnetic-forces-in-different-frames)
-- [<span>Relativistic Force and Hyperbolic Motion</span><span class="n">11</span>](relativity.md#11-relativistic-force-and-hyperbolic-motion)
+- [<span>The Lorentz Transformation as a Rotation</span><span class="n">1</span>](sr1.md#1-the-lorentz-transformation-as-a-rotation)
+- [<span>Causality and Spacetime Diagrams</span><span class="n">2</span>](sr1.md#2-causality-and-spacetime-diagrams)
+- [<span>The Twin Paradox</span><span class="n">3</span>](sr1.md#3-the-twin-paradox)
+- [<span>Four-Vectors</span><span class="n">4</span>](sr1.md#4-four-vectors)
+- [<span>Collisions with Four-Momentum</span><span class="n">5</span>](sr1.md#5-collisions-with-four-momentum)
+
+<p class="contents-part"><a href="sr2/">Part II — Special Relativity II (final range)</a></p>
+
+- [<span>Divergence, Curl and the Invariance of Charge</span><span class="n">6</span>](sr2.md#6-divergence-curl-and-the-invariance-of-charge)
+- [<span>Maxwell's Equations and the Speed of Light</span><span class="n">7</span>](sr2.md#7-maxwells-equations-and-the-speed-of-light)
+- [<span>Composition of Velocities and the Lorentz Factor</span><span class="n">8</span>](sr2.md#8-composition-of-velocities-and-the-lorentz-factor)
+- [<span>Length Contraction and Bell's Spaceship Paradox</span><span class="n">9</span>](sr2.md#9-length-contraction-and-bells-spaceship-paradox)
+- [<span>Electric and Magnetic Forces in Different Frames</span><span class="n">10</span>](sr2.md#10-electric-and-magnetic-forces-in-different-frames)
+- [<span>Relativistic Force and Hyperbolic Motion</span><span class="n">11</span>](sr2.md#11-relativistic-force-and-hyperbolic-motion)
 
 </div>

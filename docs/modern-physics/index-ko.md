@@ -21,13 +21,15 @@ title: 현대물리학
 - **1부 — 양자역학**, 두 장으로 이루어지며 둘 다 수업 학습지를 바탕으로 했다.
     - *5장 (중간고사):* 파동함수와 그 통계적 의미, 슈뢰딩거 방정식과 시간에 무관한 형태, 무한·유한 퍼텐셜 우물, 터널링, 사다리 연산자로 푸는 조화진동자.
     - *6장 (기말고사):* 3차원 양자역학 중 수소 원자에 한정한다. 구면좌표에서의 변수분리, 르장드르 방정식과 버금 르장드르 방정식, 구면조화함수, 각운동량의 대수적 취급. 지름 방정식은 다루지 않는다.
-- **2부 — 특수상대론:** 로렌츠 변환, 인과율, 쌍둥이 역설, 4-벡터와 충돌, 맥스웰 방정식과 빛의 속력, 속도의 합성, 벨의 우주선 역설, 전기력과 자기력의 상대성, 상대론적 힘. 수업 필기를 바탕으로 했다.
+- **2부 — 특수상대론**, 두 부분으로 이루어지며 둘 다 수업 필기를 바탕으로 했다.
+    - *상대론 I (중간고사, §1–5):* 회전으로서의 로렌츠 변환, 인과율과 시공간 도표, 쌍둥이 역설, 4-벡터, 충돌.
+    - *상대론 II (기말고사, §6–11):* 발산·회전과 전하의 불변성, 맥스웰 방정식과 빛의 속력, 속도의 합성, 벨의 우주선 역설, 전기력과 자기력의 상대성, 상대론적 힘.
 
 그림은 새로 그렸고, 각 장은 그 장에서 쓰는 기호로 시작한다. 5장과 6장 끝에는 지난 중간·기말고사에서 무엇을 물었는지 짧게 정리했다.
 
 ## 노트의 구성 { #how-these-notes-are-organised }
 
-1부는 학습지의 절 번호(§5.0–§5.11, §6.0–§6.4)를 그대로 쓰고, 번호 붙은 항목은 절 안에서 센다. 그래서 **정리 6.3.4**는 §6.3의 네 번째 번호 붙은 항목이다. 2부는 자체 절 번호를 쓴다.
+1부는 학습지의 절 번호(§5.0–§5.11, §6.0–§6.4)를 그대로 쓰고, 번호 붙은 항목은 절 안에서 센다. 그래서 **정리 6.3.4**는 §6.3의 네 번째 번호 붙은 항목이다. 2부는 자체 절 번호 §1–11을 쓰며, 상대론 I에서 상대론 II로 이어진다.
 
 !!! note "정의"
     새로운 용어. 용어 자체는 **굵게** 쓴다.
@@ -68,18 +70,21 @@ title: 현대물리학
 - [<span>해석적 방법과 대수적 방법의 결합</span><span class="n">6.4</span>](quantum-ko.md#64-combining-the-analytic-and-algebraic-methods)
 - [<span>기말에 자주 나오는 것</span><span class="n"></span>](quantum-ko.md#what-the-final-tends-to-ask)
 
-<p class="contents-part"><a href="../relativity-ko/">2부 — 특수상대론</a></p>
+<p class="contents-part"><a href="../sr1-ko/">2부 — 특수상대론 I (중간고사 범위)</a></p>
 
-- [<span>회전으로서의 로렌츠 변환</span><span class="n">1</span>](relativity-ko.md#1-the-lorentz-transformation-as-a-rotation)
-- [<span>인과율과 시공간 도표</span><span class="n">2</span>](relativity-ko.md#2-causality-and-spacetime-diagrams)
-- [<span>쌍둥이 역설</span><span class="n">3</span>](relativity-ko.md#3-the-twin-paradox)
-- [<span>4-벡터</span><span class="n">4</span>](relativity-ko.md#4-four-vectors)
-- [<span>4-운동량을 이용한 충돌</span><span class="n">5</span>](relativity-ko.md#5-collisions-with-four-momentum)
-- [<span>발산, 회전, 그리고 전하의 불변성</span><span class="n">6</span>](relativity-ko.md#6-divergence-curl-and-the-invariance-of-charge)
-- [<span>맥스웰 방정식과 빛의 속력</span><span class="n">7</span>](relativity-ko.md#7-maxwells-equations-and-the-speed-of-light)
-- [<span>속도의 합성과 로렌츠 인자</span><span class="n">8</span>](relativity-ko.md#8-composition-of-velocities-and-the-lorentz-factor)
-- [<span>길이 수축과 벨의 우주선 역설</span><span class="n">9</span>](relativity-ko.md#9-length-contraction-and-bells-spaceship-paradox)
-- [<span>관성계에 따른 전기력과 자기력</span><span class="n">10</span>](relativity-ko.md#10-electric-and-magnetic-forces-in-different-frames)
-- [<span>상대론적 힘과 쌍곡선 운동</span><span class="n">11</span>](relativity-ko.md#11-relativistic-force-and-hyperbolic-motion)
+- [<span>회전으로서의 로렌츠 변환</span><span class="n">1</span>](sr1-ko.md#1-the-lorentz-transformation-as-a-rotation)
+- [<span>인과율과 시공간 도표</span><span class="n">2</span>](sr1-ko.md#2-causality-and-spacetime-diagrams)
+- [<span>쌍둥이 역설</span><span class="n">3</span>](sr1-ko.md#3-the-twin-paradox)
+- [<span>4-벡터</span><span class="n">4</span>](sr1-ko.md#4-four-vectors)
+- [<span>4-운동량을 이용한 충돌</span><span class="n">5</span>](sr1-ko.md#5-collisions-with-four-momentum)
+
+<p class="contents-part"><a href="../sr2-ko/">2부 — 특수상대론 II (기말고사 범위)</a></p>
+
+- [<span>발산, 회전, 그리고 전하의 불변성</span><span class="n">6</span>](sr2-ko.md#6-divergence-curl-and-the-invariance-of-charge)
+- [<span>맥스웰 방정식과 빛의 속력</span><span class="n">7</span>](sr2-ko.md#7-maxwells-equations-and-the-speed-of-light)
+- [<span>속도의 합성과 로렌츠 인자</span><span class="n">8</span>](sr2-ko.md#8-composition-of-velocities-and-the-lorentz-factor)
+- [<span>길이 수축과 벨의 우주선 역설</span><span class="n">9</span>](sr2-ko.md#9-length-contraction-and-bells-spaceship-paradox)
+- [<span>관성계에 따른 전기력과 자기력</span><span class="n">10</span>](sr2-ko.md#10-electric-and-magnetic-forces-in-different-frames)
+- [<span>상대론적 힘과 쌍곡선 운동</span><span class="n">11</span>](sr2-ko.md#11-relativistic-force-and-hyperbolic-motion)
 
 </div>
