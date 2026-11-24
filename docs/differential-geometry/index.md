@@ -12,7 +12,7 @@ title: Differential Geometry
 
 <p class="course-info">Lectures: <em>Differential Geometry</em> — Claudio Arezzo<br>Main text: M. P. do Carmo, <em>Differential Geometry of Curves and Surfaces</em></p>
 
-<p class="pdf-links"><a href="all-lectures.pdf" download="Differential-Geometry-Notes.pdf">Download all chapters as one PDF</a></p>
+<p class="pdf-links"><a href="all-lectures.pdf" download="Differential-Geometry-Notes.pdf">All chapters as one PDF</a></p>
 
 ## The subject
 

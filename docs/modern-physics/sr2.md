@@ -8,7 +8,7 @@ title: "Part II — Special Relativity II (final range)"
 
 # Part II — Special Relativity II { .part-title }
 
-<p class="source-note">Lecture notes, final range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-II.pdf">Download this part as PDF</a></p>
+<p class="source-note">Lecture notes, final range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-II.pdf">This part as PDF</a></p>
 
 **In this part.** Starting from divergence and curl, Maxwell's equations predict electromagnetic waves travelling at $c$ in every frame. From this follow the composition of velocities, Bell's spaceship paradox, the frame-dependence of electric and magnetic forces, and finally force and constant proper acceleration. Sections 1–5 are in [Special Relativity I](../sr1/).
 

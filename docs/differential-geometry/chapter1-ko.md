@@ -8,7 +8,7 @@ title: "1장 — 곡선"
 
 # 1장 — 곡선 { .part-title #chapter-1-curves }
 
-<p class="source-note">do Carmo 1장 · 강의 1–3 · 손필기: <a href="../originals/lec02.pdf">강의 2</a>, <a href="../originals/lec03.pdf">강의 3</a> · <a class="pdf-link" href="notes.pdf" download="미분기하학-1장.pdf">이 장을 PDF로 내려받기</a></p>
+<p class="source-note">do Carmo 1장 · 강의 1–3 · 손필기: <a href="../originals/lec02.pdf">강의 2</a>, <a href="../originals/lec03.pdf">강의 3</a> · <a class="pdf-link" href="notes.pdf" download="미분기하학-1장.pdf">이 장을 PDF로 보기</a></p>
 
 !!! quote "이 장에서 쓰는 규약."
     - *매끄럽다*는 $C^\infty$라는 뜻이다. 따로 말하지 않으면 구간 $I = (a, b) \subset \mathbb{R}$는 열린구간이다.

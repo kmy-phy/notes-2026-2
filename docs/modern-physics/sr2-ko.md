@@ -8,7 +8,7 @@ title: "2부 — 특수상대론 II (기말고사 범위)"
 
 # 2부 — 특수상대론 II { .part-title #part-ii-special-relativity-ii }
 
-<p class="source-note">수업 필기, 기말고사 범위 · <a class="pdf-link" href="notes.pdf" download="현대물리학-상대론-II.pdf">이 부를 PDF로 내려받기</a></p>
+<p class="source-note">수업 필기, 기말고사 범위 · <a class="pdf-link" href="notes.pdf" download="현대물리학-상대론-II.pdf">이 부를 PDF로 보기</a></p>
 
 **이 부에서는.** 발산과 회전에서 출발해, 맥스웰 방정식이 모든 좌표계에서 속력 $c$로 진행하는 전자기파를 예측함을 본다. 여기서 속도의 합성, 벨의 우주선 역설, 기준틀에 따른 전기력과 자기력, 마지막으로 힘과 일정한 고유가속도 운동이 나온다. 1–5절은 [특수상대론 I](../sr1-ko/)에 있다.
 

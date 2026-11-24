@@ -12,7 +12,7 @@ title: 미분기하학
 
 <p class="course-info">강의: <em>Differential Geometry</em> — Claudio Arezzo<br>주교재: M. P. do Carmo, <em>Differential Geometry of Curves and Surfaces</em></p>
 
-<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="미분기하학-노트.pdf">모든 장을 하나의 PDF로 내려받기</a></p>
+<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="미분기하학-노트.pdf">모든 장을 하나의 PDF로 보기</a></p>
 
 ## 이 과목에 대하여 { #the-subject }
 

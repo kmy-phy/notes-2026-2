@@ -54,6 +54,8 @@ docs/
   stylesheets/extra.css        교과서 스타일 + 인쇄(PDF) 규칙
   javascripts/mathjax.js       MathJax 설정 (unicode 확장, \oiint 매크로)
   javascripts/lang.js          English/한국어 탭 (#해시 유지)
+  javascripts/pdfview.js       PDF 링크 → viewer.html (PDF 보기 화면, 위에 내려받기 버튼)
+  viewer.html                  PDF 보기 화면 (PDF.js)
 figures-src/*.tex              그림의 TikZ 원본 (사이트에는 안 올라감)
 scripts/md2latex.py            배포 때 PDF 생성 (마크다운 → pandoc → LaTeX → xelatex)
 scripts/latex/book.tex         PDF용 LaTeX 템플릿 (표지, 머리글, 상자 모양)
@@ -94,7 +96,7 @@ title: "Part II — Special Relativity II (final range)"
 
 # Part II — Special Relativity II { .part-title }
 
-<p class="source-note">Lecture notes, final range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-II.pdf">Download this part as PDF</a></p>
+<p class="source-note">Lecture notes, final range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-II.pdf">This part as PDF</a></p>
 ```
 `running-head`가 있는 페이지만 PDF가 만들어진다.
 
@@ -144,6 +146,7 @@ title: "Part II — Special Relativity II (final range)"
 - 한 줄 수식이 본문 폭보다 넓으면 `\fitmath`가 자동으로 줄인다. 그림은 SVG를 rsvg-convert로 PDF로 바꿔 쓰고, 캡션은 사이트의 "Figure 7.1." 문구를 그대로 쓴다.
 - 한글·①② 등은 Noto Serif CJK KR로 자동 전환된다(XeTeX interchar). Latin Modern에 없는 기호가 나오면 `pandoc()` 후처리나 `book.tex`의 범위에 추가한다.
 - **새 문법을 노트에 쓰면 PDF 변환도 확인한다**: `python3 scripts/md2latex.py --site site`가 에러 없이 끝나는지, 결과 PDF 몇 쪽을 이미지로 열어 본다.
+- PDF 링크(`a.pdf-link`, `.pdf-links a`)를 누르면 `javascripts/pdfview.js`가 가로채서 `viewer.html?file=...&name=...&lang=...`(사이트 안 PDF 보기 화면, PDF.js 3.2 내장 `javascripts/pdfjs/`)로 연다. 보기 화면 위쪽 버튼으로 내려받는다. 링크 문구는 "…PDF로 보기" / "… as PDF". `download` 속성의 파일명이 내려받기 파일명이 된다.
 - 사이트 화면 보기는 PDF와 별개다.
 
 ## 6. 작업 절차 (매번)

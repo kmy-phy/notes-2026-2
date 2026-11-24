@@ -8,7 +8,7 @@ title: "Part II — Special Relativity I (midterm range)"
 
 # Part II — Special Relativity I { .part-title }
 
-<p class="source-note">Lecture notes, midterm range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-I.pdf">Download this part as PDF</a></p>
+<p class="source-note">Lecture notes, midterm range · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Relativity-I.pdf">This part as PDF</a></p>
 
 **In this part.** The Lorentz transformation is a rotation in spacetime with an imaginary angle. From it follow the relativity of simultaneity and the limits causality puts on it, the twin paradox, and the four-vectors whose squares are the same in every frame, which make collisions easy to solve with energy–momentum conservation. Sections 6–11 continue in [Special Relativity II](../sr2/).
 

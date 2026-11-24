@@ -8,7 +8,7 @@ title: "1부 — 5장: 1차원 양자역학"
 
 # 5장 — 1차원 양자역학 { .part-title #chapter-5-quantum-mechanics-in-one-dimension }
 
-<p class="source-note">5장 학습지 (중간고사 범위, 교과서 §5.1–5.11) · <a class="pdf-link" href="notes.pdf" download="현대물리학-5장.pdf">이 장을 PDF로 내려받기</a></p>
+<p class="source-note">5장 학습지 (중간고사 범위, 교과서 §5.1–5.11) · <a class="pdf-link" href="notes.pdf" download="현대물리학-5장.pdf">이 장을 PDF로 보기</a></p>
 
 **이 장에서는.** 파동함수 $\Psi(x,t)$와 그 통계적 의미, 운동량과 에너지를 연산자로 바꾸는 규칙으로 읽는 슈뢰딩거 방정식, 변수분리와 시간에 무관한 방정식, 그리고 대표적인 1차원 문제인 무한 퍼텐셜 우물, 유한 퍼텐셜 우물, 터널링, 사다리 연산자로 푸는 조화진동자를 다룬다. 6장(수소 원자)은 이것을 바로 이어받는다.
 

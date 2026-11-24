@@ -8,7 +8,7 @@ title: "Chapter 1 — Curves"
 
 # Chapter 1 — Curves { .part-title }
 
-<p class="source-note">do Carmo, Chapter 1 · Lectures 1–3 · Handwritten notes: <a href="../originals/lec02.pdf">Lecture 2</a>, <a href="../originals/lec03.pdf">Lecture 3</a> · <a class="pdf-link" href="notes.pdf" download="Differential-Geometry-Chapter-1.pdf">Download this chapter as PDF</a></p>
+<p class="source-note">do Carmo, Chapter 1 · Lectures 1–3 · Handwritten notes: <a href="../originals/lec02.pdf">Lecture 2</a>, <a href="../originals/lec03.pdf">Lecture 3</a> · <a class="pdf-link" href="notes.pdf" download="Differential-Geometry-Chapter-1.pdf">This chapter as PDF</a></p>
 
 !!! quote "Conventions used in this chapter."
     - *Smooth* means $C^\infty$. Intervals $I = (a, b) \subset \mathbb{R}$ are open unless stated otherwise.

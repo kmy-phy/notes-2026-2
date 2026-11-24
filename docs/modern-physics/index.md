@@ -12,7 +12,7 @@ title: Modern Physics
 
 <p class="course-info">Lecturers: 김제훈 · 조우주</p>
 
-<p class="pdf-links"><a href="all-lectures.pdf" download="Modern-Physics-Notes.pdf">Download both parts as one PDF</a></p>
+<p class="pdf-links"><a href="all-lectures.pdf" download="Modern-Physics-Notes.pdf">Both parts as one PDF</a></p>
 
 ## About these notes
 

@@ -8,7 +8,7 @@ title: "2부 — 특수상대론 I (중간고사 범위)"
 
 # 2부 — 특수상대론 I { .part-title #part-ii-special-relativity-i }
 
-<p class="source-note">수업 필기, 중간고사 범위 · <a class="pdf-link" href="notes.pdf" download="현대물리학-상대론-I.pdf">이 부를 PDF로 내려받기</a></p>
+<p class="source-note">수업 필기, 중간고사 범위 · <a class="pdf-link" href="notes.pdf" download="현대물리학-상대론-I.pdf">이 부를 PDF로 보기</a></p>
 
 **이 부에서는.** 로렌츠 변환은 허수 각을 가진 시공간의 회전이다. 여기서 동시성의 상대성과 인과율이 정하는 그 한계, 쌍둥이 역설, 그리고 크기의 제곱이 모든 좌표계에서 같은 4-벡터가 나오며, 4-벡터를 쓰면 충돌 문제를 에너지–운동량 보존으로 쉽게 풀 수 있다. 6–11절은 [특수상대론 II](../sr2-ko/)에서 이어진다.
 

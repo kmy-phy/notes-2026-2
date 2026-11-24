@@ -12,7 +12,7 @@ title: 현대물리학
 
 <p class="course-info">강의: 김제훈 · 조우주</p>
 
-<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="현대물리학-노트.pdf">두 파트를 하나의 PDF로 내려받기</a></p>
+<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="현대물리학-노트.pdf">두 파트를 하나의 PDF로 보기</a></p>
 
 ## 이 노트에 대하여 { #about-these-notes }
 

@@ -8,7 +8,7 @@ title: "Part I — Quantum Mechanics in Three Dimensions"
 
 # Part I — Quantum Mechanics in Three Dimensions { .part-title }
 
-<p class="source-note">Chapter 6, Quantum Theory of the Hydrogen Atom, with background from the preceding chapter · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Part-I-Quantum.pdf">Download this part as PDF</a></p>
+<p class="source-note">Chapter 6, Quantum Theory of the Hydrogen Atom, with background from the preceding chapter · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Part-I-Quantum.pdf">This part as PDF</a></p>
 
 **In this part.** The Schrödinger equation for the hydrogen atom separates in spherical coordinates. The angular part leads to the Legendre and associated Legendre equations, whose well-behaved solutions exist only for integer $l \ge 0$ and $|m| \le l$; normalizing them gives the spherical harmonics. The same quantum numbers come out of a purely algebraic treatment of angular momentum with commutators and ladder operators, which allows half-integer values as well. The two approaches meet when the angular momentum operators are written in spherical coordinates.
 

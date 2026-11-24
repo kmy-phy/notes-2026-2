@@ -8,7 +8,7 @@ title: "1부 — 3차원 양자역학"
 
 # 1부 — 3차원 양자역학 { .part-title #part-i-quantum-mechanics-in-three-dimensions }
 
-<p class="source-note">6장 수소 원자의 양자론, 앞 장의 배경 내용 포함 · <a class="pdf-link" href="notes.pdf" download="현대물리학-1부-양자.pdf">이 부를 PDF로 내려받기</a></p>
+<p class="source-note">6장 수소 원자의 양자론, 앞 장의 배경 내용 포함 · <a class="pdf-link" href="notes.pdf" download="현대물리학-1부-양자.pdf">이 부를 PDF로 보기</a></p>
 
 **이 부에서는.** 수소 원자의 슈뢰딩거 방정식은 구면좌표에서 변수분리된다. 각도 부분은 르장드르 방정식과 버금 르장드르 방정식으로 이어지고, 잘 행동하는 해는 정수 $l \ge 0$과 $|m| \le l$일 때만 존재한다. 이를 규격화하면 구면조화함수를 얻는다. 같은 양자수가 교환자와 사다리 연산자를 이용한 각운동량의 순수 대수적 취급에서도 나오는데, 여기서는 반정수 값도 허용된다. 두 방법은 각운동량 연산자를 구면좌표로 쓸 때 만난다.
 

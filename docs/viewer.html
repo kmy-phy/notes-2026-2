@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF</title>
+<style>
+  :root { --bar: 52px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #525659; font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+  .bar {
+    position: sticky; top: 0; z-index: 10; height: var(--bar);
+    display: flex; align-items: center; gap: 12px; padding: 0 14px;
+    background: #fff; color: #222; border-bottom: 1px solid #ccc; box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  }
+  .bar a { color: inherit; text-decoration: none; }
+  .back { font-size: 15px; padding: 6px 4px; white-space: nowrap; }
+  .title { flex: 1; min-width: 0; font-size: 14px; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+  .count { font-size: 13px; color: #777; white-space: nowrap; }
+  .dl {
+    background: #222; color: #fff !important; padding: 8px 14px; border-radius: 6px;
+    font-size: 14px; font-weight: 600; white-space: nowrap;
+  }
+  .dl:hover { background: #000; }
+  #pages { padding: 16px 8px 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .page { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); width: 100%; max-width: 900px; position: relative; }
+  .page canvas { display: block; width: 100%; height: auto; }
+  .msg { color: #eee; text-align: center; padding: 60px 20px; font-size: 15px; }
+  .msg a { color: #fff; }
+  iframe.fallback { border: 0; width: 100%; height: calc(100vh - var(--bar)); display: block; }
+  @media (max-width: 520px) { .title, .count { display: none; } .bar { justify-content: space-between; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="back" id="back" href="./">← <span id="backlabel">돌아가기</span></a>
+  <div class="title" id="title"></div>
+  <div class="count" id="count"></div>
+  <a class="dl" id="dl" href="#" download>PDF 내려받기</a>
+</div>
+<div id="pages"><div class="msg" id="msg">…</div></div>
+
+<script src="javascripts/pdfjs/pdf.min.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var file = q.get("file") || "";
+  var name = q.get("name") || file.split("/").pop();
+  var en = q.get("lang") === "en";
+  var T = en ? { back: "Back", dl: "Download PDF", loading: "Loading…", fail: "Could not display the PDF here.", open: "Open it directly", pages: " pages" }
+             : { back: "돌아가기", dl: "PDF 내려받기", loading: "불러오는 중…", fail: "이 화면에서 PDF를 표시하지 못했어요.", open: "PDF 바로 열기", pages: "쪽" };
+  document.documentElement.lang = en ? "en" : "ko";
+  document.getElementById("backlabel").textContent = T.back;
+  document.getElementById("msg").textContent = T.loading;
+
+  // 같은 사이트 안의 .pdf 파일만 연다
+  if (!/^[\w\-\/.%가-힣]+\.pdf$/.test(file) || file.indexOf("..") >= 0 || file[0] === "/") {
+    document.getElementById("msg").textContent = T.fail;
+    return;
+  }
+  document.title = name;
+  document.getElementById("title").textContent = name;
+  var dl = document.getElementById("dl");
+  dl.href = file; dl.setAttribute("download", name); dl.textContent = T.dl;
+
+  var back = document.getElementById("back");
+  back.href = file.replace(/[^\/]*$/, "");          // PDF가 있는 노트 페이지
+  if (document.referrer && document.referrer.indexOf(location.origin) === 0) {
+    back.addEventListener("click", function (e) { e.preventDefault(); history.back(); });
+  }
+
+  function fallback() {
+    var box = document.getElementById("pages");
+    box.innerHTML = '<div class="msg">' + T.fail + ' <a href="' + file + '">' + T.open + '</a></div>';
+  }
+  if (!window.pdfjsLib) return fallback();
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "javascripts/pdfjs/pdf.worker.min.js";
+
+  pdfjsLib.getDocument({ url: file, isEvalSupported: false }).promise.then(function (pdf) {
+    var box = document.getElementById("pages");
+    box.innerHTML = "";
+    document.getElementById("count").textContent = pdf.numPages + T.pages;
+    return pdf.getPage(1).then(function (first) {
+      var vp = first.getViewport({ scale: 1 });
+      var ratio = vp.height / vp.width;
+      var slots = [];
+      for (var i = 1; i <= pdf.numPages; i++) {
+        var d = document.createElement("div");
+        d.className = "page";
+        d.style.aspectRatio = (1 / ratio).toFixed(4);
+        d.dataset.n = i;
+        box.appendChild(d);
+        slots.push(d);
+      }
+      function render(div) {
+        if (div.dataset.done) return;
+        div.dataset.done = "1";
+        pdf.getPage(+div.dataset.n).then(function (page) {
+          var w = div.clientWidth * Math.min(window.devicePixelRatio || 1, 2.5);
+          var v = page.getViewport({ scale: w / page.getViewport({ scale: 1 }).width });
+          var c = document.createElement("canvas");
+          c.width = Math.floor(v.width); c.height = Math.floor(v.height);
+          div.style.aspectRatio = "";
+          div.appendChild(c);
+          page.render({ canvasContext: c.getContext("2d"), viewport: v });
+        });
+      }
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { render(e.target); io.unobserve(e.target); } });
+        }, { rootMargin: "800px 0px" });
+        slots.forEach(function (s) { io.observe(s); });
+      } else {
+        slots.forEach(render);
+      }
+    });
+  }).catch(fallback);
+})();
+</script>
+</body>
+</html>

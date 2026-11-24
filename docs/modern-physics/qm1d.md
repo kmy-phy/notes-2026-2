@@ -8,7 +8,7 @@ title: "Part I — Chapter 5: Quantum Mechanics in One Dimension"
 
 # Chapter 5 — Quantum Mechanics in One Dimension { .part-title }
 
-<p class="source-note">Chapter 5 worksheets (midterm range, textbook §5.1–5.11) · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Chapter-5.pdf">Download this chapter as PDF</a></p>
+<p class="source-note">Chapter 5 worksheets (midterm range, textbook §5.1–5.11) · <a class="pdf-link" href="notes.pdf" download="Modern-Physics-Chapter-5.pdf">This chapter as PDF</a></p>
 
 **In this chapter.** The wavefunction $\Psi(x,t)$ and its statistical meaning; the Schrödinger equation, read as the rule that turns momentum and energy into operators; separation of variables and the time-independent equation; and the standard one-dimensional problems: the infinite well, the finite well, tunnelling, and the harmonic oscillator solved with ladder operators. Chapter 6 (the hydrogen atom) builds directly on this.
 
