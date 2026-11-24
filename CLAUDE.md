@@ -57,6 +57,7 @@ docs/
   javascripts/pdfview.js       PDF 링크 → viewer.html (PDF 보기 화면, 위에 내려받기 버튼)
   viewer.html                  PDF 보기 화면 (PDF.js)
 figures-src/*.tex              그림의 TikZ 원본 (사이트에는 안 올라감)
+scripts/check.py               배포 전 자동 점검 (영/한 짝, 마크다운 흔적, 링크)
 scripts/md2latex.py            배포 때 PDF 생성 (마크다운 → pandoc → LaTeX → xelatex)
 scripts/latex/book.tex         PDF용 LaTeX 템플릿 (표지, 머리글, 상자 모양)
 .github/workflows/deploy.yml   빌드·PDF·배포
@@ -80,7 +81,7 @@ mkdocs.yml                     nav(왼쪽 메뉴)는 여기서 직접 관리
   ```
   앵커는 영어 제목을 MkDocs가 만드는 slug(소문자, 공백→`-`, 특수문자 제거)와 똑같이 한다.
 - 한국어판 PDF 파일명은 한국어로(`download="현대물리학-상대론-II.pdf"`).
-- 수정 후 패리티 확인: 두 파일의 `$$` 개수, 그림 개수, 제목 앵커 목록이 같아야 한다.
+- 수정 후 패리티 확인: `python3 scripts/check.py site` (§6). 두 판의 제목 앵커 목록, `$$` 개수, 그림·상자 개수가 같아야 한다.
 
 ## 4. 노트 작성 스타일
 
@@ -154,7 +155,7 @@ title: "Part II — Special Relativity II (final range)"
 1. 수정한다 (영어판과 한국어판 둘 다).
 2. `mkdocs build --strict` 통과 확인. PDF에 영향이 있는 수정이면 `python3 scripts/md2latex.py --site site`도 돌려 본다.
 3. **렌더링 확인 — 생략 금지.** `python3 -m http.server`로 `site/`를 띄우고 Playwright로 바뀐 페이지를 열어, 날 마크다운(`!!!`, `$$`, `**`, `{ #` 등)이 화면에 그대로 보이지 않는지, 목록·상자·표가 제대로인지 확인한다. 샌드박스에서는 MathJax CDN이 막혀 수식은 렌더 안 되므로 구조만 확인하고, 수식 문법은 눈으로 검토한다.
-4. 영어/한국어 패리티 확인 (§3).
+4. 영어/한국어 패리티 확인 (§3): `python3 scripts/check.py site`가 오류 0으로 끝나야 한다. 제목 앵커 목록·순서, 수식 블록·그림·표·상자 개수, 변환 안 된 마크다운(`!!!`, `$$`, `{ #`, `**` 등), 깨진 링크(언어 탭·PDF 포함)를 검사한다. CI도 배포 직전에 같은 검사를 돌려서, 실패하면 배포하지 않는다. 인라인 수식 개수 차이는 경고만 한다.
 5. 문자열 치환으로 큰 블록을 고칠 때는, 위치(인덱스)를 계산하기 **전에** 텍스트를 바꾸지 않는다. 한 번에 하나씩 바꾸고 결과를 확인한다.
 6. 커밋·푸시:
    ```

@@ -65,6 +65,9 @@ jobs:
           sudo rm -rf ~/apt-cache/partial ~/apt-cache/lock
           sudo chown -R "$USER" ~/apt-cache
       - run: python scripts/md2latex.py --site site
+      # 배포 전 자동 점검: 영/한 앵커·수식·그림·상자 개수, 변환 안 된 마크다운, 깨진 링크 (scripts/check.py)
+      # 하나라도 틀리면 여기서 멈추고 배포하지 않는다
+      - run: python scripts/check.py site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
