@@ -46,13 +46,20 @@ jobs:
             sudo timeout 120 apt-get update $APT_OPTS && break
             echo "::warning::apt-get update attempt $i failed"
           done
+          # 1) 다운로드만 짧은 제한시간 안에서 시도한다. 미러가 아주 느리게 데이터를 흘려보내면
+          #    Acquire 타임아웃이 걸리지 않으므로(실제로 fonts-noto-cjk 61MB에서 멈췄음)
+          #    3분 안에 못 받으면 끊고 다른 미러로 바꿔 다시 받는다. 받다 만 파일은 이어 받는다.
           ok=0
-          for i in 1 2 3; do
-            if sudo timeout 480 apt-get install -y --no-install-recommends $APT_OPTS $PKGS; then ok=1; break; fi
-            echo "::warning::apt-get install attempt $i failed or timed out, retrying"
-            sudo dpkg --configure -a || true
+          for mirror in default http://azure.archive.ubuntu.com/ubuntu/ http://archive.ubuntu.com/ubuntu/ http://mirrors.edge.kernel.org/ubuntu/; do
+            if [ "$mirror" != default ]; then
+              echo "::warning::download stalled, switching mirror to $mirror"
+              echo "$mirror" | sudo tee /etc/apt/apt-mirrors.txt
+            fi
+            if sudo timeout 180 apt-get install -y --download-only --no-install-recommends $APT_OPTS $PKGS; then ok=1; break; fi
           done
-          if [ "$ok" != 1 ]; then echo "::error::LaTeX install failed"; exit 1; fi
+          if [ "$ok" != 1 ]; then echo "::error::could not download LaTeX packages from any mirror"; exit 1; fi
+          # 2) 설치는 받아 둔 파일로만 한다 (네트워크 없음, 중간에 끊지 않음)
+          sudo apt-get install -y --no-install-recommends --no-download $APT_OPTS $PKGS
           command -v xelatex
           command -v pandoc
           sudo rm -rf ~/apt-cache/partial ~/apt-cache/lock
