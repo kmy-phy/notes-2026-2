@@ -55,7 +55,8 @@ docs/
   javascripts/mathjax.js       MathJax 설정 (unicode 확장, \oiint 매크로)
   javascripts/lang.js          English/한국어 탭 (#해시 유지)
 figures-src/*.tex              그림의 TikZ 원본 (사이트에는 안 올라감)
-scripts/make_pdfs.py           배포 때 PDF 생성
+scripts/md2latex.py            배포 때 PDF 생성 (마크다운 → pandoc → LaTeX → xelatex)
+scripts/latex/book.tex         PDF용 LaTeX 템플릿 (표지, 머리글, 상자 모양)
 .github/workflows/deploy.yml   빌드·PDF·배포
 mkdocs.yml                     nav(왼쪽 메뉴)는 여기서 직접 관리
 ```
@@ -134,14 +135,21 @@ title: "Part II — Special Relativity II (final range)"
 
 ## 5. PDF
 
-- 배포 때 `scripts/make_pdfs.py`가 Playwright로 페이지별 `notes.pdf`, 과목별 `all-lectures.pdf`(영어)·`all-lectures-ko.pdf`(한국어)를 만든다. 묶음 순서는 파일 이름 순(qm1d < quantum < sr1 < sr2).
-- PDF에서 **표가 페이지 사이에서 잘리면 안 되고, 수식이 잘리면 안 된다.** 이를 위해 extra.css의 print 규칙과 make_pdfs.py의 FIT_WIDE(넓은 수식·표를 A4 폭 658px에 맞게 축소)가 있다. 건드릴 때 이 동작을 깨지 않는다.
-- 사이트 화면 보기는 PDF와 별개다. PDF용 수정은 print CSS로 한다.
+- PDF는 **진짜 LaTeX로 컴파일**한다. 원본은 웹과 같은 마크다운 한 벌뿐이고, 배포 때 `scripts/md2latex.py --site site`가
+  마크다운의 MkDocs 문법(상자, `<figure>`, lecture-tag 등)을 pandoc용으로 바꿔 LaTeX로 변환하고 `scripts/latex/book.tex`에 넣어 xelatex로 두 번 컴파일한다.
+  - 과목별 `all-lectures.pdf`(영어)·`all-lectures-ko.pdf`(한국어): 표지 + 과목 소개(index.md) + 쪽수 있는 목차 + 본문, 쪽 번호가 이어짐.
+  - 페이지별 `notes.pdf`: 그 장·부만.
+  - 묶음 순서는 파일 이름 순(qm1d < quantum < sr1 < sr2).
+- 상자 대응: note→정의, abstract→정리(테두리, 페이지에서 안 쪼개짐), success→증명, example, info→비고, warning→왼쪽 굵은 선, quote→규약 상자, skipped→회색 상자.
+- 한 줄 수식이 본문 폭보다 넓으면 `\fitmath`가 자동으로 줄인다. 그림은 SVG를 rsvg-convert로 PDF로 바꿔 쓰고, 캡션은 사이트의 "Figure 7.1." 문구를 그대로 쓴다.
+- 한글·①② 등은 Noto Serif CJK KR로 자동 전환된다(XeTeX interchar). Latin Modern에 없는 기호가 나오면 `pandoc()` 후처리나 `book.tex`의 범위에 추가한다.
+- **새 문법을 노트에 쓰면 PDF 변환도 확인한다**: `python3 scripts/md2latex.py --site site`가 에러 없이 끝나는지, 결과 PDF 몇 쪽을 이미지로 열어 본다.
+- 사이트 화면 보기는 PDF와 별개다.
 
 ## 6. 작업 절차 (매번)
 
 1. 수정한다 (영어판과 한국어판 둘 다).
-2. `mkdocs build --strict` 통과 확인.
+2. `mkdocs build --strict` 통과 확인. PDF에 영향이 있는 수정이면 `python3 scripts/md2latex.py --site site`도 돌려 본다.
 3. **렌더링 확인 — 생략 금지.** `python3 -m http.server`로 `site/`를 띄우고 Playwright로 바뀐 페이지를 열어, 날 마크다운(`!!!`, `$$`, `**`, `{ #` 등)이 화면에 그대로 보이지 않는지, 목록·상자·표가 제대로인지 확인한다. 샌드박스에서는 MathJax CDN이 막혀 수식은 렌더 안 되므로 구조만 확인하고, 수식 문법은 눈으로 검토한다.
 4. 영어/한국어 패리티 확인 (§3).
 5. 문자열 치환으로 큰 블록을 고칠 때는, 위치(인덱스)를 계산하기 **전에** 텍스트를 바꾸지 않는다. 한 번에 하나씩 바꾸고 결과를 확인한다.
@@ -159,7 +167,7 @@ title: "Part II — Special Relativity II (final range)"
 
 ## 7. 알려진 함정
 
-- CI는 `ubuntu-24.04`로 고정(ubuntu-latest에서 Playwright 설치 실패).
+- CI는 `ubuntu-24.04`로 고정. MkDocs/Material 버전도 `requirements.txt`에 고정되어 있다(Material for MkDocs는 2027-05 지원 종료, MkDocs 2.0과 호환 안 됨). 함부로 올리지 않는다.
 - `$$` 뒤에 빈 줄이 없으면 그 뒤 상자·문단이 깨진다.
 - 한국어 제목에 앵커를 빼먹으면 언어 탭·목차 링크가 어긋난다.
 - 목록 안에 들여쓴 문단을 잘못 두면 다음 글머리 기호가 문단에 흡수된다. 목록 구조를 렌더링으로 확인한다.

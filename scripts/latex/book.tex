@@ -1,0 +1,128 @@
+% Template for the LaTeX PDFs, filled in by scripts/md2latex.py.
+\documentclass[11pt,a4paper,oneside]{report}
+\usepackage[a4paper,top=30mm,bottom=30mm,left=28mm,right=28mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools,esint}
+\usepackage{lmodern}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+% Hangul (and circled numbers etc.) come from Noto Serif CJK KR.  The switch is a
+% plain font change, not a group, so it survives math and box boundaries.
+\newfontfamily\krfont{Noto Serif CJK KR}[NFSSFamily=kr,ItalicFont={Noto Serif CJK KR},
+  BoldFont={Noto Serif CJK KR Bold},BoldItalicFont={Noto Serif CJK KR Bold},
+  SmallCapsFont={Noto Serif CJK KR}]
+\edef\latinfamily{\familydefault}
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\krclass
+\def\krrange#1#2{\count255=#1 \loop\XeTeXcharclass\count255=\krclass
+  \ifnum\count255<#2 \advance\count255 by 1 \repeat}
+\krrange{"1100}{"11FF}\krrange{"3130}{"318F}\krrange{"AC00}{"D7A3}
+\krrange{"2460}{"24FF}\krrange{"3000}{"303F}\krrange{"4E00}{"9FFF}\krrange{"FF01}{"FF5E}
+\XeTeXinterchartoks 0 \krclass = {\fontfamily{kr}\selectfont}
+\XeTeXinterchartoks 4095 \krclass = {\fontfamily{kr}\selectfont}
+\XeTeXinterchartoks \krclass 0 = {\fontfamily{\latinfamily}\selectfont}
+\XeTeXinterchartoks \krclass 4095 = {\fontfamily{\latinfamily}\selectfont}
+\usepackage{graphicx,xcolor,longtable,booktabs,array,calc,enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,titletoc,fancyhdr}
+\usepackage[hidelinks,bookmarksnumbered]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelformat=empty}   % captions keep the site's own "Figure 7.1." text
+\newcommand\langko{\def\tmp{%%LANG%%}\def\ko{ko}\ifx\tmp\ko}
+\langko
+  \renewcommand\figurename{그림}
+  \renewcommand\contentsname{목차}
+  \linespread{1.12}
+\else
+  \renewcommand\contentsname{Contents}
+\fi
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em plus 0.2em}
+\setlist{topsep=0.3em,itemsep=0.15em}
+\setcounter{secnumdepth}{-2}   % headings carry their own numbers in their text
+\setcounter{tocdepth}{1}
+\emergencystretch=2em
+\raggedbottom
+
+% ---- headings ----
+\titleformat{\chapter}[display]{\centering\normalfont}{}{0pt}
+  {\rule{0.7\linewidth}{0.6pt}\\[10pt]\LARGE\scshape}[\vspace{4pt}\rule{0.7\linewidth}{0.6pt}]
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}{\normalfont\Large\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{2.2ex plus .5ex}{1ex}
+\titleformat{\subsection}{\normalfont\large\bfseries}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{1.8ex plus .5ex}{0.6ex}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{}{0pt}{}
+
+% ---- contents ----
+\titlecontents{chapter}[0pt]{\addvspace{1.2em}\large\bfseries}{}{}{\hfill\contentspage}[\vspace{0.3em}]
+\titlecontents{section}[1.2em]{}{}{}{\titlerule*[0.6pc]{.}\contentspage}
+
+% ---- running heads ----
+\newcommand\chapterhead{%%TERM%%}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\scshape %%COURSE%%}
+\fancyhead[R]{\small\scshape\chapterhead}
+\fancyfoot[C]{\small\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\small\scshape %%COURSE%%}\fancyhead[R]{\small\scshape\chapterhead}\fancyfoot[C]{\small\thepage}}
+
+% ---- notes furniture ----
+\newsavebox\fitbox
+\newcommand\fitmath[1]{\sbox\fitbox{$\displaystyle #1$}\ifdim\wd\fitbox>\linewidth\resizebox{\linewidth}{!}{\usebox\fitbox}\else\usebox\fitbox\fi}
+\newcommand\sourcenote[1]{\vspace{-6pt}{\centering\small\itshape #1\par}\vspace{10pt}}
+\newcommand\lecturetag[1]{\vspace{-0.6em}{\small\color{black!55}\scshape #1\par}}
+\newcommand\boxtitlefmt[1]{\textbf{#1.}\enspace}
+\newcommand\boxtitle[1]{\noindent\boxtitlefmt{#1}}
+\newcommand\boxhead[1]{\if\relax\detokenize{#1}\relax\else #1\par\nobreak\fi}
+
+\newenvironment{defnbox}[1]{\par\medskip\renewcommand\boxtitlefmt[1]{\textbf{##1.}\enspace}\boxhead{#1}}{\par\medskip}
+\newenvironment{examplebox}[1]{\par\medskip\renewcommand\boxtitlefmt[1]{\textbf{##1.}\enspace}\boxhead{#1}}{\par\medskip}
+\newenvironment{remarkbox}[1]{\par\medskip\renewcommand\boxtitlefmt[1]{\textit{##1.}\enspace}\boxhead{#1}}{\par\medskip}
+\newenvironment{proofbox}[1]{\par\smallskip\renewcommand\boxtitlefmt[1]{\textit{##1.}\enspace}\boxhead{#1}}{\par\medskip}
+\newtcolorbox{thmboxinner}{enhanced,sharp corners,colback=white,colframe=black,
+  boxrule=0.6pt,left=8pt,right=8pt,top=6pt,bottom=6pt,before skip=10pt,after skip=10pt,
+  fontupper=\itshape,parbox=false}
+\newenvironment{thmbox}[1]{\renewcommand\boxtitlefmt[1]{\textup{\textbf{##1.}}\enspace}\begin{thmboxinner}\boxhead{#1}}{\end{thmboxinner}}
+\newtcolorbox{cautioninner}{enhanced,breakable,sharp corners,colback=white,colframe=black,
+  boxrule=0pt,leftrule=2.5pt,left=10pt,right=0pt,top=2pt,bottom=2pt,before skip=10pt,after skip=10pt,parbox=false}
+\newenvironment{cautionbox}[1]{\renewcommand\boxtitlefmt[1]{\textbf{\textit{##1.}}\enspace}\begin{cautioninner}\boxhead{#1}}{\end{cautioninner}}
+\newtcolorbox{convinner}{enhanced,breakable,sharp corners,colback=white,colframe=black,
+  boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=6pt,after skip=14pt,parbox=false}
+\newenvironment{convbox}[1]{\begin{convinner}\textbf{#1}\par\nobreak}{\end{convinner}}
+\newtcolorbox{skippedinner}{enhanced,breakable,sharp corners,colback=black!4,colframe=black!35,
+  boxrule=0pt,leftrule=1.5pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=8pt,after skip=12pt,
+  fontupper=\small\itshape,parbox=false}
+\newenvironment{skippedbox}[1]{\begin{skippedinner}}{\end{skippedinner}}
+
+\newif\iffullbook
+\fullbook%%FULL%%
+
+\begin{document}
+\iffullbook
+% ---- title page ----
+\begin{titlepage}
+\thispagestyle{fancy}
+\vspace*{30mm}
+\centering
+\rule{\linewidth}{1.2pt}\\[4pt]\rule{\linewidth}{0.4pt}\\[18pt]
+{\huge\bfseries %%TITLE%%\par}
+\vspace{14pt}
+\rule{\linewidth}{0.4pt}\\[18pt]
+{\large\scshape %%SUBJECT%%\par}
+\vspace{18pt}
+{\normalsize %%INFO%%\par}
+\vfill
+{\small %%TERM%%\par}
+\end{titlepage}
+\setcounter{page}{2}
+
+%%INTRO%%
+
+\tableofcontents
+\fi
+
+%%BODY%%
+
+\end{document}
