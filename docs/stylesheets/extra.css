@@ -15,8 +15,45 @@
   --md-text-font: "Latin Modern Roman", "Noto Serif KR", "Noto Serif CJK KR";
   --caps: "Latin Modern Roman Caps", "Latin Modern Roman", "Noto Serif KR", "Noto Serif CJK KR", serif;
 }
-[data-md-color-scheme="default"] { --md-typeset-a-color: #2b47a8; }
-[data-md-color-scheme="slate"]   { --md-typeset-a-color: #9db0ff; }
+/* 라이트(기본): 흰 종이에 거의 검은 글씨 */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #ffffff;
+  --md-default-fg-color: #1a1a1a;
+  --md-default-fg-color--light: #1a1a1aa6;
+  --md-default-fg-color--lighter: #1a1a1a52;
+  --md-default-fg-color--lightest: #1a1a1a12;
+  --md-typeset-color: #1a1a1a;
+  --md-typeset-a-color: #23408e;
+  --md-primary-fg-color: #ffffff;        /* 위쪽 바 배경 */
+  --md-primary-bg-color: #1a1a1a;        /* 위쪽 바 글씨 */
+  --md-primary-bg-color--light: #1a1a1aa6;
+  --md-accent-fg-color: #23408e;
+  --md-footer-bg-color: #f6f6f4;
+  --md-footer-bg-color--dark: #efefec;
+  --md-footer-fg-color: #1a1a1a;
+  --md-footer-fg-color--light: #1a1a1aa6;
+  --md-footer-fg-color--lighter: #1a1a1a73;
+}
+/* 다크: 거의 검정 (홈과 같은 #08080a 계열), 따뜻한 흰 글씨 */
+[data-md-color-scheme="slate"] {
+  --md-hue: 40;
+  --md-default-bg-color: #0a0a0b;
+  --md-default-bg-color--light: #0a0a0bb3;
+  --md-default-bg-color--lighter: #0a0a0b4d;
+  --md-default-bg-color--lightest: #0a0a0b1f;
+  --md-default-fg-color: #ebe8e1;
+  --md-default-fg-color--light: #ebe8e1a6;
+  --md-default-fg-color--lighter: #ebe8e152;
+  --md-default-fg-color--lightest: #ebe8e114;
+  --md-typeset-color: #e6e3dc;
+  --md-typeset-a-color: #a9b8f0;
+  --md-primary-fg-color: #0a0a0b;
+  --md-primary-bg-color: #ebe8e1;
+  --md-accent-fg-color: #a9b8f0;
+  --md-code-bg-color: #141416;
+  --md-footer-bg-color: #050506;
+  --md-footer-bg-color--dark: #000000;
+}
 
 /* ---------- 본문 ---------- */
 .md-typeset {

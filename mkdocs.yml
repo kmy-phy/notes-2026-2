@@ -12,15 +12,14 @@ theme:
     - search.highlight
     - content.code.copy
   font: false                 # 글꼴은 stylesheets/extra.css에서 지정
+  # 기본은 흰 종이(교과서·PDF와 같은 모습). 오른쪽 위 버튼으로 다크 모드 (색은 stylesheets/extra.css)
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: white
       toggle:
         icon: material/weather-night
         name: 다크 모드로
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: black
       toggle:
         icon: material/weather-sunny

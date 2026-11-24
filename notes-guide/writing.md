@@ -133,3 +133,4 @@ gh run watch $R -R kmy-phy/notes-2026-2 --exit-status
 - 과목 줄의 "N편 · 국문 Np · 영문 Np · 날짜"와 마우스를 올리면 뜨는 첫 장 미리보기는 배포 때 `md2latex.py --site`가 만드는 `site/manifest.json`, `site/<course>/thumb.jpg`에서 온다(날짜는 그 과목 폴더의 마지막 커밋).
 - `viewer.html`은 manifest의 `pdfs`에서 제목·내려받기 이름·다른 언어판을 읽는다. 목차는 PDF 책갈피, 언어를 바꾸면 같은 절(책갈피 순서가 두 판에서 같아야 함 — check.py가 제목을 맞춰 둠). 읽던 자리는 브라우저에 저장.
 - `navigation.instant`는 껐다(홈이 Material 화면이 아니라서).
+- 노트 페이지는 기본이 흰 배경(라이트), 오른쪽 위 버튼으로 다크 모드. 시스템 다크 모드를 따라가지 않는다. 색은 `extra.css` 맨 위의 `[data-md-color-scheme="default"]`(흰 종이, `#1a1a1a` 글씨)와 `"slate"`(`#0a0a0b` 거의 검정, 따뜻한 흰 글씨).
