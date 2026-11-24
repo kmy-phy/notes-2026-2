@@ -3,41 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f6f4">
 <title>PDF</title>
+<!--
+  PDF 보기 화면. pdfview.js가 노트의 PDF 링크를 viewer.html?file=…&name=…&lang=… 로 보낸다.
+  - 위쪽 바: 돌아가기 · 목차(PDF 책갈피) · 제목 · English/한국어 · 내려받기 · 쪽 번호
+  - 언어를 바꾸면 같은 절로 간다 (두 판의 책갈피 순서가 같다: scripts/check.py가 영/한 제목을 맞춰 둠)
+  - 읽던 자리를 기억한다 (localStorage, 파일마다)
+  - manifest.json(배포 때 md2latex.py가 만듦)에서 제목, 내려받기 이름, 다른 언어판을 읽는다
+-->
 <style>
-  :root { --bar: 52px; }
+  :root {
+    --bar: 48px; --bg: #85868a; --barbg: #f6f6f4; --ink: #1d1d1f; --ink-2: #6b6b70; --line: #00000014;
+    --seg: #e8e8e6; --accent: #b07a2a;
+  }
   * { box-sizing: border-box; }
-  html, body { margin: 0; background: #525659; font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
-  .bar {
-    position: sticky; top: 0; z-index: 10; height: var(--bar);
-    display: flex; align-items: center; gap: 12px; padding: 0 14px;
-    background: #fff; color: #222; border-bottom: 1px solid #ccc; box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  html { scroll-padding-top: calc(var(--bar) + 12px); }
+  html, body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  .bar { position: fixed; inset: 0 0 auto 0; height: var(--bar); z-index: 30; background: var(--barbg);
+         border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+         padding: 0 10px; gap: 10px; }
+  .l, .r { display: flex; align-items: center; gap: 4px; min-width: 0; }
+  .r { justify-content: flex-end; gap: 6px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 7px;
+         font-size: 13.5px; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .btn:hover { background: #0000000a; }
+  .btn:focus-visible, .seg button:focus-visible, .toc button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .btn svg { flex: none; }
+  .btn.toc-btn { background: #0000000a; }
+  .title { min-width: 0; margin-left: 6px; font-size: 13.5px; color: var(--ink-2); overflow: hidden;
+           text-overflow: ellipsis; white-space: nowrap; }
+  .title b { color: var(--ink); font-weight: 700; margin-right: 8px; }
+  .seg { display: inline-flex; background: var(--seg); border-radius: 9px; padding: 3px; }
+  .seg button, .seg a { height: 28px; padding: 0 14px; border-radius: 7px; font-size: 13px; font-weight: 600;
+                        color: var(--ink-2); display: inline-flex; align-items: center; }
+  .seg .on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px #0000001f, 0 0 0 .5px #0000000d; }
+  .seg[hidden] { display: none; }
+  .count { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; min-width: 64px; text-align: right; padding-right: 6px; }
+
+  #pages { padding: calc(var(--bar) + 16px) 12px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .page { background: #fff; width: 100%; max-width: 980px; position: relative; box-shadow: 0 2px 10px #0000004d; }
+  .page canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .msg { color: #fff; text-align: center; padding: 80px 20px; font-size: 15px; }
+  .msg a { text-decoration: underline; }
+
+  /* 목차: 데스크톱은 왼쪽 서랍, 휴대폰은 아래에서 올라오는 시트 */
+  .scrim { position: fixed; inset: 0; z-index: 35; background: #0000002e; opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .toc { position: fixed; z-index: 40; top: 0; bottom: 0; left: 0; width: min(360px, 88vw); background: var(--barbg);
+         box-shadow: 0 0 40px #0000003d; transform: translateX(-102%); transition: transform .25s cubic-bezier(.2,.7,.2,1);
+         display: flex; flex-direction: column; }
+  .open .scrim { opacity: 1; pointer-events: auto; }
+  .open .toc { transform: none; }
+  .toc header { display: flex; align-items: center; justify-content: space-between; height: var(--bar); padding: 0 8px 0 18px;
+                border-bottom: 1px solid var(--line); font-weight: 700; font-size: 14px; flex: none; }
+  .toc ol { list-style: none; margin: 0; padding: 8px 0 24px; overflow-y: auto; overscroll-behavior: contain; }
+  .toc li button { display: flex; width: 100%; text-align: left; gap: 10px; padding: 7px 18px; font-size: 13.5px; line-height: 1.35;
+                   color: var(--ink-2); border-left: 3px solid transparent; word-break: keep-all; }
+  .toc li button:hover { background: #0000000a; color: var(--ink); }
+  .toc li button .pg { margin-left: auto; font-size: 12px; color: #a3a3a8; font-variant-numeric: tabular-nums; }
+  .toc li.l0 button { color: var(--ink); font-weight: 700; padding-top: 11px; }
+  .toc li.l1 button { padding-left: 32px; }
+  .toc li.l2 button { padding-left: 46px; font-size: 13px; }
+  .toc li.l3 button { padding-left: 60px; font-size: 13px; }
+  .toc li.cur button { color: var(--ink); background: #00000008; border-left-color: var(--accent); }
+  .toc .empty { padding: 18px; color: var(--ink-2); font-size: 13.5px; }
+
+  .wide { display: inline; }
+  @media (max-width: 760px) {
+    .title { display: none; }
+    .wide { display: none; }
+    .btn { padding: 0 8px; }
+    .seg button, .seg a { padding: 0 10px; }
+    .count { min-width: 0; font-size: 12px; padding-right: 2px; }
+    #pages { padding-left: 0; padding-right: 0; gap: 8px; }
+    .toc { top: auto; bottom: 0; left: 0; right: 0; width: auto; height: 74vh; border-radius: 14px 14px 0 0;
+           transform: translateY(102%); }
   }
-  .bar a { color: inherit; text-decoration: none; }
-  .back { font-size: 15px; padding: 6px 4px; white-space: nowrap; }
-  .title { flex: 1; min-width: 0; font-size: 14px; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
-  .count { font-size: 13px; color: #777; white-space: nowrap; }
-  .dl {
-    background: #222; color: #fff !important; padding: 8px 14px; border-radius: 6px;
-    font-size: 14px; font-weight: 600; white-space: nowrap;
-  }
-  .dl:hover { background: #000; }
-  #pages { padding: 16px 8px 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .page { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35); width: 100%; max-width: 900px; position: relative; }
-  .page canvas { display: block; width: 100%; height: auto; }
-  .msg { color: #eee; text-align: center; padding: 60px 20px; font-size: 15px; }
-  .msg a { color: #fff; }
-  iframe.fallback { border: 0; width: 100%; height: calc(100vh - var(--bar)); display: block; }
-  @media (max-width: 520px) { .title, .count { display: none; } .bar { justify-content: space-between; } }
+  @media (max-width: 380px) { .bar { padding: 0 4px; gap: 4px; } .count { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .toc, .scrim { transition: none; } }
 </style>
 </head>
 <body>
 <div class="bar">
-  <a class="back" id="back" href="./">← <span id="backlabel">돌아가기</span></a>
-  <div class="title" id="title"></div>
-  <div class="count" id="count"></div>
-  <a class="dl" id="dl" href="#" download>PDF 내려받기</a>
+  <div class="l">
+    <a class="btn" id="back" href="./" aria-label="돌아가기"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 10H4M9 5l-5 5 5 5"/></svg></a>
+    <button class="btn toc-btn" id="tocbtn" aria-expanded="false" aria-controls="toc"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h14M3 10h14M3 15h14"/></svg><span id="toclabel">목차</span></button>
+    <div class="title" id="title"></div>
+  </div>
+  <div class="seg" id="seg" hidden role="group" aria-label="Language"></div>
+  <div class="r">
+    <a class="btn" id="dl" href="#" download><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 17h12"/></svg><span class="wide" id="dllabel">내려받기</span></a>
+    <span class="count" id="count"></span>
+  </div>
 </div>
+<div class="scrim" id="scrim"></div>
+<aside class="toc" id="toc" aria-label="목차" inert>
+  <header><span id="tochead">목차</span><button class="btn" id="tocclose" aria-label="닫기">✕</button></header>
+  <ol id="toclist"><li class="empty" id="tocempty">…</li></ol>
+</aside>
 <div id="pages"><div class="msg" id="msg">…</div></div>
 
 <script src="javascripts/pdfjs/pdf.min.js"></script>
@@ -45,75 +113,270 @@
 (function () {
   var q = new URLSearchParams(location.search);
   var file = q.get("file") || "";
-  var name = q.get("name") || file.split("/").pop();
-  var en = q.get("lang") === "en";
-  var T = en ? { back: "Back", dl: "Download PDF", loading: "Loading…", fail: "Could not display the PDF here.", open: "Open it directly", pages: " pages" }
-             : { back: "돌아가기", dl: "PDF 내려받기", loading: "불러오는 중…", fail: "이 화면에서 PDF를 표시하지 못했어요.", open: "PDF 바로 열기", pages: "쪽" };
-  document.documentElement.lang = en ? "en" : "ko";
-  document.getElementById("backlabel").textContent = T.back;
-  document.getElementById("msg").textContent = T.loading;
+  var hash = new URLSearchParams(location.hash.slice(1));
+  var $ = function (id) { return document.getElementById(id); };
+  var KO = { back: "돌아가기", toc: "목차", dl: "내려받기", loading: "불러오는 중…", fail: "이 화면에서 PDF를 표시하지 못했어요.",
+             open: "PDF 바로 열기", notoc: "이 PDF에는 목차가 없어요.", close: "닫기" };
+  var EN = { back: "Back", toc: "Contents", dl: "Download", loading: "Loading…", fail: "Could not display the PDF here.",
+             open: "Open it directly", notoc: "This PDF has no contents.", close: "Close" };
 
   // 같은 사이트 안의 .pdf 파일만 연다
   if (!/^[\w\-\/.%가-힣]+\.pdf$/.test(file) || file.indexOf("..") >= 0 || file[0] === "/") {
-    document.getElementById("msg").textContent = T.fail;
-    return;
+    $("msg").textContent = KO.fail; return;
   }
-  document.title = name;
-  document.getElementById("title").textContent = name;
-  var dl = document.getElementById("dl");
-  dl.href = file; dl.setAttribute("download", name); dl.textContent = T.dl;
 
-  var back = document.getElementById("back");
-  back.href = file.replace(/[^\/]*$/, "");          // PDF가 있는 노트 페이지
-  if (document.referrer && document.referrer.indexOf(location.origin) === 0) {
-    back.addEventListener("click", function (e) { e.preventDefault(); history.back(); });
+  var info = { name: q.get("name") || file.split("/").pop(), lang: q.get("lang") === "en" ? "en" : "ko" };
+  var T = info.lang === "en" ? EN : KO;
+  var KEY = "pdfpos:" + file;
+
+  function applyInfo() {
+    T = info.lang === "en" ? EN : KO;
+    document.documentElement.lang = info.lang;
+    document.title = info.title || info.name;
+    $("back").setAttribute("aria-label", T.back); $("toclabel").textContent = T.toc; $("tochead").textContent = T.toc;
+    $("tocclose").setAttribute("aria-label", T.close); $("dllabel").textContent = T.dl;
+    var dl = $("dl"); dl.href = file; dl.setAttribute("download", info.name); dl.title = T.dl + " · " + info.name;
+    var parts = (info.title || info.name).split(" · ");
+    $("title").innerHTML = "";
+    var b = document.createElement("b"); b.textContent = parts[0]; $("title").appendChild(b);
+    if (parts.length > 1) $("title").appendChild(document.createTextNode(parts.slice(1).join(" · ")));
+    $("back").href = info.back || file.replace(/[^\/]*$/, "");
+    var seg = $("seg"); seg.innerHTML = "";
+    if (info.pair) {
+      [["en", "English"], ["ko", "한국어"]].forEach(function (l) {
+        var el = document.createElement(l[0] === info.lang ? "button" : "a");
+        el.textContent = l[1];
+        if (l[0] === info.lang) { el.className = "on"; el.setAttribute("aria-pressed", "true"); }
+        else { el.href = "#"; el.addEventListener("click", function (e) { e.preventDefault(); switchLang(); }); }
+        seg.appendChild(el);
+      });
+      seg.hidden = false;
+    }
   }
+  applyInfo();
+  $("msg").textContent = T.loading;
+
+  // 돌아가기: 노트 페이지에서 왔으면 뒤로, 아니면 그 노트 페이지로
+  $("back").addEventListener("click", function (e) {
+    var r = document.referrer;
+    if (r && r.indexOf(location.origin) === 0 && r.indexOf("viewer.html") < 0 && history.length > 1) {
+      e.preventDefault(); history.back();
+    }
+  });
+
+  var manifest = fetch("manifest.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; }).then(function (m) {
+      var e = m && m.pdfs && m.pdfs[file];
+      if (e) {
+        info.name = e.name || info.name; info.lang = e.lang || info.lang; info.title = e.title;
+        info.back = e.back; info.pair = e.pair && m.pdfs[e.pair] ? e.pair : null;
+        info.pairName = info.pair && m.pdfs[e.pair].name; info.pairPages = info.pair && m.pdfs[e.pair].pages;
+        applyInfo();
+      }
+    });
 
   function fallback() {
-    var box = document.getElementById("pages");
-    box.innerHTML = '<div class="msg">' + T.fail + ' <a href="' + file + '">' + T.open + '</a></div>';
+    $("pages").innerHTML = '<div class="msg">' + T.fail + ' <a href="' + file + '">' + T.open + "</a></div>";
   }
   if (!window.pdfjsLib) return fallback();
   pdfjsLib.GlobalWorkerOptions.workerSrc = "javascripts/pdfjs/pdf.worker.min.js";
 
-  pdfjsLib.getDocument({ url: file, isEvalSupported: false }).promise.then(function (pdf) {
-    var box = document.getElementById("pages");
-    box.innerHTML = "";
-    document.getElementById("count").textContent = pdf.numPages + T.pages;
-    return pdf.getPage(1).then(function (first) {
-      var vp = first.getViewport({ scale: 1 });
-      var ratio = vp.height / vp.width;
-      var slots = [];
-      for (var i = 1; i <= pdf.numPages; i++) {
-        var d = document.createElement("div");
-        d.className = "page";
-        d.style.aspectRatio = (1 / ratio).toFixed(4);
-        d.dataset.n = i;
-        box.appendChild(d);
-        slots.push(d);
-      }
-      function render(div) {
-        if (div.dataset.done) return;
-        div.dataset.done = "1";
-        pdf.getPage(+div.dataset.n).then(function (page) {
-          var w = div.clientWidth * Math.min(window.devicePixelRatio || 1, 2.5);
-          var v = page.getViewport({ scale: w / page.getViewport({ scale: 1 }).width });
-          var c = document.createElement("canvas");
-          c.width = Math.floor(v.width); c.height = Math.floor(v.height);
-          div.style.aspectRatio = "";
-          div.appendChild(c);
-          page.render({ canvasContext: c.getContext("2d"), viewport: v });
-        });
-      }
-      if ("IntersectionObserver" in window) {
-        var io = new IntersectionObserver(function (es) {
-          es.forEach(function (e) { if (e.isIntersecting) { render(e.target); io.unobserve(e.target); } });
-        }, { rootMargin: "800px 0px" });
-        slots.forEach(function (s) { io.observe(s); });
-      } else {
-        slots.forEach(render);
-      }
+  var pdf, slots = [], ratio = 1.414, baseH = 842, outline = [], outlineReady, io;
+
+  // ---- 위치: (쪽, 쪽 안에서의 비율) ----
+  function barH() { return document.querySelector(".bar").offsetHeight; }
+  function pos() {
+    var y = window.scrollY + barH() + 12, lo = 0, hi = slots.length - 1;
+    while (lo < hi) { var mid = (lo + hi + 1) >> 1; if (slots[mid].offsetTop <= y) lo = mid; else hi = mid - 1; }
+    var s = slots[lo]; if (!s) return { p: 1, f: 0 };
+    return { p: lo + 1, f: Math.max(0, Math.min(1, (y - s.offsetTop) / s.offsetHeight)) };
+  }
+  function goTo(p, f) {
+    var s = slots[Math.max(0, Math.min(slots.length - 1, p - 1))];
+    if (s) window.scrollTo(0, Math.max(0, s.offsetTop + (f || 0) * s.offsetHeight - barH() - 12));
+  }
+
+  // ---- 그리기 ----
+  function render(div) {
+    if (div.dataset.done === String(div.clientWidth)) return;
+    div.dataset.done = String(div.clientWidth);
+    pdf.getPage(+div.dataset.n).then(function (page) {
+      var v1 = page.getViewport({ scale: 1 });
+      div.style.aspectRatio = (v1.width / v1.height).toFixed(5);
+      var scale = div.clientWidth * Math.min(window.devicePixelRatio || 1, 2.5) / v1.width;
+      var v = page.getViewport({ scale: scale });
+      var c = document.createElement("canvas");
+      c.width = Math.floor(v.width); c.height = Math.floor(v.height);
+      page.render({ canvasContext: c.getContext("2d"), viewport: v }).promise.then(function () {
+        var old = div.querySelector("canvas"); if (old) old.remove();
+        div.appendChild(c);
+      }).catch(function () {});
     });
+  }
+  function observeAll() {
+    if (!("IntersectionObserver" in window)) { slots.forEach(render); return; }
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) render(e.target); });
+    }, { rootMargin: "1200px 0px" });
+    slots.forEach(function (s) { io.observe(s); });
+  }
+
+  // ---- 목차 ----
+  function flatten(items, level, out) {
+    (items || []).forEach(function (it) { out.push({ title: it.title, dest: it.dest, level: level }); flatten(it.items, level + 1, out); });
+    return out;
+  }
+  function resolve(item) {
+    var d = typeof item.dest === "string" ? pdf.getDestination(item.dest) : Promise.resolve(item.dest);
+    return d.then(function (dest) {
+      if (!dest) return null;
+      var ref = dest[0];
+      var pi = typeof ref === "number" ? Promise.resolve(ref) : pdf.getPageIndex(ref);
+      return pi.then(function (i) {
+        var top = dest[1] && dest[1].name === "XYZ" ? dest[3] : (dest[1] && /FitB?H/.test(dest[1].name) ? dest[2] : null);
+        item.p = i + 1;
+        item.f = top == null ? 0 : Math.max(0, Math.min(1, 1 - top / baseH));
+        return item;
+      });
+    }).catch(function () { return null; });
+  }
+  function sectionAt(cur) {
+    var k = -1;
+    for (var i = 0; i < outline.length; i++) {
+      var o = outline[i];
+      if (o.p < cur.p || (o.p === cur.p && o.f <= cur.f + 0.03)) k = i; else break;
+    }
+    return k;
+  }
+  function buildToc() {
+    var list = $("toclist"); list.innerHTML = "";
+    if (!outline.length) { list.innerHTML = '<li class="empty">' + T.notoc + "</li>"; return; }
+    outline.forEach(function (o, i) {
+      var li = document.createElement("li"); li.className = "l" + Math.min(o.level, 3);
+      var b = document.createElement("button");
+      var t = document.createElement("span"); t.textContent = o.title;
+      var pg = document.createElement("span"); pg.className = "pg"; pg.textContent = o.p;
+      b.appendChild(t); b.appendChild(pg);
+      b.addEventListener("click", function () { goTo(o.p, o.f); closeToc(); });
+      li.appendChild(b); list.appendChild(li);
+    });
+  }
+  var lastCur = -2;
+  function markCurrent() {
+    if (!outline.length) return;
+    var k = sectionAt(pos());
+    if (k === lastCur) return;
+    lastCur = k;
+    var lis = $("toclist").children;
+    for (var i = 0; i < lis.length; i++) lis[i].classList.toggle("cur", i === k);
+  }
+  function openToc() {
+    document.body.classList.add("open"); $("toc").inert = false; $("tocbtn").setAttribute("aria-expanded", "true");
+    markCurrent();
+    var cur = $("toclist").querySelector(".cur");
+    if (cur) cur.scrollIntoView({ block: "center" });
+    var f = cur ? cur.querySelector("button") : $("tocclose"); if (f) f.focus({ preventScroll: true });
+  }
+  function closeToc() {
+    document.body.classList.remove("open"); $("toc").inert = true; $("tocbtn").setAttribute("aria-expanded", "false");
+  }
+  $("tocbtn").addEventListener("click", function () { document.body.classList.contains("open") ? closeToc() : openToc(); });
+  $("tocclose").addEventListener("click", closeToc);
+  $("scrim").addEventListener("click", closeToc);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeToc(); });
+
+  // ---- 언어 바꾸기: 같은 절로 ----
+  function switchLang() {
+    if (!info.pair) return;
+    var cur = pos(), k = sectionAt(cur);
+    var h = "p=" + cur.p + "&f=" + cur.f.toFixed(3) + "&n=" + slots.length;
+    if (k >= 0) {
+      var o = outline[k], next = outline[k + 1];
+      // 절 안에서 얼마나 내려왔는지도 넘긴다 (다음 절까지의 비율)
+      var a = o.p + o.f, z = next ? next.p + next.f : slots.length + 1, c = cur.p + cur.f;
+      h += "&s=" + k + "&sl=" + outline.length + "&sf=" + (z > a ? Math.max(0, Math.min(1, (c - a) / (z - a))) : 0).toFixed(3);
+    }
+    var other = info.lang === "en" ? "ko" : "en";
+    location.replace("viewer.html?file=" + encodeURIComponent(info.pair) +
+      "&name=" + encodeURIComponent(info.pairName || info.pair.split("/").pop()) + "&lang=" + other + "#" + h);
+  }
+
+  // ---- 처음 위치: 언어 전환으로 왔으면 그 절, 아니면 읽던 자리 ----
+  function startPos() {
+    if (hash.has("s") && outline.length && +hash.get("sl") === outline.length) {
+      var k = +hash.get("s"), o = outline[k], next = outline[k + 1];
+      if (o) {
+        var a = o.p + o.f, z = next ? next.p + next.f : slots.length + 1;
+        var c = a + (+hash.get("sf") || 0) * (z - a);
+        return { p: Math.floor(c), f: c - Math.floor(c) };
+      }
+    }
+    if (hash.has("p")) {   // 목차가 없거나 다르면 문서 안에서의 비율로
+      var n = +hash.get("n") || slots.length, x = (+hash.get("p") - 1 + (+hash.get("f") || 0)) / n * slots.length;
+      return { p: Math.floor(x) + 1, f: x - Math.floor(x) };
+    }
+    try { var s = JSON.parse(localStorage.getItem(KEY)); if (s && s.p) return s; } catch (e) {}
+    return null;
+  }
+
+  // ---- 스크롤: 쪽 번호, 현재 절, 읽던 자리 저장 ----
+  var ticking = false, saveT = 0;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var p = pos();
+      $("count").textContent = p.p + " / " + slots.length;
+      markCurrent();
+      clearTimeout(saveT);
+      saveT = setTimeout(function () { try { localStorage.setItem(KEY, JSON.stringify({ p: p.p, f: +p.f.toFixed(3) })); } catch (e) {} }, 300);
+    });
+  }
+
+  // ---- 크기가 바뀌어도 같은 자리 ----
+  var anchor = null, rT = 0, lastW = 0;
+  window.addEventListener("resize", function () {
+    if (!slots.length) return;
+    if (!anchor) anchor = pos();
+    clearTimeout(rT);
+    rT = setTimeout(function () {
+      goTo(anchor.p, anchor.f); anchor = null;
+      var w = slots[0].clientWidth;
+      if (Math.abs(w - lastW) > 40) { lastW = w; observeAll(); }
+    }, 150);
+  });
+
+  pdfjsLib.getDocument({ url: file, isEvalSupported: false }).promise.then(function (doc) {
+    pdf = doc;
+    return pdf.getPage(1);
+  }).then(function (first) {
+    var v = first.getViewport({ scale: 1 });
+    ratio = v.width / v.height; baseH = v.height;
+    var box = $("pages"); box.innerHTML = "";
+    for (var i = 1; i <= pdf.numPages; i++) {
+      var d = document.createElement("div");
+      d.className = "page"; d.dataset.n = i; d.style.aspectRatio = ratio.toFixed(5);
+      d.setAttribute("role", "img"); d.setAttribute("aria-label", (info.lang === "en" ? "Page " : "") + i + (info.lang === "en" ? "" : "쪽"));
+      box.appendChild(d); slots.push(d);
+    }
+    lastW = slots[0].clientWidth;
+    $("count").textContent = "1 / " + pdf.numPages;
+    return pdf.getOutline().then(function (o) {
+      return Promise.all(flatten(o, 0, []).map(resolve));
+    }).then(function (items) {
+      outline = items.filter(Boolean);
+    }).catch(function () { outline = []; });
+  }).then(function () {
+    return manifest;
+  }).then(function () {
+    buildToc();
+    var s = startPos();
+    if (s) goTo(s.p, s.f);
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+    observeAll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }).catch(fallback);
 })();
 </script>

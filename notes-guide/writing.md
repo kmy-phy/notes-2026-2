@@ -126,3 +126,10 @@ gh run watch $R -R kmy-phy/notes-2026-2 --exit-status
 
 - 버전 고정 이유: Material for MkDocs는 2027-05 지원 종료, MkDocs 2.0과 호환 안 됨. CI는 `ubuntu-24.04`.
 - CI의 LaTeX 설치는 .deb 캐시 + 미러 전환 재시도로 되어 있다(미러가 느리게 데이터를 흘리면 apt 타임아웃이 안 걸려서). `deploy.yml` 주석 참고.
+
+## 홈과 PDF 보기 화면
+
+- 홈은 `overrides/home.html`(어두운 과목 목록, course-notes-skills의 허브 디자인을 따름). 과목을 추가하면 `mkdocs.yml`의 `extra.courses`에 `{ id, ko, en }` 한 줄. 소개 문장·학기는 `extra.home`.
+- 과목 줄의 "N편 · 국문 Np · 영문 Np · 날짜"와 마우스를 올리면 뜨는 첫 장 미리보기는 배포 때 `md2latex.py --site`가 만드는 `site/manifest.json`, `site/<course>/thumb.jpg`에서 온다(날짜는 그 과목 폴더의 마지막 커밋).
+- `viewer.html`은 manifest의 `pdfs`에서 제목·내려받기 이름·다른 언어판을 읽는다. 목차는 PDF 책갈피, 언어를 바꾸면 같은 절(책갈피 순서가 두 판에서 같아야 함 — check.py가 제목을 맞춰 둠). 읽던 자리는 브라우저에 저장.
+- `navigation.instant`는 껐다(홈이 Material 화면이 아니라서).

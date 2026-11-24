@@ -1,0 +1,209 @@
+<!doctype html>
+{#- 홈(과목 목록). docs/index.md의 front matter `template: home.html`로 쓰인다.
+    과목 목록은 mkdocs.yml의 extra.courses, 쪽수·날짜·미리보기는 배포 때
+    scripts/md2latex.py가 만드는 manifest.json에서 읽는다. -#}
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ config.site_name }}</title>
+<meta name="description" content="{{ config.site_description }}">
+<meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ config.site_name }}">
+<meta property="og:description" content="{{ config.site_description }}">
+<meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #08080a; --ink: #f4f1ea; --ink-2: #a8a49b; --dim: #55524c;
+    --line: #ffffff14; --accent: #e9b872;
+    --pad: clamp(20px, 4vw, 56px);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body {
+    min-height: 100vh; display: flex; flex-direction: column;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* 화면 전체에 옅은 질감 */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 var(--pad); }
+  .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: .16em; font-size: 11px; }
+
+  .rail { display: flex; justify-content: space-between; padding-top: 30px; color: var(--ink-2); font-weight: 600; }
+  .rail .mono { letter-spacing: .14em; }
+  .intro { margin: clamp(48px, 9vh, 96px) 0 0; max-width: 760px; font-size: clamp(26px, 3.4vw, 34px);
+           line-height: 1.32; font-weight: 700; letter-spacing: -.02em; word-break: keep-all; }
+  .intro span { color: var(--dim); }
+  .stamp { margin-top: 22px; color: var(--dim); min-height: 1em; }
+
+  .list { margin: clamp(40px, 7vh, 64px) 0 0; border-top: 1px solid var(--line); }
+  .row {
+    position: relative; display: grid; grid-template-columns: 88px minmax(0, 1fr) auto 40px;
+    align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line);
+    transition: opacity .35s ease;
+  }
+  .row .num { color: var(--dim); transition: color .3s; }
+  .row .name { font-size: clamp(28px, 4.4vw, 50px); font-weight: 800; letter-spacing: -.035em; line-height: 1.1;
+               white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .row .side { text-align: right; }
+  .row .en, .row .meta { display: block; }
+  .row .en { font-size: 15px; color: var(--ink-2); font-weight: 500; }
+  .row .meta { margin-top: 6px; color: var(--dim); font-size: 11px; letter-spacing: .08em; text-transform: none; min-height: 1.2em; }
+  .row .arrow { justify-self: end; color: var(--dim); transition: transform .35s, color .3s; }
+  .row::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%;
+                background: var(--ink-2); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .row .tn { display: none; }
+  .row:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+  @media (hover: hover) {
+    .list:hover .row { opacity: .26; }
+    .list:hover .row:hover { opacity: 1; }
+    .row:hover .num { color: var(--accent); }
+    .row:hover .name { transform: translateX(10px); }
+    .row:hover .arrow { color: var(--ink); transform: translateX(6px); }
+    .row:hover::after { transform: scaleX(1); }
+  }
+
+  /* 마우스를 따라다니는 미리보기 (첫 장) */
+  #peek { position: fixed; left: 72vw; top: 0; width: 230px; aspect-ratio: 1 / 1.414; z-index: 20; pointer-events: none;
+          opacity: 0; transform: translate(-50%, -50%) rotate(-3.5deg) scale(.96); transition: opacity .25s, transform .25s;
+          border-radius: 3px; overflow: hidden; box-shadow: 0 30px 60px -10px #000c, 0 0 0 1px #ffffff12; background: #0d0e12; }
+  #peek.on { opacity: 1; transform: translate(-50%, -50%) rotate(-3.5deg) scale(1); }
+  #peek img, .row .tn img { width: 100%; height: 100%; object-fit: cover; display: block;
+          filter: invert(.93) hue-rotate(180deg) sepia(.12) brightness(.98); }
+
+  .foot { margin-top: auto; }
+  footer { letter-spacing: .08em; padding: 64px 0 30px; display: flex; justify-content: space-between; gap: 16px; color: var(--dim); }
+  footer a:hover { color: var(--ink-2); }
+
+  /* 등장 */
+  .rv { display: block; overflow: hidden; }
+  .rv > * { display: block; transform: translateY(105%); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .fv { opacity: 0; transform: translateY(12px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .in .rv > *, .in.rv > *, .in.fv, .in .fv { transform: none; opacity: 1; }
+
+  @media (max-width: 720px) {
+    .row { grid-template-columns: 40px minmax(0, 1fr) 54px; gap: 12px; padding: 16px 0; }
+    .row .side, .row .arrow { display: none; }
+    .row .name { white-space: normal; word-break: keep-all; }
+    .row .tn { display: block; width: 54px; aspect-ratio: 1 / 1.414; border-radius: 2px; overflow: hidden;
+               background: #0d0e12; box-shadow: 0 0 0 1px #ffffff14; }
+    .row .sub { display: block; margin-top: 6px; color: var(--dim); font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; }
+    #peek { display: none; }
+    footer { flex-direction: column; }
+  }
+  .row .sub { display: none; }
+  @media (max-width: 720px) { .row .sub { display: block; } }
+  @media (prefers-reduced-motion: reduce) {
+    .rv > *, .fv { transform: none !important; opacity: 1 !important; transition: none !important; }
+    .row, .row *, .row::after, #peek { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="rail"><span class="mono">{{ config.extra.home.rail_left }}</span><span class="mono">{{ config.extra.home.rail_right }}</span></div>
+  <h1 class="intro fv">{{ config.extra.home.intro_strong }} <span>{{ config.extra.home.intro_dim }}</span></h1>
+  <div class="stamp mono fv" id="stamp"></div>
+
+  <nav class="list" id="list" aria-label="과목">
+    {%- for c in config.extra.courses %}
+    <a class="row" href="{{ base_url }}/{{ c.id }}/" data-id="{{ c.id }}">
+      <span class="num mono rv"><span>{{ "%02d" % loop.index }}</span></span>
+      <span class="rv"><span class="name">{{ c.ko }}</span><span class="sub" data-sub></span></span>
+      <span class="side fv"><span class="en">{{ c.en }}</span><span class="meta mono" data-meta></span></span>
+      <span class="arrow fv" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 10h13M11 5l5 5-5 5"/></svg></span>
+      <span class="tn" aria-hidden="true"></span>
+    </a>
+    {%- endfor %}
+  </nav>
+</div>
+<div id="peek" aria-hidden="true"><img alt=""></div>
+<div class="wrap foot">
+  <footer class="mono">
+    <a href="{{ base_url }}/guide/">노트 쓰는 법</a>
+    <span>국문 / 영문 전환은 각 노트 페이지에서</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var base = "{{ base_url }}/";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 등장: 화면에 들어오는 순서대로 52ms 간격
+  var els = [].slice.call(document.querySelectorAll(".rv, .fv"));
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(function (e) { e.classList.add("in"); });
+  } else {
+    var q = 0, t = null, pending = [];
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { pending.push(e.target); io.unobserve(e.target); } });
+      pending.sort(function (a, b) { return els.indexOf(a) - els.indexOf(b); });
+      pending.forEach(function (el, i) { setTimeout(function () { el.classList.add("in"); }, (q + i) * 52); });
+      q += pending.length; pending = [];
+      clearTimeout(t); t = setTimeout(function () { q = 0; }, 400);
+    }, { threshold: .1 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  // manifest.json: 편 수 · 국문/영문 쪽수 · 마지막 수정일, 미리보기
+  function dot(d) { return d.replace(/-/g, "."); }
+  fetch(base + "manifest.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (m) {
+    if (!m) return;
+    var newest = "";
+    (m.courses || []).forEach(function (c) {
+      var row = document.querySelector('.row[data-id="' + c.id + '"]');
+      if (!row) return;
+      var parts = [];
+      if (c.parts) parts.push(c.parts + "편");
+      if (c.pages && c.pages.ko) parts.push("국문 " + c.pages.ko + "p");
+      if (c.pages && c.pages.en) parts.push("영문 " + c.pages.en + "p");
+      if (c.updated) { parts.push(dot(c.updated)); if (c.updated > newest) newest = c.updated; }
+      row.querySelector("[data-meta]").textContent = parts.join("  ·  ");
+      row.querySelector("[data-sub]").textContent = parts.join(" · ");
+      if (c.thumb) {
+        var src = base + c.thumb + "?v=" + encodeURIComponent(m.updated || "");
+        row.dataset.thumb = src;
+        var img = new Image(); img.src = src; img.alt = "";   // 미리 받아 두기
+        row.querySelector(".tn").appendChild(img);
+      }
+    });
+    if (newest) document.getElementById("stamp").textContent = "Last updated " + dot(newest);
+  }).catch(function () {});
+
+  // 마우스를 따라 미끄러지는 미리보기 (가로 72%에 고정, 세로만 따라감)
+  var peek = document.getElementById("peek"), pimg = peek.querySelector("img");
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  var y = innerHeight / 2, ty = y, raf = 0;
+  function step() {
+    y += (ty - y) * (reduce ? 1 : .14);
+    peek.style.top = y.toFixed(1) + "px";
+    raf = Math.abs(ty - y) > .3 ? requestAnimationFrame(step) : 0;
+  }
+  document.querySelectorAll(".row").forEach(function (row) {
+    row.addEventListener("mouseenter", function (e) {
+      if (!row.dataset.thumb) return;
+      if (!peek.classList.contains("on")) { y = e.clientY; peek.style.top = y + "px"; }
+      pimg.src = row.dataset.thumb;
+      peek.classList.add("on");
+    });
+    row.addEventListener("mouseleave", function () { peek.classList.remove("on"); });
+  });
+  document.addEventListener("mousemove", function (e) {
+    ty = e.clientY;
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>

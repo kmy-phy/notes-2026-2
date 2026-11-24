@@ -3,9 +3,9 @@ site_description: 2026년 2학기 필기 정리
 
 theme:
   name: material
+  custom_dir: overrides       # 홈(과목 목록) 템플릿: overrides/home.html
   language: ko
   features:
-    - navigation.instant      # 페이지 이동이 빠르게
     - navigation.sections     # 왼쪽 메뉴를 과목별로 묶기
     - navigation.top          # 맨 위로 버튼
     - navigation.footer       # 이전/다음 노트 버튼
@@ -40,6 +40,17 @@ markdown_extensions:
   - md_in_html                # 그림에 캡션 달기
   - toc:
       permalink: true
+
+# 홈 화면 (overrides/home.html). 과목을 추가하면 courses에 한 줄 추가
+extra:
+  home:
+    rail_left: 내 노트
+    rail_right: 2026 · 2학기
+    intro_strong: 2026년 2학기 수업 필기를
+    intro_dim: 교과서처럼 정리한 노트입니다.
+  courses:
+    - { id: differential-geometry, ko: 미분기하학, en: Differential Geometry }
+    - { id: modern-physics, ko: 현대물리학, en: Modern Physics }
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap

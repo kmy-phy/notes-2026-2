@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 홈에 과목별 마지막 수정일을 쓰려고 전체 기록을 받는다 (md2latex.py)
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -31,11 +33,11 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/apt-cache
-          key: apt-latex-${{ runner.os }}-24.04-v1
+          key: apt-latex-${{ runner.os }}-24.04-v2
       - name: Install LaTeX
         timeout-minutes: 25
         run: |
-          PKGS="pandoc librsvg2-bin fonts-noto-cjk fonts-lmodern lmodern texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-fonts-recommended"
+          PKGS="pandoc poppler-utils librsvg2-bin fonts-noto-cjk fonts-lmodern lmodern texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-fonts-recommended"
           mkdir -p ~/apt-cache/partial
           # 네트워크가 멈추면 오래 기다리지 말고 빨리 실패하고 다시 시도
           APT_OPTS="-o Acquire::Retries=5 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 -o Dir::Cache::archives=$HOME/apt-cache -o DPkg::Lock::Timeout=120"

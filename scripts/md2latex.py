@@ -12,7 +12,9 @@ scripts/latex/book.tex and compiles with xelatex.
 running head, in file-name order (same order as the web PDFs); index.md (or
 index-ko.md) becomes the front matter.
 """
+import datetime
 import html
+import json
 import re
 import shutil
 import subprocess
@@ -229,7 +231,10 @@ def build_pdf(course, lang, pages, out, full):
     out.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy(build / "book.pdf", out)
     shutil.rmtree(build, ignore_errors=True)
-    print("wrote", out)
+    m = re.search(r"Output written on book\.pdf \((\d+) pages?", r.stdout)
+    pages = int(m.group(1)) if m else 0
+    print("wrote", out, f"({pages} pages)")
+    return pages
 
 
 def note_pages(course, lang):
@@ -239,19 +244,91 @@ def note_pages(course, lang):
                   and 'class="running-head"' in p.read_text())
 
 
+def running_head(md):
+    m = re.search(r'<div class="running-head"><span>(.*?)</span><span>(.*?)</span>', md.read_text())
+    return (strip_tags(m.group(1)), strip_tags(m.group(2))) if m else ("", "")
+
+
+def download_name(md, default):
+    """The download="..." file name of the page's PDF link (a.pdf-link or .pdf-links a)."""
+    for line in md.read_text().splitlines():
+        if "pdf-link" in line:
+            m = re.search(r'class="pdf-link"[^>]*download="([^"]+)"', line) or                 re.search(r'download="([^"]+)"', line)
+            if m:
+                return m.group(1)
+    return default
+
+
+def last_changed(path):
+    """Date of the last commit touching `path` (needs full history in CI), else today."""
+    try:
+        d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(path)], cwd=ROOT,
+                           capture_output=True, text=True).stdout.strip()
+    except OSError:
+        d = ""
+    return d or datetime.date.today().isoformat()
+
+
+def thumbnail(pdf, out):
+    """Page 1 of `pdf` as a small JPEG for the home page (pdftoppm, poppler-utils)."""
+    try:
+        subprocess.run(["pdftoppm", "-f", "1", "-l", "1", "-singlefile", "-jpeg",
+                        "-jpegopt", "quality=82", "-scale-to", "520", str(pdf), str(out.with_suffix(""))],
+                       check=True, capture_output=True)
+        return True
+    except (OSError, subprocess.CalledProcessError) as e:
+        print("thumbnail skipped:", e)
+        return False
+
+
 def build_site(site):
-    """All PDFs the site links to: <course>/all-lectures(-ko).pdf and <course>/<page>/notes.pdf."""
+    """All PDFs the site links to: <course>/all-lectures(-ko).pdf and <course>/<page>/notes.pdf.
+
+    Also writes site/manifest.json (read by the home page and the PDF viewer): per course its
+    names, page counts and last change; per PDF its language, the other edition, the download
+    name and a title.  And <course>/thumb.jpg, page 1 of the Korean full PDF."""
+    manifest = {"updated": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+                .isoformat(timespec="minutes"), "courses": [], "pdfs": {}}
     for course in sorted((ROOT / "docs").iterdir()):
         if not (course / "index.md").exists():
             continue
+        c = course.name
+        entry = {"id": c, "en": running_head(course / "index.md")[0],
+                 "ko": running_head(course / "index-ko.md")[0] if (course / "index-ko.md").exists() else "",
+                 "updated": last_changed(course), "parts": 0, "pages": {}}
         for lang in ("en", "ko"):
             pages = note_pages(course, lang)
             if not pages:
                 continue
-            name = "all-lectures-ko.pdf" if lang == "ko" else "all-lectures.pdf"
-            build_pdf(course, lang, pages, site / course.name / name, full=True)
+            ko = lang == "ko"
+            suffix, other = ("-ko", "") if ko else ("", "-ko")
+            idx = course / f"index{suffix}.md"
+            course_name = running_head(idx)[0]
+            name = "all-lectures-ko.pdf" if ko else "all-lectures.pdf"
+            n = build_pdf(course, lang, pages, site / c / name, full=True)
+            entry["pages"][lang] = n
+            entry["parts"] = len(pages)
+            manifest["pdfs"][f"{c}/{name}"] = {
+                "lang": lang, "pair": f"{c}/all-lectures{other}.pdf", "pages": n,
+                "name": download_name(idx, name),
+                "title": course_name + (" · 전체" if ko else " · All parts"),
+                "back": f"{c}/index-ko/" if ko else f"{c}/"}
             for p in pages:
-                build_pdf(course, lang, [p], site / course.name / p.stem / "notes.pdf", full=False)
+                n = build_pdf(course, lang, [p], site / c / p.stem / "notes.pdf", full=False)
+                base = p.stem[:-3] if ko else p.stem
+                manifest["pdfs"][f"{c}/{p.stem}/notes.pdf"] = {
+                    "lang": lang, "pair": f"{c}/{base}{other}/notes.pdf", "pages": n,
+                    "name": download_name(p, "notes.pdf"),
+                    "title": course_name + " · " + running_head(p)[1],
+                    "back": f"{c}/{p.stem}/"}
+        full = site / c / "all-lectures-ko.pdf"
+        if not full.exists():
+            full = site / c / "all-lectures.pdf"
+        if full.exists() and thumbnail(full, site / c / "thumb.jpg"):
+            entry["thumb"] = f"{c}/thumb.jpg"
+        manifest["courses"].append(entry)
+    (site / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("wrote", site / "manifest.json")
 
 
 def main():

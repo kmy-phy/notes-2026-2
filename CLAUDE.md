@@ -54,10 +54,11 @@
 ## 지도
 
 ```
-docs/                     노트 원본 (<course>/<page>.md + <page>-ko.md), 그림, CSS·JS, PDF 보기 화면
+docs/                     노트 원본 (<course>/<page>.md + <page>-ko.md), 그림, CSS·JS, PDF 보기 화면(viewer.html)
+overrides/home.html       홈(과목 목록). 과목은 mkdocs.yml의 extra.courses
 figures-src/              그림의 TikZ 원본
 scripts/check.py          배포 전 자동 점검
-scripts/md2latex.py       마크다운 → LaTeX → PDF (scripts/latex/book.tex 템플릿)
+scripts/md2latex.py       마크다운 → LaTeX → PDF, 그리고 manifest.json·과목 미리보기 (홈과 PDF 보기 화면이 읽음)
 notes-guide/writing.md    문법·파일 구조·PDF 세부
 notes-guide/courses.md    과목별 정보
 .github/workflows/        빌드·PDF·점검·배포
