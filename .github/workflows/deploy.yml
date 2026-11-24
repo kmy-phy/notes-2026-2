@@ -26,14 +26,37 @@ jobs:
       - run: pip install -r requirements.txt
       - run: mkdocs build --strict
       # 노트를 LaTeX로 변환·컴파일해서 PDF 다운로드 파일을 만든다 (scripts/md2latex.py)
-      # 러너에 이미 있는 패키지 목록으로 먼저 설치하고, 실패할 때만 목록을 새로 받는다 (apt-get update가 가끔 멈춤)
-      - timeout-minutes: 15
+      # 받은 .deb 파일을 캐시해 두면 다음 실행부터는 미러에서 다시 받지 않는다
+      # (Ubuntu 미러가 가끔 다운로드 도중 멈춰서 설치 단계가 15분씩 걸리던 문제)
+      - uses: actions/cache@v4
+        with:
+          path: ~/apt-cache
+          key: apt-latex-${{ runner.os }}-24.04-v1
+      - name: Install LaTeX
+        timeout-minutes: 25
         run: |
           PKGS="pandoc librsvg2-bin fonts-noto-cjk fonts-lmodern lmodern texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-fonts-recommended"
-          sudo apt-get install -y --no-install-recommends $PKGS || {
-            sudo timeout 300 apt-get update -o Acquire::Retries=3 -o Acquire::http::Timeout=30
-            sudo apt-get install -y --no-install-recommends $PKGS
-          }
+          mkdir -p ~/apt-cache/partial
+          # 네트워크가 멈추면 오래 기다리지 말고 빨리 실패하고 다시 시도
+          APT_OPTS="-o Acquire::Retries=5 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 -o Dir::Cache::archives=$HOME/apt-cache -o DPkg::Lock::Timeout=120"
+          # man 페이지 색인 갱신은 필요 없고 느리므로 끈다
+          echo 'man-db man-db/auto-update boolean false' | sudo debconf-set-selections
+          sudo rm -f /var/lib/man-db/auto-update
+          for i in 1 2 3; do
+            sudo timeout 120 apt-get update $APT_OPTS && break
+            echo "::warning::apt-get update attempt $i failed"
+          done
+          ok=0
+          for i in 1 2 3; do
+            if sudo timeout 480 apt-get install -y --no-install-recommends $APT_OPTS $PKGS; then ok=1; break; fi
+            echo "::warning::apt-get install attempt $i failed or timed out, retrying"
+            sudo dpkg --configure -a || true
+          done
+          if [ "$ok" != 1 ]; then echo "::error::LaTeX install failed"; exit 1; fi
+          command -v xelatex
+          command -v pandoc
+          sudo rm -rf ~/apt-cache/partial ~/apt-cache/lock
+          sudo chown -R "$USER" ~/apt-cache
       - run: python scripts/md2latex.py --site site
       - uses: actions/upload-pages-artifact@v3
         with:
