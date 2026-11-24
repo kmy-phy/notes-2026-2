@@ -26,10 +26,14 @@ jobs:
       - run: pip install -r requirements.txt
       - run: mkdocs build --strict
       # 노트를 LaTeX로 변환·컴파일해서 PDF 다운로드 파일을 만든다 (scripts/md2latex.py)
-      - run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends pandoc librsvg2-bin fonts-noto-cjk fonts-lmodern lmodern \
-            texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-fonts-recommended
+      # 러너에 이미 있는 패키지 목록으로 먼저 설치하고, 실패할 때만 목록을 새로 받는다 (apt-get update가 가끔 멈춤)
+      - timeout-minutes: 15
+        run: |
+          PKGS="pandoc librsvg2-bin fonts-noto-cjk fonts-lmodern lmodern texlive-xetex texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-fonts-recommended"
+          sudo apt-get install -y --no-install-recommends $PKGS || {
+            sudo timeout 300 apt-get update -o Acquire::Retries=3 -o Acquire::http::Timeout=30
+            sudo apt-get install -y --no-install-recommends $PKGS
+          }
       - run: python scripts/md2latex.py --site site
       - uses: actions/upload-pages-artifact@v3
         with:
