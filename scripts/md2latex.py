@@ -188,7 +188,7 @@ def front_matter(text, conv):
     info = re.search(r'<p class="course-info">(.*?)</p>', text)
     rh = re.search(r'<div class="running-head"><span>(.*?)</span><span>(.*?)</span>', text)
     body = text.split("\n## ", 1)[1]
-    body = "## " + re.split(r"\n## [^\n]*\{ \.contents-heading \}", body)[0]
+    body = "## " + re.split(r"\n## [^\n]*\{ \.contents-heading[^}]*\}", body)[0]
     body_tex = pandoc("\n".join(conv.blocks(body.split("\n"))), None)
     body_tex = body_tex.replace("\\section{", "\\section*{")
     def inline(s):
