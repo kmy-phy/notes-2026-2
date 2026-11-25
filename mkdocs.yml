@@ -50,7 +50,7 @@ extra:
   courses:
     - { id: differential-geometry, ko: 미분기하학, en: Differential Geometry }
     - { id: modern-physics, ko: 현대물리학, en: Modern Physics }
-    - { id: modern-algebra, ko: 현대대수 특강, en: Modern Algebra }
+    - { id: abstract-algebra, ko: 추상대수 특강, en: Abstract Algebra }
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap
@@ -75,7 +75,7 @@ nav:
       - "Part I: Quantum (Ch. 6, final)": modern-physics/quantum.md
       - "Part II: Relativity I (midterm)": modern-physics/sr1.md
       - "Part II: Relativity II (final)": modern-physics/sr2.md
-  - Modern Algebra (special lecture):
-      - 소개 · 목차: modern-algebra/index.md
-      - "Day 1: Finite Fields (25 Nov)": modern-algebra/day1.md
+  - Abstract Algebra (special lecture):
+      - 소개 · 목차: abstract-algebra/index.md
+      - "Day 1: Finite Fields (25 Nov)": abstract-algebra/day1.md
   - 노트 쓰는 법: guide.md

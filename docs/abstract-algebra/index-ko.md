@@ -1,22 +1,22 @@
 ---
-title: 현대대수 특강
+title: 추상대수 특강
 ---
 
 <div class="lang-switch"><a href="../">English</a><a class="on">한국어</a></div>
 
-<div class="running-head"><span>현대대수 특강</span><span>2026년 11월 25–26일</span></div>
+<div class="running-head"><span>추상대수 특강</span><span>2026년 11월 25–26일</span></div>
 
-# 현대대수 특강 노트 { .book-title #lecture-notes-in-modern-algebra }
+# 추상대수 특강 노트 { .book-title #lecture-notes-in-abstract-algebra }
 
 <p class="subject-line">특강 · 유한체와 이차 상호 법칙</p>
 
 <p class="course-info">슬라이드: Min Hoon Kim (이화여자대학교) · 교재: Serre, <em>A Course in Arithmetic</em> 1장</p>
 
-<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="현대대수-특강-노트.pdf">모든 날을 하나의 PDF로 보기</a></p>
+<p class="pdf-links"><a href="../all-lectures-ko.pdf" download="추상대수-특강-노트.pdf">모든 날을 하나의 PDF로 보기</a></p>
 
 ## 이 노트에 대하여 { #about-these-notes }
 
-2026년 11월 25일과 26일 이틀에 걸친 현대대수 특강의 노트이다. 강의는 유한체를 다루는 Serre의 *A Course in Arithmetic* 1장을 따르며, 목표는 가우스의 이차 상호 법칙이다.
+2026년 11월 25일과 26일 이틀에 걸친 추상대수 특강의 노트이다. 강의는 유한체를 다루는 Serre의 *A Course in Arithmetic* 1장을 따르며, 목표는 가우스의 이차 상호 법칙이다.
 
 - *1일차 (11월 25일):* 유한체와 프로베니우스 사상, $\mathbf F_q$의 존재와 유일성, $\mathbf F_q^*$가 순환군이라는 사실, $\mathbf F_q$의 제곱수, 르장드르 기호, 그리고 가우스 합의 첫 번째 보조정리 $y^2 = (-1)^{\varepsilon(\ell)}\ell$까지.
 - *2일차 (11월 26일):* 추가 예정.

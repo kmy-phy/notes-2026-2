@@ -4,11 +4,11 @@ title: "Day 1 — Finite Fields (25 November)"
 
 <div class="lang-switch"><a class="on">English</a><a href="../day1-ko/">한국어</a></div>
 
-<div class="running-head"><span>Modern Algebra</span><span>Day 1 · Finite Fields</span></div>
+<div class="running-head"><span>Abstract Algebra</span><span>Day 1 · Finite Fields</span></div>
 
 # Day 1 — Finite Fields { .part-title }
 
-<p class="source-note">Special lecture, 25 November 2026 · Serre, Chapter I · <a class="pdf-link" href="notes.pdf" download="Modern-Algebra-Day-1.pdf">This day as PDF</a></p>
+<p class="source-note">Special lecture, 25 November 2026 · Serre, Chapter I · <a class="pdf-link" href="notes.pdf" download="Abstract-Algebra-Day-1.pdf">This day as PDF</a></p>
 
 **In this day.** Finite fields: the Frobenius map, the existence and uniqueness of the field $\mathbf F_q$, and the cyclicity of its multiplicative group. Then squares in $\mathbf F_q$, the Legendre symbol, and the start of Gauss's proof of quadratic reciprocity, up to the first lemma on the Gauss sum. The lecture skipped §2 (equations over a finite field); its headings are kept so that the numbering matches Serre.
 

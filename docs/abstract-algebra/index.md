@@ -1,22 +1,22 @@
 ---
-title: Modern Algebra — Special Lecture
+title: Abstract Algebra — Special Lecture
 ---
 
 <div class="lang-switch"><a class="on">English</a><a href="index-ko/">한국어</a></div>
 
-<div class="running-head"><span>Modern Algebra</span><span>Special Lecture · 25–26 Nov 2026</span></div>
+<div class="running-head"><span>Abstract Algebra</span><span>Special Lecture · 25–26 Nov 2026</span></div>
 
-# Lecture Notes in Modern Algebra { .book-title }
+# Lecture Notes in Abstract Algebra { .book-title }
 
 <p class="subject-line">Special Lecture · Finite Fields and Quadratic Reciprocity</p>
 
 <p class="course-info">Slides: Min Hoon Kim (Ewha Womans University) · Text: Serre, <em>A Course in Arithmetic</em>, Chapter I</p>
 
-<p class="pdf-links"><a href="all-lectures.pdf" download="Modern-Algebra-Special-Lecture.pdf">All days as one PDF</a></p>
+<p class="pdf-links"><a href="all-lectures.pdf" download="Abstract-Algebra-Special-Lecture.pdf">All days as one PDF</a></p>
 
 ## About these notes
 
-These are notes from a two-day special lecture in modern algebra, held on 25 and 26 November 2026. It follows Chapter I of Serre's *A Course in Arithmetic*, on finite fields, whose goal is Gauss's quadratic reciprocity law.
+These are notes from a two-day special lecture in abstract algebra, held on 25 and 26 November 2026. It follows Chapter I of Serre's *A Course in Arithmetic*, on finite fields, whose goal is Gauss's quadratic reciprocity law.
 
 - *Day 1 (25 November):* finite fields and the Frobenius map, existence and uniqueness of $\mathbf F_q$, the cyclicity of $\mathbf F_q^*$, squares in $\mathbf F_q$, the Legendre symbol, and the Gauss sum up to its first lemma, $y^2 = (-1)^{\varepsilon(\ell)}\ell$.
 - *Day 2 (26 November):* to be added.
