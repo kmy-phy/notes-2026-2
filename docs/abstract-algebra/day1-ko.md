@@ -4,11 +4,11 @@ title: "1일차 — 유한체 (11월 25일)"
 
 <div class="lang-switch"><a href="../day1/">English</a><a class="on">한국어</a></div>
 
-<div class="running-head"><span>추상대수 특강</span><span>1일차 · 유한체</span></div>
+<div class="running-head"><span>현대대수 특강</span><span>1일차 · 유한체</span></div>
 
 # 1일차 — 유한체 { .part-title #day-1-finite-fields }
 
-<p class="source-note">특강, 2026년 11월 25일 · Serre 1장 · <a class="pdf-link" href="notes.pdf" download="추상대수-특강-1일차.pdf">이 날을 PDF로 보기</a></p>
+<p class="source-note">특강, 2026년 11월 25일 · Serre 1장 · <a class="pdf-link" href="notes.pdf" download="현대대수-특강-1일차.pdf">이 날을 PDF로 보기</a></p>
 
 **이 날에는.** 유한체를 다룬다. 프로베니우스 사상, 체 $\mathbf F_q$의 존재와 유일성, 그 곱셈군이 순환군이라는 사실을 본다. 이어서 $\mathbf F_q$의 제곱수, 르장드르 기호, 그리고 이차 상호 법칙에 대한 가우스의 증명을 가우스 합에 관한 첫 번째 보조정리까지 다룬다. 강의에서는 §2(유한체 위의 방정식)를 건너뛰었다. 번호가 Serre와 맞도록 제목은 남겨 두었다.
 

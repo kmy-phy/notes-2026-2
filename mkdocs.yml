@@ -50,7 +50,7 @@ extra:
   courses:
     - { id: differential-geometry, ko: 미분기하학, en: Differential Geometry }
     - { id: modern-physics, ko: 현대물리학, en: Modern Physics }
-    - { id: abstract-algebra, ko: 추상대수 특강, en: Abstract Algebra }
+    - { id: abstract-algebra, ko: 현대대수 특강, en: Abstract Algebra }
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap

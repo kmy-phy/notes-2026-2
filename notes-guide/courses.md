@@ -29,7 +29,7 @@
 - 새 범위가 생기면 같은 방식(중간/기말 분리)으로 파일을 나누고, `index.md`/`index-ko.md`의 About·Contents와 홈(`docs/index.md`) 표를 함께 갱신한다.
 
 ## Abstract Algebra (특강)
-- 2026년 11월 25–26일 이틀짜리 추상대수 특강. 슬라이드: Min Hoon Kim (이화여대). 교재: **Serre, *A Course in Arithmetic*, Chapter I (Finite fields)**.
+- 2026년 11월 25–26일 이틀짜리 현대대수 특강. 슬라이드: Min Hoon Kim (이화여대). 교재: **Serre, *A Course in Arithmetic*, Chapter I (Finite fields)**.
 - 날짜별 페이지: `day1.md`(11/25), `day2.md`(11/26).
 - 절 번호는 Serre 1장(§1.1, 1.2, 2.1, 2.2, 3.1–3.3), 정리·보조정리 번호는 슬라이드 그대로(정리 1–6, 보조정리는 절마다 1부터).
 - 사용자가 필기하지 않고 건너뛴 슬라이드(빈 증명 칸 등)는 다루지 않은 내용이다. 정리하지 않고 제목만 남겨 skipped 상자로 표시한다.
