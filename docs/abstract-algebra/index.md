@@ -18,7 +18,7 @@ title: Abstract Algebra — Special Lecture
 
 These are notes from a two-day special lecture in abstract algebra, held on 25 and 26 November 2026. It follows Chapter I of Serre's *A Course in Arithmetic*, on finite fields, whose goal is Gauss's quadratic reciprocity law.
 
-- *Day 1 (25 November):* finite fields and the Frobenius map, existence and uniqueness of $\mathbf F_q$, the cyclicity of $\mathbf F_q^*$, squares in $\mathbf F_q$, the Legendre symbol, and the Gauss sum up to its first lemma, $y^2 = (-1)^{\varepsilon(\ell)}\ell$.
+- *Day 1 (25 November):* finite fields and the Frobenius map, existence and uniqueness of $\mathbb F_q$, the cyclicity of $\mathbb F_q^*$, squares in $\mathbb F_q$, the Legendre symbol, and the Gauss sum up to its first lemma, $y^2 = (-1)^{\varepsilon(\ell)}\ell$.
 - *Day 2 (26 November):* to be added.
 
 Only what was covered in the lecture is written out. Parts that were skipped keep their headings, marked as not covered, so that the numbering still matches Serre.

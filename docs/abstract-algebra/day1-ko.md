@@ -10,11 +10,11 @@ title: "1일차 — 유한체 (11월 25일)"
 
 <p class="source-note">특강, 2026년 11월 25일 · Serre 1장 · <a class="pdf-link" href="notes.pdf" download="현대대수-특강-1일차.pdf">이 날을 PDF로 보기</a></p>
 
-**이 날에는.** 유한체를 다룬다. 프로베니우스 사상, 체 $\mathbf F_q$의 존재와 유일성, 그 곱셈군이 순환군이라는 사실을 본다. 이어서 $\mathbf F_q$의 제곱수, 르장드르 기호, 그리고 이차 상호 법칙에 대한 가우스의 증명을 가우스 합에 관한 첫 번째 보조정리까지 다룬다. 강의에서는 §2(유한체 위의 방정식)를 건너뛰었다. 번호가 Serre와 맞도록 제목은 남겨 두었다.
+**이 날에는.** 유한체를 다룬다. 프로베니우스 사상, 체 $\mathbb F_q$의 존재와 유일성, 그 곱셈군이 순환군이라는 사실을 본다. 이어서 $\mathbb F_q$의 제곱수, 르장드르 기호, 그리고 이차 상호 법칙에 대한 가우스의 증명을 가우스 합에 관한 첫 번째 보조정리까지 다룬다. 강의에서는 §2(유한체 위의 방정식)를 건너뛰었다. 번호가 Serre와 맞도록 제목은 남겨 두었다.
 
 !!! quote "이 날에 쓰는 규약."
     - 모든 체는 가환이다.
-    - 체 $K$에 대해 $1 \mapsto 1$로 보내는 사상 $\mathbf Z \to K$의 상은 정역이므로 $\mathbf Z$ 또는 어떤 소수 $p$에 대한 $\mathbf Z/p\mathbf Z$와 동형이다. 그 분수체는 $\mathbf Q$ 또는 $\mathbf Z/p\mathbf Z = \mathbf F_p$와 동형이다. 첫째 경우 $\operatorname{char} K = 0$, 둘째 경우 $\operatorname{char} K = p$라고 한다.
+    - 체 $K$에 대해 $1 \mapsto 1$로 보내는 사상 $\mathbb Z \to K$의 상은 정역이므로 $\mathbb Z$ 또는 어떤 소수 $p$에 대한 $\mathbb Z/p\mathbb Z$와 동형이다. 그 분수체는 $\mathbb Q$ 또는 $\mathbb Z/p\mathbb Z = \mathbb F_p$와 동형이다. 첫째 경우 $\operatorname{char} K = 0$, 둘째 경우 $\operatorname{char} K = p$라고 한다.
     - $\operatorname{char} K = p \neq 0$이면, $p$는 $n \cdot 1 = 0$을 만족하는 가장 작은 정수 $n > 0$이다.
     - $K^*$는 $K$의 0이 아닌 원소들이 이루는 곱셈군이다.
     - $p$는 언제나 소수, $q = p^f$는 그 거듭제곱이다.
@@ -41,25 +41,25 @@ title: "1일차 — 유한체 (11월 25일)"
     $K$가 유한체이거나 대수적으로 닫힌 체이면 $\sigma$는 $K$의 자기동형사상이다. $K$가 유한이면 단사 사상 $K \to K$는 전사이다. $K$가 대수적으로 닫혀 있으면 임의의 $y \in K$에 대해 방정식 $X^p - y = 0$이 $K$ 안에 근 $z$를 가지므로 $z^p = y$, 즉 $y$는 상에 들어 있다.
 
 !!! abstract "정리 1"
-    i) $K$가 유한체이면 $\operatorname{char} K = p \neq 0$이고 $|K| = p^f$이다. 여기서 $f = [K : \mathbf F_p]$이다.
+    i) $K$가 유한체이면 $\operatorname{char} K = p \neq 0$이고 $|K| = p^f$이다. 여기서 $f = [K : \mathbb F_p]$이다.
 
-    ii) $p$가 소수, $q = p^f$이고 $\Omega$가 표수 $p$인 대수적으로 닫힌 체라 하자. $\Omega$의 부분체 중 원소가 $q$개인 것 $\mathbf F_q$가 유일하게 존재하며, $\mathbf F_q = \{x \in \Omega \mid x^q - x = 0\}$이다.
+    ii) $p$가 소수, $q = p^f$이고 $\Omega$가 표수 $p$인 대수적으로 닫힌 체라 하자. $\Omega$의 부분체 중 원소가 $q$개인 것 $\mathbb F_q$가 유일하게 존재하며, $\mathbb F_q = \{x \in \Omega \mid x^q - x = 0\}$이다.
 
-    iii) 원소가 $q = p^f$개인 유한체는 모두 $\mathbf F_q$와 동형이다.
+    iii) 원소가 $q = p^f$개인 유한체는 모두 $\mathbb F_q$와 동형이다.
 
 !!! success "i)의 증명"
-    유한체는 $\mathbf Q$를 포함할 수 없으므로 표수는 소수 $p$이고 $\mathbf F_p$를 포함한다. 그러면 $K$는 $\mathbf F_p$ 위의 $f = [K : \mathbf F_p]$차원 벡터공간이므로 $|K| = p^f$이다. $\square$
+    유한체는 $\mathbb Q$를 포함할 수 없으므로 표수는 소수 $p$이고 $\mathbb F_p$를 포함한다. 그러면 $K$는 $\mathbb F_p$ 위의 $f = [K : \mathbb F_p]$차원 벡터공간이므로 $|K| = p^f$이다. $\square$
 
 !!! success "ii)의 증명"
     $\Omega$가 대수적으로 닫혀 있고 $\operatorname{char}\Omega = p$, $q = p^f$라 하자.
 
     $$
-    \mathbf F_q = \{x \in \Omega \mid x^q - x = 0\}
+    \mathbb F_q = \{x \in \Omega \mid x^q - x = 0\}
     $$
 
-    로 놓는다. 다항식 $X^q - X$의 도함수는 $qX^{q-1} - 1 = -1 \neq 0$이므로 중근이 없고, $\Omega$가 대수적으로 닫혀 있으므로 근이 정확히 $q$개 있다. 즉 $|\mathbf F_q| = q$이다. 사상 $\sigma\colon \Omega \to \Omega$, $x \mapsto x^q$는 (프로베니우스 사상의 거듭제곱이므로) 자기동형사상이고, $\mathbf F_q$는 그 고정점의 집합이므로 부분체이다.
+    로 놓는다. 다항식 $X^q - X$의 도함수는 $qX^{q-1} - 1 = -1 \neq 0$이므로 중근이 없고, $\Omega$가 대수적으로 닫혀 있으므로 근이 정확히 $q$개 있다. 즉 $|\mathbb F_q| = q$이다. 사상 $\sigma\colon \Omega \to \Omega$, $x \mapsto x^q$는 (프로베니우스 사상의 거듭제곱이므로) 자기동형사상이고, $\mathbb F_q$는 그 고정점의 집합이므로 부분체이다.
 
-    유일성을 보이자. $K$가 원소 $q$개인 $\Omega$의 부분체이면 $K^*$는 원소가 $q - 1$개인 군이므로 모든 $x \in K^*$에 대해 $x^{q-1} = 1$이고, 따라서 모든 $x \in K$에 대해 $x^q = x$이다. 그러므로 $K \subseteq \mathbf F_q$이고, 둘 다 원소가 $q$개이므로 $K = \mathbf F_q$이다. $\square$
+    유일성을 보이자. $K$가 원소 $q$개인 $\Omega$의 부분체이면 $K^*$는 원소가 $q - 1$개인 군이므로 모든 $x \in K^*$에 대해 $x^{q-1} = 1$이고, 따라서 모든 $x \in K$에 대해 $x^q = x$이다. 그러므로 $K \subseteq \mathbb F_q$이고, 둘 다 원소가 $q$개이므로 $K = \mathbb F_q$이다. $\square$
 
 *iii)의 증명.* 강의에서 생략했다.
 
@@ -69,7 +69,7 @@ title: "1일차 — 유한체 (11월 25일)"
 ### 1.2 유한체의 곱셈군 { #12-the-multiplicative-group-of-a-finite-field }
 
 !!! abstract "정리 2"
-    소수 $p$와 $q = p^f$에 대해, $\mathbf F_q$의 곱셈군 $\mathbf F_q^*$는 위수 $q - 1$인 순환군이다.
+    소수 $p$와 $q = p^f$에 대해, $\mathbb F_q$의 곱셈군 $\mathbb F_q^*$는 위수 $q - 1$인 순환군이다.
 
 이 정리는 다음 군론의 보조정리에 기댄다.
 
@@ -77,7 +77,7 @@ title: "1일차 — 유한체 (11월 25일)"
     $H$가 위수 $n$인 유한군이라 하자. $n$의 모든 약수 $d$에 대해 집합 $\{x \in H \mid x^d = 1\}$의 원소가 많아야 $d$개이면, $H$는 순환군이다.
 
 !!! success "정리 2의 증명"
-    $H = \mathbf F_q^*$, $n = q - 1$로 놓는다. $n$의 각 약수 $d$에 대해 방정식 $x^d = 1$은 체 $\mathbf F_q$ 위의 $d$차 다항식 방정식이므로 해가 많아야 $d$개이다. 보조정리 2에 의해 $H$는 순환군이다. $\square$
+    $H = \mathbb F_q^*$, $n = q - 1$로 놓는다. $n$의 각 약수 $d$에 대해 방정식 $x^d = 1$은 체 $\mathbb F_q$ 위의 $d$차 다항식 방정식이므로 해가 많아야 $d$개이다. 보조정리 2에 의해 $H$는 순환군이다. $\square$
 
 !!! info "비고"
     이 증명은 체의 곱셈군의 유한 부분군이 모두 순환군임을 보여 준다.
@@ -88,16 +88,16 @@ title: "1일차 — 유한체 (11월 25일)"
     정수 $n \geq 1$에 대해 $n = \sum_{d \mid n} \phi(d)$이다. 여기서 $\phi$는 오일러 $\phi$ 함수이다.
 
 !!! success "보조정리 1의 증명"
-    각 $d \mid n$에 대해 $C_d$를 $\mathbf Z/n\mathbf Z$의 위수 $d$인 유일한 부분군이라 하고, $\Phi_d$를 $C_d$의 생성원들의 집합이라 하자. 그러면 $|\Phi_d| = \phi(d)$이다. $\mathbf Z/n\mathbf Z$의 각 원소는 $C_d$ 중 정확히 하나, 곧 자신이 생성하는 부분군의 생성원이므로
+    각 $d \mid n$에 대해 $C_d$를 $\mathbb Z/n\mathbb Z$의 위수 $d$인 유일한 부분군이라 하고, $\Phi_d$를 $C_d$의 생성원들의 집합이라 하자. 그러면 $|\Phi_d| = \phi(d)$이다. $\mathbb Z/n\mathbb Z$의 각 원소는 $C_d$ 중 정확히 하나, 곧 자신이 생성하는 부분군의 생성원이므로
 
     $$
-    \mathbf Z/n\mathbf Z = \bigsqcup_{d \mid n} \Phi_d,
+    \mathbb Z/n\mathbb Z = \bigsqcup_{d \mid n} \Phi_d,
     \qquad
-    n = |\mathbf Z/n\mathbf Z| = \Big|\bigsqcup_{d \mid n}\Phi_d\Big| = \sum_{d \mid n}\phi(d). \qquad \square
+    n = |\mathbb Z/n\mathbb Z| = \Big|\bigsqcup_{d \mid n}\Phi_d\Big| = \sum_{d \mid n}\phi(d). \qquad \square
     $$
 
 !!! example "예제 ($n = 12$)"
-    $\mathbf Z/12\mathbf Z$에서:
+    $\mathbb Z/12\mathbb Z$에서:
 
     | $d$ | $C_d$ | $\Phi_d$ | $\phi(d)$ |
     |---|---|---|---|
@@ -106,7 +106,7 @@ title: "1일차 — 유한체 (11월 25일)"
     | 3 | $\{0, 4, 8\}$ | $\{4, 8\}$ | 2 |
     | 4 | $\{0, 3, 6, 9\}$ | $\{3, 9\}$ | 2 |
     | 6 | $\{0, 2, 4, 6, 8, 10\}$ | $\{2, 10\}$ | 2 |
-    | 12 | $\mathbf Z/12\mathbf Z$ | $\{1, 5, 7, 11\}$ | 4 |
+    | 12 | $\mathbb Z/12\mathbb Z$ | $\{1, 5, 7, 11\}$ | 4 |
 
     실제로 $1 + 1 + 2 + 2 + 2 + 4 = 12$이다.
 
@@ -137,37 +137,37 @@ title: "1일차 — 유한체 (11월 25일)"
 
 ### 3.1 유한체의 제곱수 { #31-squares-in-finite-fields }
 
-$q = p^f$라 하자. $\mathbf F_q^*$는 위수 $q - 1$인 순환군이므로 모든 $x \in \mathbf F_q^*$에 대해 $x^{q-1} = 1$임을 떠올리자.
+$q = p^f$라 하자. $\mathbb F_q^*$는 위수 $q - 1$인 순환군이므로 모든 $x \in \mathbb F_q^*$에 대해 $x^{q-1} = 1$임을 떠올리자.
 
 !!! abstract "정리 4"
-    (a) $p = 2$이면 $\mathbf F_q$의 모든 원소는 제곱수이다.
+    (a) $p = 2$이면 $\mathbb F_q$의 모든 원소는 제곱수이다.
 
-    (b) $p \neq 2$이면 제곱수들 $\mathbf F_q^{*2} = \{x^2 \mid x \in \mathbf F_q^*\}$는 $\mathbf F_q^*$에서 지표 $2$인 부분군을 이루며, 이는 $\{\pm 1\}$에 값을 갖는 준동형사상 $x \mapsto x^{(q-1)/2}$의 핵이다. 요약하면 수열
+    (b) $p \neq 2$이면 제곱수들 $\mathbb F_q^{*2} = \{x^2 \mid x \in \mathbb F_q^*\}$는 $\mathbb F_q^*$에서 지표 $2$인 부분군을 이루며, 이는 $\{\pm 1\}$에 값을 갖는 준동형사상 $x \mapsto x^{(q-1)/2}$의 핵이다. 요약하면 수열
 
     $$
-    1 \longrightarrow \mathbf F_q^{*2} \longrightarrow \mathbf F_q^* \longrightarrow \{\pm 1\} \longrightarrow 1
+    1 \longrightarrow \mathbb F_q^{*2} \longrightarrow \mathbb F_q^* \longrightarrow \{\pm 1\} \longrightarrow 1
     $$
 
     은 완전열이다. 즉 각 자리에서 나가는 사상의 핵이 들어오는 사상의 상과 같다.
 
 !!! success "(a)의 증명"
-    $p = 2$이면 사상 $x \mapsto x^2$는 프로베니우스 사상이고, 유한체 $\mathbf F_q$의 자기동형사상이다. 특히 전사이다. $\square$
+    $p = 2$이면 사상 $x \mapsto x^2$는 프로베니우스 사상이고, 유한체 $\mathbb F_q$의 자기동형사상이다. 특히 전사이다. $\square$
 
 !!! success "(b)의 증명"
-    $p \neq 2$이고 $\Omega$를 $\mathbf F_q$의 대수적 폐포라 하자. $x \in \mathbf F_q^*$에 대해 $y^2 = x$인 $y \in \Omega$를 고르면
+    $p \neq 2$이고 $\Omega$를 $\mathbb F_q$의 대수적 폐포라 하자. $x \in \mathbb F_q^*$에 대해 $y^2 = x$인 $y \in \Omega$를 고르면
 
     $$
     y^{q-1} = x^{(q-1)/2} = \pm 1, \qquad \big(x^{(q-1)/2}\big)^2 = x^{q-1} = 1\text{이므로}
     $$
 
-    이다. 따라서 $x$가 $\mathbf F_q$에서 제곱수일 필요충분조건은 $y \in \mathbf F_q^*$인 것이고, 이는 $y^{q-1} = 1$인 것과 동치이다(정리 1 ii)에 의해 $\mathbf F_q^*$는 정확히 $y^{q-1} = 1$인 $y \in \Omega$들의 집합이다). 그러므로 $\mathbf F_q^{*2}$는 $\{\pm 1\}$에 값을 갖는 사상 $x \mapsto x^{(q-1)/2}$의 핵이다.
+    이다. 따라서 $x$가 $\mathbb F_q$에서 제곱수일 필요충분조건은 $y \in \mathbb F_q^*$인 것이고, 이는 $y^{q-1} = 1$인 것과 동치이다(정리 1 ii)에 의해 $\mathbb F_q^*$는 정확히 $y^{q-1} = 1$인 $y \in \Omega$들의 집합이다). 그러므로 $\mathbb F_q^{*2}$는 $\{\pm 1\}$에 값을 갖는 사상 $x \mapsto x^{(q-1)/2}$의 핵이다.
 
-    제곱 사상 $\mathbf F_q^* \to \mathbf F_q^*$의 핵은 $\{\pm 1\}$이고, $p \neq 2$이므로 원소가 두 개이다. 따라서 그 상 $\mathbf F_q^{*2}$는 원소가 $(q-1)/2$개이고 지표는 $2$이다. 특히 사상 $x \mapsto x^{(q-1)/2}$는 $\{\pm 1\}$ 위로의 전사이다. $\square$
+    제곱 사상 $\mathbb F_q^* \to \mathbb F_q^*$의 핵은 $\{\pm 1\}$이고, $p \neq 2$이므로 원소가 두 개이다. 따라서 그 상 $\mathbb F_q^{*2}$는 원소가 $(q-1)/2$개이고 지표는 $2$이다. 특히 사상 $x \mapsto x^{(q-1)/2}$는 $\{\pm 1\}$ 위로의 전사이다. $\square$
 
 ### 3.2 르장드르 기호 { #32-legendre-symbol }
 
 !!! note "정의 (르장드르 기호)"
-    소수 $p \neq 2$와 $x \in \mathbf F_p^*$에 대해 **르장드르 기호**는
+    소수 $p \neq 2$와 $x \in \mathbb F_p^*$에 대해 **르장드르 기호**는
 
     $$
     \left(\frac{x}{p}\right) = x^{(p-1)/2} \in \{\pm 1\}
@@ -176,10 +176,10 @@ $q = p^f$라 하자. $\mathbf F_q^*$는 위수 $q - 1$인 순환군이므로 모
     이다.
 
 !!! info "비고"
-    - 관례로 $\left(\frac{0}{p}\right) = 0$으로 두어 기호를 $\mathbf F_p$ 전체로 확장한다.
-    - $x \in \mathbf Z$의 $\mathbf F_p$에서의 상이 $x'$이면 $\left(\frac{x}{p}\right) = \left(\frac{x'}{p}\right)$로 정의한다. 그러면 $\left(\frac{x}{p}\right)\left(\frac{y}{p}\right) = \left(\frac{xy}{p}\right)$가 성립한다.
-    - $\left(\frac{x}{p}\right) = 1$은 $x \in \mathbf F_p^{*2}$와 동치이다(정리 4).
-    - $x \in \mathbf F_p^*$이고 $y \in \Omega$가 $x$의 제곱근이면 $\left(\frac{x}{p}\right) = y^{p-1}$이다.
+    - 관례로 $\left(\frac{0}{p}\right) = 0$으로 두어 기호를 $\mathbb F_p$ 전체로 확장한다.
+    - $x \in \mathbb Z$의 $\mathbb F_p$에서의 상이 $x'$이면 $\left(\frac{x}{p}\right) = \left(\frac{x'}{p}\right)$로 정의한다. 그러면 $\left(\frac{x}{p}\right)\left(\frac{y}{p}\right) = \left(\frac{xy}{p}\right)$가 성립한다.
+    - $\left(\frac{x}{p}\right) = 1$은 $x \in \mathbb F_p^{*2}$와 동치이다(정리 4).
+    - $x \in \mathbb F_p^*$이고 $y \in \Omega$가 $x$의 제곱근이면 $\left(\frac{x}{p}\right) = y^{p-1}$이다.
 
     정리하면
 
@@ -192,7 +192,7 @@ $q = p^f$라 하자. $\mathbf F_q^*$는 위수 $q - 1$인 순환군이므로 모
     \end{cases}
     $$
 
-$n$이 홀수일 때 $\mathbf Z/2\mathbf Z$의 원소 $\varepsilon(n)$, $\omega(n)$을 다음과 같이 정의한다.
+$n$이 홀수일 때 $\mathbb Z/2\mathbb Z$의 원소 $\varepsilon(n)$, $\omega(n)$을 다음과 같이 정의한다.
 
 $$
 \varepsilon(n) \equiv \frac{n-1}{2} \pmod 2 =
@@ -202,7 +202,7 @@ $$
 \begin{cases} 0 & n \equiv \pm 1 \pmod 8,\\ 1 & n \equiv \pm 5 \pmod 8.\end{cases}
 $$
 
-$\varepsilon\colon (\mathbf Z/4\mathbf Z)^* \to \mathbf Z/2\mathbf Z$와 $\omega\colon (\mathbf Z/8\mathbf Z)^* \to \mathbf Z/2\mathbf Z$는 준동형사상이다.
+$\varepsilon\colon (\mathbb Z/4\mathbb Z)^* \to \mathbb Z/2\mathbb Z$와 $\omega\colon (\mathbb Z/8\mathbb Z)^* \to \mathbb Z/2\mathbb Z$는 준동형사상이다.
 
 !!! abstract "정리 5"
     i) $\left(\frac{1}{p}\right) = 1$.
@@ -234,47 +234,47 @@ iii)의 증명은 강의에서 다루지 않았으므로 이 노트에서도 건
 
 여기서 $\left(\frac{\ell}{p}\right)$은 법 $p$로, $\left(\frac{p}{\ell}\right)$은 법 $\ell$로 계산한다.
 
-$\Omega$를 $\mathbf F_p$의 대수적 폐포라 하고, $w \in \Omega$를 1의 원시 $\ell$제곱근이라 하자. $w^\ell = 1$이므로 $x \in \mathbf F_\ell$에 대해 $w^x$가 잘 정의된다. **가우스 합**을 다음과 같이 만든다.
+$\Omega$를 $\mathbb F_p$의 대수적 폐포라 하고, $w \in \Omega$를 1의 원시 $\ell$제곱근이라 하자. $w^\ell = 1$이므로 $x \in \mathbb F_\ell$에 대해 $w^x$가 잘 정의된다. **가우스 합**을 다음과 같이 만든다.
 
 $$
-y = \sum_{x \in \mathbf F_\ell}\left(\frac{x}{\ell}\right)w^x \in \Omega .
+y = \sum_{x \in \mathbb F_\ell}\left(\frac{x}{\ell}\right)w^x \in \Omega .
 $$
 
 Serre는 이 합에 관한 보조정리 두 개를 증명한다. 1일차는 첫 번째에서 끝났다.
 
 !!! abstract "보조정리 1"
-    $y^2 = (-1)^{\varepsilon(\ell)}\,\ell$이다. (기호를 남용하여 $\ell$은 체 $\mathbf F_p$에서의 $\ell$의 상도 나타낸다.)
+    $y^2 = (-1)^{\varepsilon(\ell)}\,\ell$이다. (기호를 남용하여 $\ell$은 체 $\mathbb F_p$에서의 $\ell$의 상도 나타낸다.)
 
 !!! success "증명"
     제곱을 전개하고 $u = x + z$, $t = z$로 놓으면
 
     $$
-    y^2 = \sum_{x, z \in \mathbf F_\ell}\left(\frac{xz}{\ell}\right)w^{x+z} = \sum_{u, t \in \mathbf F_\ell}\left(\frac{t(u-t)}{\ell}\right)w^u
+    y^2 = \sum_{x, z \in \mathbb F_\ell}\left(\frac{xz}{\ell}\right)w^{x+z} = \sum_{u, t \in \mathbb F_\ell}\left(\frac{t(u-t)}{\ell}\right)w^u
     $$
 
     이다. $t = 0$인 항은 0이다. $t \neq 0$이면 $t(u - t) = (-1)\,t^2\,(1 - ut^{-1})$이고, 기호는 곱셈적이며 $\left(\frac{t^2}{\ell}\right) = 1$이므로
 
     $$
-    y^2 = \sum_{u \in \mathbf F_\ell,\ t \in \mathbf F_\ell^*}\left(\frac{-1}{\ell}\right)\left(\frac{t^2}{\ell}\right)\left(\frac{1 - ut^{-1}}{\ell}\right)w^u
-    = (-1)^{\varepsilon(\ell)}\sum_{u \in \mathbf F_\ell,\ t \in \mathbf F_\ell^*}\left(\frac{1 - ut^{-1}}{\ell}\right)w^u
+    y^2 = \sum_{u \in \mathbb F_\ell,\ t \in \mathbb F_\ell^*}\left(\frac{-1}{\ell}\right)\left(\frac{t^2}{\ell}\right)\left(\frac{1 - ut^{-1}}{\ell}\right)w^u
+    = (-1)^{\varepsilon(\ell)}\sum_{u \in \mathbb F_\ell,\ t \in \mathbb F_\ell^*}\left(\frac{1 - ut^{-1}}{\ell}\right)w^u
     $$
 
     이다(정리 5 ii)). 따라서
 
     $$
-    (-1)^{\varepsilon(\ell)}y^2 = \sum_{u \in \mathbf F_\ell} C_u\,w^u, \qquad C_u = \sum_{t \in \mathbf F_\ell^*}\left(\frac{1 - ut^{-1}}{\ell}\right).
+    (-1)^{\varepsilon(\ell)}y^2 = \sum_{u \in \mathbb F_\ell} C_u\,w^u, \qquad C_u = \sum_{t \in \mathbb F_\ell^*}\left(\frac{1 - ut^{-1}}{\ell}\right).
     $$
 
-    $u = 0$이면 모든 항이 $\left(\frac{1}{\ell}\right) = 1$이므로 $C_0 = \ell - 1$이다. $u \neq 0$이면 $t$가 $\mathbf F_\ell^*$를 돌 때 $s = 1 - ut^{-1}$은 $\mathbf F_\ell - \{1\}$을 돌므로
+    $u = 0$이면 모든 항이 $\left(\frac{1}{\ell}\right) = 1$이므로 $C_0 = \ell - 1$이다. $u \neq 0$이면 $t$가 $\mathbb F_\ell^*$를 돌 때 $s = 1 - ut^{-1}$은 $\mathbb F_\ell - \{1\}$을 돌므로
 
     $$
-    C_u = \sum_{s \in \mathbf F_\ell - \{1\}}\left(\frac{s}{\ell}\right) = \sum_{s \in \mathbf F_\ell^*}\left(\frac{s}{\ell}\right) - \left(\frac{1}{\ell}\right) = 0 - 1 = -1
+    C_u = \sum_{s \in \mathbb F_\ell - \{1\}}\left(\frac{s}{\ell}\right) = \sum_{s \in \mathbb F_\ell^*}\left(\frac{s}{\ell}\right) - \left(\frac{1}{\ell}\right) = 0 - 1 = -1
     $$
 
-    이다. $\mathbf F_\ell^*$에는 제곱수와 제곱수가 아닌 수가 같은 개수만큼 있기 때문이다(정리 4). 그러므로
+    이다. $\mathbb F_\ell^*$에는 제곱수와 제곱수가 아닌 수가 같은 개수만큼 있기 때문이다(정리 4). 그러므로
 
     $$
-    (-1)^{\varepsilon(\ell)}y^2 = (\ell - 1) - \sum_{u \in \mathbf F_\ell^*}w^u = \ell
+    (-1)^{\varepsilon(\ell)}y^2 = (\ell - 1) - \sum_{u \in \mathbb F_\ell^*}w^u = \ell
     $$
 
-    이다. $w$가 1의 원시 $\ell$제곱근이므로 $\sum_{u \in \mathbf F_\ell}w^u = \frac{w^\ell - 1}{w - 1} = 0$이고, 따라서 $\sum_{u \in \mathbf F_\ell^*}w^u = -1$이기 때문이다. $\square$
+    이다. $w$가 1의 원시 $\ell$제곱근이므로 $\sum_{u \in \mathbb F_\ell}w^u = \frac{w^\ell - 1}{w - 1} = 0$이고, 따라서 $\sum_{u \in \mathbb F_\ell^*}w^u = -1$이기 때문이다. $\square$
