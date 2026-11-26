@@ -459,7 +459,20 @@ $$
 \end{aligned}
 $$
 
-Spin is not considered here, so from now on $m_l = m$. The $\phi$ equation gives $\Phi(\phi) = e^{im\phi}$, and $\Phi(\phi + 2\pi) = \Phi(\phi)$ forces $m$ to be an integer.
+Spin is not considered here, so from now on $m_l = m$.
+
+The constant $C_2$ must be negative. The wavefunction depends on an angle, so going once around must bring it back to itself: $\Phi(\phi + 2\pi) = \Phi(\phi)$. If $C_2 = k^2 > 0$, the solutions $e^{\pm k\phi}$ keep growing or decaying and can never return to their starting value. With $C_2 = -m^2$ the $\phi$ equation is solved just as for the infinite well:
+
+$$
+\Phi(\phi) = c_1 e^{im\phi} + c_2 e^{-im\phi},
+$$
+
+and periodicity forces $m$ to be an integer. From now on we keep only $\Phi(\phi) = e^{im\phi}$.
+
+!!! info "Remark — why the $e^{-im\phi}$ term is dropped"
+    No boundary condition removes $e^{-im\phi}$: the general solution is a superposition of the state with quantum number $m$ and the state with $-m$. We drop it because $\psi_{nlm}$ is meant to denote **one** state. Nothing is lost, since $m$ also runs over negative integers and $e^{-im\phi}$ is itself the state labelled $-m$. With the ladder operators this becomes clearer: $L_z = \frac{\hbar}{i}\frac{\partial}{\partial\phi}$ (Proposition 6.4.1), and $e^{im\phi}$ is an eigenfunction of $L_z$ with eigenvalue $m\hbar$, while a combination of $e^{im\phi}$ and $e^{-im\phi}$ is not.
+
+    The constant $c_1$ does not matter either: the constants in front of $\Theta$ and $\Phi$ end up multiplied together, so we absorb them into a single constant $A$.
 
 !!! abstract "Proposition 6.1.1 (The $\theta$ equation is the associated Legendre equation)"
     Multiplying the $\theta$ equation by $\Theta/\sin^2\theta$,
@@ -525,6 +538,11 @@ $$
 
     (Books that include the Condon–Shortley phase have an extra minus sign.)
 
+The $\phi$ part has no normalization constant of its own, since it was absorbed into $A$: it is simply $\Phi(\phi) = e^{im\phi}$. This settles $\Theta$ and $\Phi$ completely.
+
+!!! info "Remark — the radial part"
+    Only $R(r)$ is left. Its equation leads to another family of special functions, the Laguerre functions, of about the same difficulty as the Legendre functions; the course does not treat it. Physically it adds little: the energies $E_n = -13.6\ \text{eV}/n^2$ it gives are exactly those of Bohr's classical model, in which the electron moves on circular orbits. This finishes the differential equations; from here on the method is algebraic.
+
 ---
 
 ## 6.2 The Algebraic Method: Angular Momentum Operators
@@ -544,6 +562,8 @@ $$
 
 In quantum mechanics the same formulas hold with $x, p_x, \dots$ read as operators.
 
+Here the proton is taken to sit at the origin and the electron to move around it. Strictly, both move about their common centre of mass, and one should use the reduced mass; since the proton is far heavier than the electron, we ignore this. The electron does not move on an orbit: we only speak of the probability of finding it at the position $\vec r$.
+
 ### 2. Commutator algebra
 
 !!! abstract "Proposition 6.2.1 (Basic rules)"
@@ -554,12 +574,42 @@ In quantum mechanics the same formulas hold with $x, p_x, \dots$ read as operato
     5. $[AB, CD] = A\big([B,C]D + C[B,D]\big) + \big([A,C]D + C[A,D]\big)B$
     6. $[A \pm B, C \pm D] = [A,C] \pm [A,D] \pm [B,C] + [B,D]$
 
+!!! success "Proof of rule 2"
+    A commutator identity is proved by applying both sides to a test function $f$, keeping the order of the operators. The right side gives
+
+    $$
+    A[B,C]f + [A,C]Bf = (ABCf - ACBf) + (ACBf - CABf) = ABCf - CABf = [AB, C]f .
+    $$
+
+    The other rules are proved the same way. $\square$
+
+Rules 1, 2, 5 and 6 are the ones used below. Written out, rule 5 reads
+
+$$
+[AB, CD] = AC[B,D] + A[B,C]D + C[A,D]B + [A,C]DB :
+$$
+
+each of the four pairs $(A,C), (A,D), (B,C), (B,D)$ meets exactly once in a commutator.
+
 !!! abstract "Proposition 6.2.2 (Canonical commutators)"
     For $i, j \in \{x, y, z\}$:
 
     $$
     [r_i, r_j] = 0, \qquad [p_i, p_j] = 0, \qquad [r_i, p_j] = 0 \ (i \ne j), \qquad [r_i, p_i] = i\hbar .
     $$
+
+!!! success "Proof"
+    Apply each commutator to a test function $f$, with $p_i = \frac{\hbar}{i}\frac{\partial}{\partial r_i}$.
+
+    Position operators only multiply, so their order does not matter: for example $[z, x]f = zxf - xzf = 0$.
+
+    Partial derivatives commute: $[p_x, p_y]f = -\hbar^2\left(\frac{\partial^2 f}{\partial x\,\partial y} - \frac{\partial^2 f}{\partial y\,\partial x}\right) = 0$.
+
+    For different axes the coordinate passes through the derivative: $[y, p_z]f = \frac{\hbar}{i}\left(y\frac{\partial f}{\partial z} - \frac{\partial (yf)}{\partial z}\right) = 0$.
+
+    For the same axis it does not: $[x, p_x]f = \frac{\hbar}{i}\left(x\frac{\partial f}{\partial x} - \frac{\partial (xf)}{\partial x}\right) = -\frac{\hbar}{i}f = i\hbar f$. $\square$
+
+So of all commutators between positions and momenta, only those of a position and the momentum along the **same** axis are nonzero.
 
 ### 3. Angular momentum operators
 
@@ -573,7 +623,7 @@ In quantum mechanics the same formulas hold with $x, p_x, \dots$ read as operato
     [L_x, L_y] = [yp_z - zp_y,\ zp_x - xp_z] = [yp_z, zp_x] - [yp_z, xp_z] - [zp_y, zp_x] + [zp_y, xp_z] .
     $$
 
-    By rule 5, each term is built from the four commutators of its factors, and only $[r_i, p_i] \ne 0$ survives. So the middle two terms vanish, and
+    By rule 5, each term is built from the four commutators of its factors, and only $[r_i, p_i] \ne 0$ survives. Of the $4 \times 4 = 16$ commutators, only two are nonzero: the middle two terms vanish entirely, the first keeps only its $A[B,C]D$ piece and the last only its $C[A,D]B$ piece:
 
     $$
     [yp_z, zp_x] = y[p_z, z]p_x = -i\hbar\, y p_x, \qquad
@@ -714,6 +764,8 @@ Both are the same eigenvalue $\lambda$, so $l(l+1) = k(k-1)$. Its roots are $k =
 
 !!! info "Remark — why textbooks draw cones"
     $[L^2, L_z] = 0$, so $|\vec L|$ and $L_z$ can be known at the same time. But $[L_z, L_x] = i\hbar L_y$ and $[L_z, L_y] = -i\hbar L_x$, so $L_x$ and $L_y$ cannot be known together with $L_z$. The vector therefore cannot be drawn as a single arrow; only its length $\sqrt{l(l+1)}\hbar$ and its projection $m\hbar$ are fixed, which leaves a cone. Note also $m^2 \le l(l+1)$ forces $|m| \le l$, and since $l^2 < l(l+1)$ for $l > 0$, $\vec L$ never points exactly along the $z$-axis.
+
+    In other words, once $|\vec L|$ and $L_z$ are fixed, $L_x^2 + L_y^2 = L^2 - L_z^2$ is fixed too, but $L_x$ and $L_y$ separately cannot be: this is the uncertainty principle for angular momentum. As with position and momentum, its root is a nonzero commutator; two observables whose commutator vanishes can be measured at the same time. Even the indeterminacy is quantized: the projection takes only the values $m\hbar$, so the orientation of $\vec L$ is quantized as well. This is called **space quantization**.
 
 ---
 
