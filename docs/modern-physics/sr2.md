@@ -433,8 +433,10 @@ $$
 Integrating once more,
 
 $$
-x = \frac{c^2}{a_0}\left(1 + \frac{a_0^2t^2}{c^2}\right)^{1/2} + C .
+x = \frac{c^2}{a_0}\left(1 + \frac{a_0^2t^2}{c^2}\right)^{1/2} + C = X\left(1 + \frac{c^2t^2}{X^2}\right)^{1/2} + C, \qquad X = \frac{c^2}{a_0} .
 $$
+
+Here $X$, a velocity squared divided by an acceleration, has the dimension of length. Moving $C$ to the left and squaring removes the root.
 
 !!! abstract "Hyperbolic motion"
     With $X = c^2/a_0$,
