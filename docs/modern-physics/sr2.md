@@ -367,7 +367,13 @@ since $1 - \beta^2 = 1/\gamma_v^2$. Both repulsive, and equal.
 
 ## 11 Relativistic Force and Hyperbolic Motion
 
+Special relativity deals with inertial frames moving uniformly; general relativity extends it to gravity and acceleration. By Einstein's **equivalence principle**, a space that accelerates has the same effect as gravity: the inertial force felt inside an accelerating frame cannot be distinguished from a gravitational force. One consequence of general relativity is the event horizon of a black hole. In this section and the next we follow a particle, and then a rigid body, moving with constant proper acceleration, and find a mathematical form similar to such a horizon.
+
 ### The three-force
+
+The four-vector is a tool: its components are not what we observe. The spatial part $\gamma m v$ of the four-momentum can grow without bound, but the velocity we measure in three dimensions never exceeds $c$. In the end, every quantity has to be converted back into a three-dimensional one, the kind we can observe.
+
+In Newtonian mechanics force was defined by $F = ma$. This holds only when the mass does not change; in general the force is the time derivative of momentum, $F = dp/dt$. Momentum is conserved: when two bodies act on each other, action and reaction give them equal and opposite impulses. But $p = mv$ is conserved only approximately, at speeds much smaller than $c$. Near the speed of light it is $\gamma m v$, the spatial part of the four-momentum, that is conserved, so we take the **three-force** to be its time derivative. For a particle the mass does not change, so $m$ comes out of the derivative, and by the chain rule
 
 $$
 F_1 = \frac{dp_1}{dt} = \frac{d(\gamma mv)}{dt} = m\frac{d(\gamma v)}{dv}\frac{dv}{dt} .
@@ -384,6 +390,8 @@ using $\gamma^2\beta^2 + 1 = \gamma^2$.
 !!! abstract "Proposition 11.1"
     The component of force along the direction of motion is the same in $S$ and in the instantaneous rest frame $S'$: $F_1 = F_1'$.
 
+This is not obvious: the components of force perpendicular to the motion can differ between the two frames.
+
 !!! success "Proof"
     With $\mathbb P = (E/c, p_1, p_2, p_3)$, $p_1 = \gamma_v(p_1' + \beta E'/c)$ and $dt = \gamma_v\,dt'$ (for a particle momentarily at rest in $S'$). Then
 
@@ -393,9 +401,24 @@ using $\gamma^2\beta^2 + 1 = \gamma^2$.
 
     because in the rest frame the particle's energy does not change to first order ($dE'/dt' = F'\cdot v' = 0$). $\square$
 
+!!! info "Remark — two questions from the class"
+    *Why can $\gamma_v$ be taken out of the derivative?* $v$ is the speed of $S'$ relative to $S$. $S'$ is an inertial frame chosen at one instant; it does not accelerate with the particle. So $v$, and with it $\gamma_v$ and $\beta$, is a constant.
+
+    *Does $dE'/dt'$ really vanish, when the particle's speed $u'$ in $S'$ changes?* $dE'/dt'$ is energy divided by time, a power, and power is also force times velocity: $dE'/dt' = F_1'u'$. At the instant considered, $u' = 0$. Directly: with $E' = \gamma' mc^2$, $\gamma' = \gamma(u')$, the derivative of $\gamma$ computed above gives
+
+    $$
+    \frac{dE'}{dt'} = mc^2\,\gamma'^3\frac{u'}{c^2}\frac{du'}{dt'} = 0 \quad (u' = 0),
+    \qquad
+    \frac{dp_1'}{dt'} = m\left(\gamma'^3\frac{u'^2}{c^2} + \gamma'\right)\frac{du'}{dt'} = m\frac{du'}{dt'} \ne 0 .
+    $$
+
+    The energy keeps a factor $u'$ and vanishes; the momentum keeps the term $\gamma' = 1$ and does not.
+
 ### Constant proper acceleration
 
-A particle has constant **proper acceleration** $a_0$: in its instantaneous rest frame at every moment, its acceleration is $a_0$. Then $F_1' = ma_0$, and by Proposition 11.1
+As with proper length and proper time, "proper" refers to a rest frame. A particle has constant **proper acceleration** $a_0$ if its acceleration is $a_0$ in its instantaneous rest frame at every moment. Since the particle's velocity keeps changing, a new rest frame must be chosen at every instant: $S_1'$ at one moment, $S_2'$ at the next, and so on. At the moment $S_k'$ is chosen the particle is at rest in it, and a time $dt_k'$ later its velocity in $S_k'$ is $a_0\,dt_k'$.
+
+In the rest frame $S'$ the particle's velocity is $u' = 0$, far below $c$, so mechanics there must reduce to Newton's: in $F_1' = m\left(\gamma'^3u'^2/c^2 + \gamma'\right)du'/dt'$ the first term drops and $\gamma' = 1$, so $F_1' = m\,du'/dt' = ma_0$. By Proposition 11.1
 
 $$
 m\gamma^3\frac{dv}{dt} = ma_0, \qquad \frac{dv}{dt} = \frac{a_0}{\gamma^3} .
@@ -425,3 +448,13 @@ $$
 Differentiating, $2(x - C)\dfrac{dx}{dt} - 2c^2t = 0$, so $\beta = \dfrac{1}{c}\dfrac{dx}{dt} = \dfrac{ct}{x - C} < 1$: the particle approaches but never reaches the speed of light.
 
 For $a_0^2t^2/c^2 \ll 1$, $x \approx X\left(1 + \dfrac{a_0^2t^2}{2c^2}\right) + C = X + C + \frac12 a_0t^2$, the Newtonian result.
+
+<figure markdown>
+  ![Worldline of constant proper acceleration](images/rel-hyperbola.svg){ .tex-fig width="340" }
+  <figcaption markdown="span">Figure 11.1. The worldline of a particle with constant proper acceleration $a_0$: a hyperbola with centre $(C, 0)$, approaching the light lines $x - C = \pm ct$.</figcaption>
+</figure>
+
+To find the asymptotes, let $x$ and $ct$ go to infinity. Then $X^2$ is negligible next to $(x - C)^2$ and $c^2t^2$, so $x - C \approx \pm ct$. The worldline approaches these light lines without ever reaching them, like a horizon. If $C = 0$ the picture is only shifted, and the asymptotes are the light cone $x = \pm ct$ through the origin.
+
+!!! info "Remark — what comes next"
+    This finishes the particle. The next lecture turns to a rigid body made of such particles. It asks what is needed for the body to accelerate while keeping its proper length $L_0$; in Bell's paradox this means the string does not break. It then compares the Rindler horizon with the event horizon of a black hole.
