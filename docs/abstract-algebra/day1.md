@@ -215,9 +215,26 @@ Note that $\varepsilon\colon (\mathbb Z/4\mathbb Z)^* \to \mathbb Z/2\mathbb Z$ 
     - $-1$ is a square modulo $p$ if and only if $p \equiv 1 \pmod 4$;
     - $2$ is a square modulo $p$ if and only if $p \equiv \pm 1 \pmod 8$.
 
-<div class="admonition skipped" markdown>
-The proof of iii) was not covered in the lecture and is skipped in these notes. (Parts i) and ii) follow at once from the definition: $1^{(p-1)/2} = 1$ and $(-1)^{(p-1)/2} = (-1)^{\varepsilon(p)}$.)
-</div>
+Parts i) and ii) follow at once from the definition: $1^{(p-1)/2} = 1$ and $(-1)^{(p-1)/2} = (-1)^{\varepsilon(p)}$. We only prove iii). (This proof was given on Day 2.)
+
+!!! success "Proof of iii)"
+    Let $\alpha \in \Omega$ be a primitive $8$th root of unity, and set $y = \alpha + \alpha^{-1}$. Since $\alpha^4 = -1$, we have $\alpha^2 + \alpha^{-2} = \alpha^{-2}(\alpha^4 + 1) = 0$, so
+
+    $$
+    y^2 = \alpha^2 + \alpha^{-2} + 2 = 2 .
+    $$
+
+    Thus $y$ is a square root of $2$, and by the Remark above, $\left(\frac{2}{p}\right) = y^{p-1}$. By the Frobenius map, $y^p = \alpha^p + \alpha^{-p}$, and $\alpha^p$ depends only on $p$ modulo $8$.
+
+    If $p \equiv \pm 1 \pmod 8$, then $\alpha^p = \alpha^{\pm 1}$, so $y^p = \alpha + \alpha^{-1} = y$. Since $y \neq 0$ ($y^2 = 2$), $y^{p-1} = 1$, so $\left(\frac{2}{p}\right) = 1$.
+
+    If $p \equiv \pm 5 \pmod 8$, then $\alpha^p = \alpha^{\pm 5}$, so, using $\alpha^4 = -1$,
+
+    $$
+    y^p = \alpha^5 + \alpha^{-5} = -(\alpha + \alpha^{-1}) = -y ,
+    $$
+
+    and $\left(\frac{2}{p}\right) = y^{p-1} = -1$. In both cases $\left(\frac{2}{p}\right) = (-1)^{\omega(p)}$. $\square$
 
 ### 3.3 Quadratic reciprocity law
 
@@ -274,3 +291,5 @@ Serre proves two lemmas about this sum. Day 1 ended with the first.
     $$
 
     since $w$ is a primitive $\ell$th root of unity: $\sum_{u \in \mathbb F_\ell}w^u = \frac{w^\ell - 1}{w - 1} = 0$, so $\sum_{u \in \mathbb F_\ell^*}w^u = -1$. $\square$
+
+The second lemma and the end of the proof are in [Day 2](day2.md#33-quadratic-reciprocity-law-continued).

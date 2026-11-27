@@ -8,7 +8,7 @@ title: 현대대수 특강
 
 # 현대대수 특강 노트 { .book-title #lecture-notes-in-abstract-algebra }
 
-<p class="subject-line">특강 · 유한체와 이차 상호 법칙</p>
+<p class="subject-line">특강 · 유한체, 이차 상호 법칙, 피타고라스 세 쌍</p>
 
 <p class="course-info">슬라이드: Min Hoon Kim (이화여자대학교) · 교재: Serre, <em>A Course in Arithmetic</em> 1장</p>
 
@@ -16,16 +16,16 @@ title: 현대대수 특강
 
 ## 이 노트에 대하여 { #about-these-notes }
 
-2026년 11월 25일과 26일 이틀에 걸친 현대대수 특강의 노트이다. 강의는 유한체를 다루는 Serre의 *A Course in Arithmetic* 1장을 따르며, 목표는 가우스의 이차 상호 법칙이다.
+2026년 11월 25일과 26일 이틀에 걸친 현대대수 특강의 노트이다. 첫 번째 강의는 유한체를 다루는 Serre의 *A Course in Arithmetic* 1장을 따르며, 목표는 가우스의 이차 상호 법칙이다. 둘째 날의 두 번째 강의는 피타고라스 세 쌍을 다룬다.
 
 - *1일차 (11월 25일):* 유한체와 프로베니우스 사상, $\mathbb F_q$의 존재와 유일성, $\mathbb F_q^*$가 순환군이라는 사실, $\mathbb F_q$의 제곱수, 르장드르 기호, 그리고 가우스 합의 첫 번째 보조정리 $y^2 = (-1)^{\varepsilon(\ell)}\ell$까지.
-- *2일차 (11월 26일):* 추가 예정.
+- *2일차 (11월 26일):* 가우스 합의 두 번째 보조정리와 이차 상호 법칙의 증명, 르장드르 기호의 계산, 아이젠슈타인의 증명(부록). 이어서 피타고라스 세 쌍에 관한 두 번째 강의: 분류, 단위원 위의 유리점, 연속한 변, 인수분해되는 이차식 쌍, 원뿔곡선의 유리 매개화.
 
 강의에서 다룬 내용만 정리했다. 건너뛴 부분은 번호가 Serre와 맞도록 제목만 남기고 다루지 않았다고 적었다.
 
 ## 노트의 구성 { #how-these-notes-are-organised }
 
-절은 Serre 1장을 따른다: §1 유한체, §2 유한체 위의 방정식, §3 이차 상호 법칙. 정리와 보조정리는 강의 슬라이드의 번호(정리 1–6)를 그대로 쓴다. 보조정리는 절마다 따로 번호를 매기므로 §1.2의 "보조정리 1"과 §3.3의 "보조정리 1"은 서로 다른 명제이다.
+절은 Serre 1장을 따른다: §1 유한체, §2 유한체 위의 방정식, §3 이차 상호 법칙. 정리와 보조정리는 강의 슬라이드의 번호(정리 1–6)를 그대로 쓴다. 보조정리는 절마다 따로 번호를 매기므로 §1.2의 "보조정리 1"과 §3.3의 "보조정리 1"은 서로 다른 명제이다. 피타고라스 세 쌍 강의는 따로 1–5절과 슬라이드 번호(보조정리 1.1, 정리 1.2, …)를 쓴다.
 
 !!! note "정의"
     새 용어. 용어 자체는 **굵게** 쓴다.
@@ -50,5 +50,18 @@ title: 현대대수 특강
 - [<span>유한체</span><span class="n">1</span>](day1-ko.md#1-finite-fields)
 - [<span>유한체 위의 방정식 (다루지 않음)</span><span class="n">2</span>](day1-ko.md#2-equations-over-a-finite-field)
 - [<span>이차 상호 법칙</span><span class="n">3</span>](day1-ko.md#3-quadratic-reciprocity-law)
+
+<p class="contents-part"><a href="../day2-ko/">2일차 — 이차 상호 법칙 (11월 26일)</a></p>
+
+- [<span>이차 상호 법칙 (계속)</span><span class="n">3</span>](day2-ko.md#3-quadratic-reciprocity-law-continued)
+- [<span>부록 — 아이젠슈타인의 증명</span><span class="n">A</span>](day2-ko.md#appendix-eisensteins-proof)
+
+<p class="contents-part"><a href="../triples-ko/">2일차 — 피타고라스 세 쌍 (11월 26일)</a></p>
+
+- [<span>도입</span><span class="n">1</span>](triples-ko.md#1-introduction)
+- [<span>정리 1.2의 대수적 증명 (다루지 않음)</span><span class="n">2</span>](triples-ko.md#2-proof-by-algebra)
+- [<span>정리 1.2의 기하적 증명</span><span class="n">3</span>](triples-ko.md#3-proof-by-geometry)
+- [<span>응용</span><span class="n">4</span>](triples-ko.md#4-applications)
+- [<span>일반화</span><span class="n">5</span>](triples-ko.md#5-generalizations)
 
 </div>

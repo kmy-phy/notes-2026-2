@@ -78,4 +78,6 @@ nav:
   - Abstract Algebra (special lecture):
       - 소개 · 목차: abstract-algebra/index.md
       - "Day 1: Finite Fields (25 Nov)": abstract-algebra/day1.md
+      - "Day 2: Quadratic Reciprocity (26 Nov)": abstract-algebra/day2.md
+      - "Day 2: Pythagorean Triples (26 Nov)": abstract-algebra/triples.md
   - 노트 쓰는 법: guide.md

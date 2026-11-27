@@ -217,9 +217,26 @@ $\varepsilon\colon (\mathbb Z/4\mathbb Z)^* \to \mathbb Z/2\mathbb Z$와 $\omega
     - $-1$이 법 $p$에 대한 제곱수일 필요충분조건은 $p \equiv 1 \pmod 4$이다.
     - $2$가 법 $p$에 대한 제곱수일 필요충분조건은 $p \equiv \pm 1 \pmod 8$이다.
 
-<div class="admonition skipped" markdown>
-iii)의 증명은 강의에서 다루지 않았으므로 이 노트에서도 건너뛴다. (i)과 ii)는 정의에서 바로 나온다: $1^{(p-1)/2} = 1$, $(-1)^{(p-1)/2} = (-1)^{\varepsilon(p)}$.)
-</div>
+i)과 ii)는 정의에서 바로 나온다: $1^{(p-1)/2} = 1$, $(-1)^{(p-1)/2} = (-1)^{\varepsilon(p)}$. iii)만 증명한다. (이 증명은 2일차에 다루었다.)
+
+!!! success "iii)의 증명"
+    $\alpha \in \Omega$를 1의 원시 $8$제곱근이라 하고 $y = \alpha + \alpha^{-1}$로 두자. $\alpha^4 = -1$이므로 $\alpha^2 + \alpha^{-2} = \alpha^{-2}(\alpha^4 + 1) = 0$이고, 따라서
+
+    $$
+    y^2 = \alpha^2 + \alpha^{-2} + 2 = 2
+    $$
+
+    이다. 즉 $y$는 $2$의 제곱근이므로 위의 비고에 의해 $\left(\frac{2}{p}\right) = y^{p-1}$이다. 프로베니우스 사상에 의해 $y^p = \alpha^p + \alpha^{-p}$이고, $\alpha^p$는 $p$를 $8$로 나눈 나머지에만 의존한다.
+
+    $p \equiv \pm 1 \pmod 8$이면 $\alpha^p = \alpha^{\pm 1}$이므로 $y^p = \alpha + \alpha^{-1} = y$이다. $y^2 = 2$이므로 $y \neq 0$이고, $y^{p-1} = 1$, 즉 $\left(\frac{2}{p}\right) = 1$이다.
+
+    $p \equiv \pm 5 \pmod 8$이면 $\alpha^p = \alpha^{\pm 5}$이므로 $\alpha^4 = -1$을 쓰면
+
+    $$
+    y^p = \alpha^5 + \alpha^{-5} = -(\alpha + \alpha^{-1}) = -y
+    $$
+
+    이고, $\left(\frac{2}{p}\right) = y^{p-1} = -1$이다. 두 경우 모두 $\left(\frac{2}{p}\right) = (-1)^{\omega(p)}$이다. $\square$
 
 ### 3.3 이차 상호 법칙 { #33-quadratic-reciprocity-law }
 
@@ -278,3 +295,5 @@ Serre는 이 합에 관한 보조정리 두 개를 증명한다. 1일차는 첫 
     $$
 
     이다. $w$가 1의 원시 $\ell$제곱근이므로 $\sum_{u \in \mathbb F_\ell}w^u = \frac{w^\ell - 1}{w - 1} = 0$이고, 따라서 $\sum_{u \in \mathbb F_\ell^*}w^u = -1$이기 때문이다. $\square$
+
+두 번째 보조정리와 증명의 나머지는 [2일차](day2-ko.md#33-quadratic-reciprocity-law-continued)에 있다.
